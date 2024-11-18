@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/SplashStyle';
 
