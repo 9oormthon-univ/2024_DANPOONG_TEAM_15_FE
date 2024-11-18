@@ -30,35 +30,35 @@ function App() {
     <>
     <div>
       <Routes>
-        <Route exact path="/" element={<Splash />} />
+        <Route path="/" element={<Splash />} />
 
         {/* 회원가입, 로그인, 마이페이지 */}
-        <Route exact path="/join" element={<Join />} />
-        <Route exact path="/join-second" element={<JoinSecond />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/mypage" element={<Mypage />} />
+        <Route path="/join" element={<Join />} />
+        <Route path="/join-second" element={<JoinSecond />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/mypage" element={<Mypage />} />
 
         {/* 메인, 서비스 신청 */}
-        <Route exact path="/main" element={<Main />} />
-        <Route exact path="/request" element={<Request />} />
-        <Route exact path="/request/child" element={<SelectChild />} />
-        <Route exact path="/request/certificate" element={<Certificate />} />
-        <Route exact path="/request/absent" element={<Absent />} />
-        <Route exact path="/request/schedule" element={<Schedule />} />
-        <Route exact path="/request/pay" element={<Pay />} />
-        <Route exact path="/request/done" element={<Done />} />
+        <Route path="/main" element={<Main />} />
+        <Route path="/request" element={<Request />} />
+        <Route path="/request/child" element={<SelectChild />} />
+        <Route path="/request/certificate" element={<Certificate />} />
+        <Route path="/request/absent" element={<Absent />} />
+        <Route path="/request/schedule" element={<Schedule />} />
+        <Route path="/request/pay" element={<Pay />} />
+        <Route path="/request/done" element={<Done />} />
 
         {/* 진단서, 미등원 확인서 */}
-        <Route exact path="/certificate-list" element={<CertificateList />} />
-        <Route exact path="/certificate-list/information" element={<CertificateInform />} />
-        <Route exact path="/absent-list" element={<AbsentList />} />
-        <Route exact path="/absent-list/information" element={<AbsentInform />} />
+        <Route path="/certificate-list" element={<CertificateList />} />
+        <Route path="/certificate-list/information" element={<CertificateInform />} />
+        <Route path="/absent-list" element={<AbsentList />} />
+        <Route path="/absent-list/information" element={<AbsentInform />} />
 
         {/* 신청 현황 */}
-        <Route exact path="/status" element={<Status />} />
+        <Route path="/status" element={<Status />} />
 
         {/* 404 */}
-        <Route exact path="/*" element={<Non />} />
+        <Route path="/*" element={<Non />} />
       </Routes>
     </div>
     </>
