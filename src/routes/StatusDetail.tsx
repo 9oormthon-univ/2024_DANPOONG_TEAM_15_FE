@@ -4,6 +4,7 @@ import * as S from '../styles/RequestStyle';
 import TopBackBar from '@/components/application-list/TopBackBar';
 import {dummyApplicationDetailList} from '@/const/dummy_data/dummy_application_detail_list';
 import {COLOR} from '@/const/color';
+import StatusCard from '@/components/application-list/StatusCard';
 
 const Container = styled.div`
   padding: 8px 20px 50px;
@@ -83,7 +84,7 @@ function StatusDetail() {
                 </HeaderText>
                 <ContentContainer>
                   <GrayBoldText>서비스 신청 현황</GrayBoldText>
-                  <GrayBoldText> ~~ 정보 컨테이너 ~~ </GrayBoldText>
+                  <StatusCard status={applicationDetailData.status} />
                 </ContentContainer>
                 <ContentContainer>
                   <GrayBoldText>매칭된 돌보미</GrayBoldText>
