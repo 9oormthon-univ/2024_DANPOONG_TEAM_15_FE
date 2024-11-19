@@ -18,5 +18,20 @@ export const dummyApplicationList = {
       careTime: '10:00 ~ 11:00',
       status: '이용 완료',
     },
+    {
+      applyDate: '2024년 11월 17일',
+      careTime: '10:00 ~ 11:00',
+      status: '이용 완료',
+    },
+    {
+      applyDate: '2024년 11월 17일',
+      careTime: '10:00 ~ 11:00',
+      status: '이용 완료',
+    },
+    {
+      applyDate: '2024년 11월 17일',
+      careTime: '10:00 ~ 11:00',
+      status: '이용 완료',
+    },
   ],
 };
