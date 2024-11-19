@@ -19,6 +19,7 @@ import AbsentList from './routes/AbsentList';
 import AbsentInform from './routes/AbsentInform';
 import Status from './routes/Status';
 import Non from './routes/Non';
+import StatusDetail from './routes/StatusDetail';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
 
           {/* 신청 현황 */}
           <Route path="/status" element={<Status />} />
+          <Route path="/status/detail" element={<StatusDetail />} />
 
           {/* 404 */}
           <Route path="/*" element={<Non />} />
