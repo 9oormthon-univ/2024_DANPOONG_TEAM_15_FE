@@ -1,5 +1,5 @@
-import {COLOR} from '@/const/color';
 import styled from 'styled-components';
+import {COLOR} from '@/const/color';
 
 const CardContainer = styled.div`
   background-color: ${COLOR.ORANGE_LIGHT};

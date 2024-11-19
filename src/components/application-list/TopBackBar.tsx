@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import {BackXIcon} from '@/assets/icons/common';
 import {useNavigate} from 'react-router-dom';
+import {BackXIcon} from '@/assets/icons/common';
 
 const BarContainer = styled.div`
   display: flex;

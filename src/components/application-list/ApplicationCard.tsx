@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+import {useNavigate} from 'react-router-dom';
 import {COLOR} from '@/const/color';
 import {ArrowRightIcon} from '@/assets/icons/common';
-import {useNavigate} from 'react-router-dom';
 
 const CardContainer = styled.div`
   background-color: ${COLOR.WHITE_07};
