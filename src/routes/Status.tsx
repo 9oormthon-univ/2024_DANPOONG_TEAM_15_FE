@@ -13,7 +13,7 @@ const Container = styled.div`
 const Header = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 8px 8px 32px;
+  padding: 8px 0px 32px;
   gap: 8px;
 `;
 
