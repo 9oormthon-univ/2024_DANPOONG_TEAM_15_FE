@@ -18,7 +18,7 @@ const CardHeader = styled.div`
 `;
 
 const CardSubText = styled.div`
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: ${COLOR.GRAY_04};
 `;
 
@@ -51,12 +51,14 @@ const PointerStyle = styled.div`
 
 interface ApplicationCardProps {
   applyDate: string;
+  careDate: string;
   careTime: string;
   status: string;
 }
 
 const ApplicationCard = ({
   applyDate,
+  careDate,
   careTime,
   status,
 }: ApplicationCardProps) => {
@@ -77,7 +79,9 @@ const ApplicationCard = ({
           </PointerStyle>
         </CardSubText>
       </CardHeader>
-      <CardSubText>돌봄 일정 | {careTime}</CardSubText>
+      <CardSubText>
+        돌봄 일정 | {careDate} | {careTime}
+      </CardSubText>
       <StatusContainer>
         <StatusTitle>신청 현황</StatusTitle>
         <StatusBar> | </StatusBar>

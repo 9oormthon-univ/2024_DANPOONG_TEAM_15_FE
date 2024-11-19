@@ -35,7 +35,7 @@ const ApplicationCardContainer = styled.div`
 `;
 
 function Status() {
-  const applicationListData = dummyApplicationList.content;
+  const applicationListData = dummyApplicationList;
   console.log(
     '🚀 ~ file: Status.tsx:40 ~ Status ~ applicationListData:',
     applicationListData,
@@ -50,7 +50,7 @@ function Status() {
               <TopBackBar />
               <Container>
                 <Header>
-                  <HeaderText>아이 이름</HeaderText>
+                  <HeaderText>{applicationListData[0].name}</HeaderText>
                   <HeaderSubText>서비스 신청 내역</HeaderSubText>
                 </Header>
                 <ApplicationCardContainer>
@@ -58,6 +58,7 @@ function Status() {
                     <ApplicationCard
                       key={index}
                       applyDate={item.applyDate}
+                      careDate={item.careDate}
                       careTime={item.careTime}
                       status={item.status}
                     />
