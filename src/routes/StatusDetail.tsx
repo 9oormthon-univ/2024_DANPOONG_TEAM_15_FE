@@ -5,6 +5,7 @@ import TopBackBar from '@/components/application-list/TopBackBar';
 import {dummyApplicationDetailList} from '@/const/dummy_data/dummy_application_detail_list';
 import {COLOR} from '@/const/color';
 import StatusCard from '@/components/application-list/StatusCard';
+import CaregiverCard from '@/components/application-list/CaregiverCard';
 
 const Container = styled.div`
   padding: 8px 20px 50px;
@@ -88,7 +89,8 @@ function StatusDetail() {
                 </ContentContainer>
                 <ContentContainer>
                   <GrayBoldText>매칭된 돌보미</GrayBoldText>
-                  <GrayBoldText> ~~ 정보 컨테이너 ~~ </GrayBoldText>
+                  <CaregiverCard
+                    status={applicationDetailData.status}></CaregiverCard>
                 </ContentContainer>
                 <ContentContainer>
                   <GrayBoldText>등록한 서류</GrayBoldText>
