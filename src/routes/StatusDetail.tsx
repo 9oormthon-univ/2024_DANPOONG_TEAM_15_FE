@@ -6,6 +6,7 @@ import {dummyApplicationDetailList} from '@/const/dummy_data/dummy_application_d
 import {COLOR} from '@/const/color';
 import StatusCard from '@/components/application-list/StatusCard';
 import CaregiverCard from '@/components/application-list/CaregiverCard';
+import RegistrationCard from '@/components/application-list/RegistrationCard';
 
 const Container = styled.div`
   padding: 8px 20px 50px;
@@ -94,7 +95,7 @@ function StatusDetail() {
                 </ContentContainer>
                 <ContentContainer>
                   <GrayBoldText>등록한 서류</GrayBoldText>
-                  <GrayBoldText> ~~ 정보 컨테이너 ~~ </GrayBoldText>
+                  <RegistrationCard />
                 </ContentContainer>
                 <InfoContainer>
                   <GrayBoldText>이름</GrayBoldText>
