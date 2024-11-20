@@ -7,6 +7,7 @@ const BarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 24px 20px;
+  height: 56px;
 `;
 
 const BackButton = styled.div`
