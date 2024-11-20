@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {useNavigate} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/RequestStyle';
 import {COLOR} from '@/const/color';
@@ -93,6 +94,18 @@ const OrangeSmallText = styled.div`
 `;
 
 function Mypage() {
+  const navigate = useNavigate();
+
+  // 소득 유형 변경 페이지로 이동
+  const onClickIncomeType = () => {
+    navigate('/mypage/income-type');
+  };
+
+  // 미등원 확인서 파일 다운로드 페이지로 이동
+  const onClickCertificateDownload = () => {
+    navigate('/mypage/certificate-download');
+  };
+
   return (
     <>
       <C.Page>
@@ -115,11 +128,11 @@ function Mypage() {
 
                   {/* 리스트 */}
                   <ListContainer>
-                    <ListCard>
+                    <ListCard onClick={onClickIncomeType}>
                       <BlackText>소득 유형 변경</BlackText>
                       <ArrowRightIcon width={20} height={20} />
                     </ListCard>
-                    <ListCard>
+                    <ListCard onClick={onClickCertificateDownload}>
                       <BlackText>미등원 확인서 파일 다운로드</BlackText>
                       <ArrowRightIcon width={20} height={20} />
                     </ListCard>
