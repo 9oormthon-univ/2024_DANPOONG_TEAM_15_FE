@@ -1,8 +1,11 @@
 export const COLOR = {
   WHITE_01: '#FFFFFF',
   WHITE_07: '#F7F7F7',
+  WHITE_08: '#F7F7FB',
+  WHITE_LIGHT: '#F1F1F5',
   BLACK_01: '#111111',
   BLACK_03: '#333333',
+  BLACK_09: '#999999',
   GRAY_04: '#767676',
   GRAY_09: '#D9D9D9',
   GRAY_10: '#999999',

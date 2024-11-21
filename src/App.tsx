@@ -20,6 +20,8 @@ import AbsentInform from './routes/AbsentInform';
 import Status from './routes/Status';
 import Non from './routes/Non';
 import StatusDetail from './routes/StatusDetail';
+import CertificateDownload from './routes/CertificateDownload';
+import IncomeType from './routes/IncomeType';
 
 function App() {
   return (
@@ -33,6 +35,11 @@ function App() {
           <Route path="/join-second" element={<JoinSecond />} />
           <Route path="/login" element={<Login />} />
           <Route path="/mypage" element={<Mypage />} />
+          <Route
+            path="/mypage/certificate-download"
+            element={<CertificateDownload />}
+          />
+          <Route path="/mypage/income-type" element={<IncomeType />} />
 
           {/* 메인, 서비스 신청 */}
           <Route path="/main" element={<Main />} />

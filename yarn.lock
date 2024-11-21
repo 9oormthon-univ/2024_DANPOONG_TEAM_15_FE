@@ -2146,6 +2146,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/eslint-plugin-query@npm:4":
+  version: 4.38.0
+  resolution: "@tanstack/eslint-plugin-query@npm:4.38.0"
+  peerDependencies:
+    eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+  checksum: 10c0/cf6ee6b8992b37edf6c833755616f1d784449c3300900dbf775cd2b6eba87a7eb86cfb3aa2afb2ff0ef56b70f9e2fa5c8ed5ed498e624fc3d0cea77c18ffe222
+  languageName: node
+  linkType: hard
+
 "@tanstack/query-core@npm:5.60.6":
   version: 5.60.6
   resolution: "@tanstack/query-core@npm:5.60.6"
@@ -2172,7 +2181,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:^5.60.5":
+"@tanstack/react-query@npm:^5.60.6":
   version: 5.60.6
   resolution: "@tanstack/react-query@npm:5.60.6"
   dependencies:
@@ -4853,7 +4862,8 @@ __metadata:
   resolution: "ivory@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.13.0"
-    "@tanstack/react-query": "npm:^5.60.5"
+    "@tanstack/eslint-plugin-query": "npm:4"
+    "@tanstack/react-query": "npm:^5.60.6"
     "@tanstack/react-query-devtools": "npm:^5.60.5"
     "@types/eslint-plugin-jsx-a11y": "npm:^6"
     "@types/node": "npm:^22.9.0"
