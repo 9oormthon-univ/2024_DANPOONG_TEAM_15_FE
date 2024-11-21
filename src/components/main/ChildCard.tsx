@@ -1,8 +1,6 @@
 import {useNavigate} from 'react-router-dom';
 import * as C from '@/styles/components/ChildCardStyle';
 
-import DefaultImage from '@/assets/default-child.svg';
-
 interface ChildCardProps {
   name: string;
   age: number;
@@ -17,13 +15,11 @@ function ChildCard({name, age, image, status}: ChildCardProps) {
     navigate(path);
   };
 
-  const displayImage = image || DefaultImage;
-
   return (
     <>
       <C.TotalContainer>
         <C.CardContainer onClick={() => handleNavLinkClick('/status')}>
-          <C.DefaultImg src={displayImage} alt="아이 사진" />
+          <C.DefaultImg src={image} alt="아이 사진" />
         </C.CardContainer>
         <C.Information>
           <>{name}</>

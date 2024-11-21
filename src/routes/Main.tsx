@@ -2,11 +2,12 @@ import {useState, useEffect} from 'react';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/MainStyle';
 
-import Header from '../components/Header';
-import BoryBaby from '../assets/bory-baby.svg';
+import Header from '@/components/Header';
+import BoryBaby from '@/assets/bory-baby.svg';
 import RequestButton from '@/components/main/RequestButton';
 import ChildCard from '@/components/main/ChildCard';
 import ChildCardAdd from '@/components/main/ChildCardAdd';
+import DefaultImage from '@/assets/default-child.svg';
 
 interface ChildData {
   id: number;
@@ -23,31 +24,25 @@ function Main() {
   useEffect(() => {
     const fetchData = async () => {
       const userResponse = {name: '김구름'};
-      const childrenResponse: (ChildData & {image: string | undefined})[] = [
+      const childrenResponse: ChildData[] = [
         {
           id: 1,
           name: '홍길동',
           age: 8,
-          image: undefined,
+          image: DefaultImage, // 기본 이미지 사용
           status: '아직 신청 내역이 없습니다',
         },
         {
           id: 2,
           name: '김구름',
           age: 6,
-          image: undefined,
+          image: DefaultImage, // 기본 이미지 사용
           status: '돌봄 서비스 이용 중',
         },
       ];
 
-      const updatedChildrenResponse: ChildData[] = childrenResponse.map(
-        child => ({
-          ...child,
-        }),
-      );
-
       setUserName(userResponse.name);
-      setChildren(updatedChildrenResponse);
+      setChildren(childrenResponse);
     };
 
     fetchData();
