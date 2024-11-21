@@ -3,28 +3,38 @@ import * as C from '@/styles/components/ChildCardStyle';
 
 import DefaultImage from '@/assets/default-child.svg';
 
-function ChildCard() {
+interface ChildCardProps {
+  name: string;
+  age: number;
+  image?: string; // 이미지가 선택적일 수 있음
+  status: string;
+}
+
+function ChildCard({name, age, image, status}: ChildCardProps) {
   const navigate = useNavigate();
 
-  const handleNavLinkClick = path => {
+  const handleNavLinkClick = (path: string) => {
     navigate(path);
   };
+
+  // 이미지가 없으면 DefaultImage 사용
+  const displayImage = image || DefaultImage;
 
   return (
     <>
       <C.TotalContainer>
-        <C.CardContainer onClick={() => handleNavLinkClick('/')}>
-          <C.DefaultImg src={DefaultImage} alt="아이 사진" />
+        <C.CardContainer onClick={() => handleNavLinkClick('/status')}>
+          <C.DefaultImg src={displayImage} alt="아이 사진" />
         </C.CardContainer>
         <C.Information>
-          <>홍길동</>
+          <>{name}</>
           <C.Line />
-          <>8살</>
+          <>{age}살</>
         </C.Information>
-        <C.StatusContainer>
+        <C.StatusContainer onClick={() => handleNavLinkClick('/status/detail')}>
           <C.StatusTitle>최근 신청 현황</C.StatusTitle>
           <C.StatusBar />
-          <C.StatusText>아직 신청 내역이 없습니다</C.StatusText>
+          <C.StatusText>{status}</C.StatusText>
         </C.StatusContainer>
       </C.TotalContainer>
     </>

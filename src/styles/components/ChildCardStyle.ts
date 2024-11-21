@@ -59,6 +59,7 @@ export const StatusContainer = styled.div`
   align-items: center;
   gap: 8px;
   font-size: 12px;
+  cursor: pointer;
 `;
 
 export const StatusTitle = styled.div`

@@ -13,7 +13,8 @@ function ChildCardAdd() {
   return (
     <>
       <C.TotalContainer>
-        <C.CardContainerAdd onClick={() => handleNavLinkClick('/')}>
+        <C.CardContainerAdd
+          onClick={() => handleNavLinkClick('/main/child-addition')}>
           <C.AddIcon src={CircleAddIcon} alt="아이 등록" />
           아이 등록
         </C.CardContainerAdd>

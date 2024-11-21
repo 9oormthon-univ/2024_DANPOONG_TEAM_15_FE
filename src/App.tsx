@@ -1,4 +1,5 @@
 import {Routes, Route} from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 import Splash from './routes/Splash';
 import Join from './routes/Join';
@@ -27,6 +28,7 @@ function App() {
   return (
     <>
       <div>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Splash />} />
 
