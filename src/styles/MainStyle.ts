@@ -70,10 +70,6 @@ export const ChildList = styled.div`
   width: 100%;
   overflow-x: scroll;
 
-  &:last-child {
-    margin-right: 24px;
-  }
-
   /* 크롬, 엣지, 사파리 */
   &::-webkit-scrollbar {
     display: none; /* 스크롤바 숨기기 */

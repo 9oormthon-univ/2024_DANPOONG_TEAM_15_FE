@@ -21,6 +21,11 @@ function ChildCard() {
           <C.Line />
           <>8살</>
         </C.Information>
+        <C.StatusContainer>
+          <C.StatusTitle>최근 신청 현황</C.StatusTitle>
+          <C.StatusBar />
+          <C.StatusText>아직 신청 내역이 없습니다</C.StatusText>
+        </C.StatusContainer>
       </C.TotalContainer>
     </>
   );

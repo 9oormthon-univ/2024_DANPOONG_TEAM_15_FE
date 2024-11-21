@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import BoryBaby from '../assets/bory-baby.svg';
 import RequestButton from '@/components/main/RequestButton';
 import ChildCard from '@/components/main/ChildCard';
+import ChildCardAdd from '@/components/main/ChildCardAdd';
 
 function Main() {
   return (
@@ -30,7 +31,7 @@ function Main() {
                     <S.Child>우리 아이</S.Child>
                     <S.ChildList>
                       <ChildCard />
-                      <ChildCard />
+                      <ChildCardAdd />
                     </S.ChildList>
                   </S.ChildContainer>
                 </S.Container>
