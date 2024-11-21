@@ -23,6 +23,7 @@ import Non from './routes/Non';
 import StatusDetail from './routes/StatusDetail';
 import CertificateDownload from './routes/CertificateDownload';
 import IncomeType from './routes/IncomeType';
+import ChildAddition from './routes/ChildAddition';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
 
           {/* 메인, 서비스 신청 */}
           <Route path="/main" element={<Main />} />
+          <Route path="/main/child-addition" element={<ChildAddition />} />
           <Route path="/request" element={<Request />} />
           <Route path="/request/child" element={<SelectChild />} />
           <Route path="/request/certificate" element={<Certificate />} />

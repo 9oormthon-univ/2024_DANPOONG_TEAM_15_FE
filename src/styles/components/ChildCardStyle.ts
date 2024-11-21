@@ -8,7 +8,7 @@ export const TotalContainer = styled.div`
 `;
 
 export const CardContainer = styled.div`
-  background-color: ${COLOR.ORANGE_03};
+  background-color: ${COLOR.ORANGE_04};
   width: 287px;
   height: 287px;
   border-radius: 12px;
