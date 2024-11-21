@@ -12,7 +12,7 @@ interface ChildData {
   id: number;
   name: string;
   age: number;
-  image?: string;
+  image: string;
   status: string;
 }
 
@@ -21,36 +21,31 @@ function Main() {
   const [children, setChildren] = useState<ChildData[]>([]); // 아이 목록
 
   useEffect(() => {
-    // 사용자 이름 및 아이 목록을 API 호출로 가져오기
     const fetchData = async () => {
-      // Mock API 호출
-      const userResponse = {name: '김구름'}; // 실제 API로 대체
-      const childrenResponse: (ChildData & {image: string | null})[] = [
+      const userResponse = {name: '김구름'};
+      const childrenResponse: (ChildData & {image: string | undefined})[] = [
         {
           id: 1,
           name: '홍길동',
           age: 8,
-          image: null,
+          image: undefined,
           status: '아직 신청 내역이 없습니다',
         },
         {
           id: 2,
           name: '김구름',
           age: 6,
-          image: null,
+          image: undefined,
           status: '돌봄 서비스 이용 중',
         },
       ];
 
-      // null을 undefined로 변환
       const updatedChildrenResponse: ChildData[] = childrenResponse.map(
         child => ({
           ...child,
-          image: child.image || undefined, // null을 undefined로 변환
         }),
       );
 
-      // 상태 업데이트
       setUserName(userResponse.name);
       setChildren(updatedChildrenResponse);
     };

@@ -6,7 +6,7 @@ import DefaultImage from '@/assets/default-child.svg';
 interface ChildCardProps {
   name: string;
   age: number;
-  image?: string; // 이미지가 선택적일 수 있음
+  image: string;
   status: string;
 }
 
@@ -17,7 +17,6 @@ function ChildCard({name, age, image, status}: ChildCardProps) {
     navigate(path);
   };
 
-  // 이미지가 없으면 DefaultImage 사용
   const displayImage = image || DefaultImage;
 
   return (
