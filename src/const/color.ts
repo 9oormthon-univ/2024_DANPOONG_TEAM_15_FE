@@ -7,6 +7,7 @@ export const COLOR = {
   BLACK_03: '#333333',
   BLACK_09: '#999999',
   GRAY_04: '#767676',
+  GRAY_05: '#DFE2E5',
   GRAY_09: '#D9D9D9',
   GRAY_10: '#999999',
   ORANGE_01: '#FC986C',
