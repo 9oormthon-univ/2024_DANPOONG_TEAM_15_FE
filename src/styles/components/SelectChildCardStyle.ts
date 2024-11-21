@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import {COLOR} from '@/const/color';
 
-export const CardContainer = styled.div`
+interface CardContainerProps {
+  $isSelected: boolean;
+}
+
+export const CardContainer = styled.div<CardContainerProps>`
   width: 100%;
   padding: 20px 0;
   background-color: ${({$isSelected}) =>

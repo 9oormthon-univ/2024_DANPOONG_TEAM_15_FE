@@ -12,7 +12,7 @@ import HeartIcon from '@/assets/icons/request/heart.svg';
 function Request() {
   const navigate = useNavigate();
 
-  const handleNavLinkClick = path => {
+  const handleNavLinkClick = (path: string): void => {
     navigate(path);
   };
 

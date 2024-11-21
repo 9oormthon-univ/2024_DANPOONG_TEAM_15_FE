@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import {COLOR} from '@/const/color';
 
+interface ButtonProps {
+  $isActive: boolean;
+}
+
 export const Background = styled.div`
   background-color: #ffffff;
 `;
@@ -46,7 +50,7 @@ export const FooterContainer = styled.div`
   padding: 16px 20px 50px;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<ButtonProps>`
   border-radius: 8px;
   border: none;
   background-color: ${({$isActive}) =>
