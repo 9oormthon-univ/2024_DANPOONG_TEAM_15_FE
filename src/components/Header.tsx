@@ -1,13 +1,13 @@
 import {useNavigate} from 'react-router-dom';
 import * as H from '../styles/components/HeaderStyle';
 
-import Logo from '../assets/ivory-logo.svg';
-import Mypage from '../assets/mypage.svg';
+import Logo from '@/assets/ivory-logo.svg';
+import Mypage from '@/assets/mypage.svg';
 
 function Header() {
   const navigate = useNavigate();
 
-  const handleNavLinkClick = path => {
+  const handleNavLinkClick = (path: string): void => {
     navigate(path);
   };
 

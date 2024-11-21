@@ -12,7 +12,7 @@ interface ChildData {
   id: number;
   name: string;
   age: number;
-  image: string | null;
+  image?: string;
   status: string;
 }
 
@@ -42,9 +42,15 @@ function Main() {
         },
       ];
 
+      // null을 undefined로 변환
+      const updatedChildrenResponse = childrenResponse.map(child => ({
+        ...child,
+        image: child.image || undefined, // null을 undefined로 변환
+      }));
+
       // 상태 업데이트
       setUserName(userResponse.name);
-      setChildren(childrenResponse);
+      setChildren(updatedChildrenResponse);
     };
 
     fetchData();

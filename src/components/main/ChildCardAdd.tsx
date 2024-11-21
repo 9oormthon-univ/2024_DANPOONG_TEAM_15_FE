@@ -6,7 +6,7 @@ import CircleAddIcon from '@/assets/circle-add.svg';
 function ChildCardAdd() {
   const navigate = useNavigate();
 
-  const handleNavLinkClick = path => {
+  const handleNavLinkClick = (path: string): void => {
     navigate(path);
   };
 

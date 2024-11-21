@@ -6,7 +6,7 @@ import RightIcon from '@/assets/orange-arrow-right.svg';
 function RequestButton() {
   const navigate = useNavigate();
 
-  const handleNavLinkClick = path => {
+  const handleNavLinkClick = (path: string): void => {
     navigate(path);
   };
 
