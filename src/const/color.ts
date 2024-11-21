@@ -10,5 +10,6 @@ export const COLOR = {
   GRAY_09: '#D9D9D9',
   ORANGE_01: '#FC986C',
   ORANGE_02: '#FF631F',
+  ORANGE_03: '#FAE0A7',
   ORANGE_LIGHT: 'rgba(252, 152, 108, 0.15)',
 };
