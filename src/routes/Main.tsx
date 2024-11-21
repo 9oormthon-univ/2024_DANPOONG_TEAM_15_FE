@@ -24,8 +24,8 @@ function Main() {
     // 사용자 이름 및 아이 목록을 API 호출로 가져오기
     const fetchData = async () => {
       // Mock API 호출
-      const userResponse = {name: '이주연'}; // 실제 API로 대체
-      const childrenResponse: ChildData[] = [
+      const userResponse = {name: '김구름'}; // 실제 API로 대체
+      const childrenResponse: (ChildData & {image: string | null})[] = [
         {
           id: 1,
           name: '홍길동',
@@ -43,10 +43,12 @@ function Main() {
       ];
 
       // null을 undefined로 변환
-      const updatedChildrenResponse = childrenResponse.map(child => ({
-        ...child,
-        image: child.image || undefined, // null을 undefined로 변환
-      }));
+      const updatedChildrenResponse: ChildData[] = childrenResponse.map(
+        child => ({
+          ...child,
+          image: child.image || undefined, // null을 undefined로 변환
+        }),
+      );
 
       // 상태 업데이트
       setUserName(userResponse.name);
