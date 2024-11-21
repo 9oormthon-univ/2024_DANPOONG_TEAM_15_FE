@@ -10,7 +10,9 @@ import Main from './routes/Main';
 import Request from './routes/Request';
 import SelectChild from './routes/SelectChild';
 import Certificate from './routes/Certificate';
+import CertificateConfirm from './routes/CertificateConfirm';
 import Absent from './routes/Absent';
+import AbsentConfirm from './routes/AbsentConfirm';
 import Schedule from './routes/Schedule';
 import Pay from './routes/Pay';
 import Done from './routes/Done';
@@ -50,7 +52,12 @@ function App() {
           <Route path="/request" element={<Request />} />
           <Route path="/request/child" element={<SelectChild />} />
           <Route path="/request/certificate" element={<Certificate />} />
+          <Route
+            path="/request/certificate-confirm"
+            element={<CertificateConfirm />}
+          />
           <Route path="/request/absent" element={<Absent />} />
+          <Route path="/request/absent-confirm" element={<AbsentConfirm />} />
           <Route path="/request/schedule" element={<Schedule />} />
           <Route path="/request/pay" element={<Pay />} />
           <Route path="/request/done" element={<Done />} />
