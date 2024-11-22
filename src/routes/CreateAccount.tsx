@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import * as C from '@/styles/CommonStyle';
 import * as S from '@/styles/JoinStyle';
 import CreateAccountFirst from '@/components/user/CreateAccountFirst';
@@ -6,6 +7,7 @@ import CreateAccountSecond from '@/components/user/CreateAccountSecond';
 import {SignUpRequestBody} from '@/types';
 
 function CreateAccount() {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [formData, setFormData] = useState<SignUpRequestBody>({
     email: '',
@@ -27,6 +29,8 @@ function CreateAccount() {
       '🚀 ~ file: CreateAccount.tsx:27 ~ handleSubmit ~ newData:',
       submitData,
     );
+    // 아이등록 페이지로 이동
+    navigate('/create-account/child-addition');
   };
 
   return (

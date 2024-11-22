@@ -25,6 +25,7 @@ import CertificateDownload from './routes/CertificateDownload';
 import IncomeType from './routes/IncomeType';
 import ChildAddition from './routes/ChildAddition';
 import CreateAccount from './routes/CreateAccount';
+import CreateChild from './routes/CreateChild';
 
 function App() {
   return (
@@ -36,6 +37,10 @@ function App() {
 
           {/* 회원가입, 로그인, 마이페이지 */}
           <Route path="/create-account/" element={<CreateAccount />} />
+          <Route
+            path="/create-account/child-addition"
+            element={<CreateChild />}
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route
