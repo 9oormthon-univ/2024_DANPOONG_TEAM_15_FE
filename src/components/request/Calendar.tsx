@@ -76,14 +76,14 @@ const Calendar: React.FC<CalendarProps> = ({onDateSelect}) => {
           {weekCalendarList.map((week, weekIdx) => (
             <tr key={weekIdx}>
               {week.map((day, dayIdx) => {
-                const isPrevMonth = weekIdx === 0 && day > 7; // 이전 달 날짜
+                const isPrevMonth = weekIdx === 0 && day! > 7; // 이전 달 날짜
                 const isNextMonth =
-                  weekIdx === weekCalendarList.length - 1 && day <= 7; // 다음 달 날짜
+                  weekIdx === weekCalendarList.length - 1 && day! <= 7; // 다음 달 날짜
                 const year = currentDate.getFullYear();
                 const month = currentDate.getMonth();
 
                 const isDisabled =
-                  isToday(year, month, day) || isPast(year, month, day);
+                  isToday(year, month, day!) || isPast(year, month, day!);
 
                 const isSelected =
                   selectedDate &&
@@ -94,7 +94,7 @@ const Calendar: React.FC<CalendarProps> = ({onDateSelect}) => {
                       : isNextMonth
                         ? month + 1
                         : month) &&
-                  selectedDate.getDate() === day;
+                  selectedDate.getDate() === day!;
 
                 const textColor =
                   isPrevMonth || isNextMonth
@@ -120,7 +120,7 @@ const Calendar: React.FC<CalendarProps> = ({onDateSelect}) => {
                           : 'pointer',
                     }}
                     onClick={() =>
-                      handleDateClick(day, isPrevMonth, isNextMonth)
+                      handleDateClick(day!, isPrevMonth, isNextMonth)
                     }>
                     {day}
                   </C.TableBody>
