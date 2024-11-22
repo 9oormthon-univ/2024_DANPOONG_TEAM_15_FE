@@ -6,6 +6,7 @@ export const COLOR = {
   BLACK_01: '#111111',
   BLACK_03: '#333333',
   BLACK_09: '#999999',
+  BLACK_LIGHT: 'rgba(0, 0, 0, 0.8)',
   GRAY_04: '#767676',
   GRAY_05: '#DFE2E5',
   GRAY_06: '#E5E5EC',

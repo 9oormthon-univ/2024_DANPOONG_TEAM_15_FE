@@ -6,14 +6,20 @@ import * as S from '../styles/CertificateStyle';
 import TopBackXBar from '@/components/common/TopBackXBar';
 import ProgressBar from '@/components/request/ProgressBar';
 import FileContainer from '@/components/request/FileContainer';
+import RequestLoading from '@/components/request/RequestLoading';
 
 function Certificate() {
   const navigate = useNavigate();
   const [selectedPaper, setSelectedPaper] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleNavLinkClick = (path: string): void => {
     if (selectedPaper !== null) {
-      navigate(path);
+      setIsLoading(true); // 로딩 상태 활성화
+      setTimeout(() => {
+        setIsLoading(false); // 로딩 상태 비활성화
+        navigate(path); // 경로 이동
+      }, 3000); // 3초 대기
     }
   };
 
@@ -50,6 +56,9 @@ function Certificate() {
           </S.Background>
         </C.Center>
       </C.Page>
+
+      {/* 로딩 모달 */}
+      {isLoading && <RequestLoading />}
     </>
   );
 }
