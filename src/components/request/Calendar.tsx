@@ -122,7 +122,7 @@ const Calendar: React.FC<CalendarProps> = ({onDateSelect}) => {
                     onClick={() =>
                       handleDateClick(day, isPrevMonth, isNextMonth)
                     }>
-                    {day || ''}
+                    {day}
                   </C.TableBody>
                 );
               })}

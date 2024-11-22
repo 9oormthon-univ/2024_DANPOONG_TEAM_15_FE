@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {COLOR} from '@/const/color';
 
 export const Selected = styled.div`
   width: inherit;

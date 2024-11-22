@@ -29,7 +29,7 @@ const useCalendar = (): UseCalendarReturn => {
   const firstDayOfMonth = getDay(startOfMonth(currentDate));
 
   // 다음 달의 시작 날짜 계산
-  const lastDayOfMonth = getDay(endOfMonth(currentDate));
+  // const lastDayOfMonth = getDay(endOfMonth(currentDate));
 
   // 이전 달 날짜 리스트
   const prevDayList: number[] = Array.from(

@@ -17,6 +17,11 @@ export default function TimePicker({
   const [hour, setHour] = useState(TIMES.hours[0].toString());
   const [minute, setMinute] = useState(TIMES.minutes[0].toString());
   const [observees, setObservees] = useState<HTMLLIElement[]>([]); // observees 초기화
+  const [activeStates, setActiveStates] = useState({
+    ampm: TIMES.ampm[0],
+    hours: TIMES.hours[0].toString(),
+    minutes: TIMES.minutes[0].toString(),
+  });
 
   const ampmRef = useRef<HTMLLIElement[]>([]);
   const hoursRef = useRef<HTMLLIElement[]>([]);
@@ -49,17 +54,24 @@ export default function TimePicker({
       setAmpm(initialAmpm);
       setHour(initialHour);
       setMinute(initialMinute);
+      setActiveStates({
+        ampm: initialAmpm,
+        hours: initialHour,
+        minutes: initialMinute,
+      });
     }
   }, [initialTime]); // 초기값 변경 시 상태 업데이트
 
   const handler = {
     handleSetTimes(type: string, value: string) {
+      setActiveStates(prev => ({...prev, [type]: value}));
+
       if (type === 'ampm') setAmpm(value);
       if (type === 'hours') setHour(value);
       if (type === 'minutes') setMinute(value);
 
       // 새로운 시간 조합을 onTimeSelect로 전달
-      const newTime = `${ampm} ${hour}:${minute}`;
+      const newTime = `${activeStates.ampm} ${activeStates.hours}:${activeStates.minutes}`;
       onTimeSelect(newTime);
     },
   };
@@ -71,16 +83,19 @@ export default function TimePicker({
           type="ampm"
           items={TIMES.ampm}
           refPusher={ampmRefPusher}
+          activeStates={activeStates.ampm} // activeStates 추가
         />
         <TimePickerScroll
           type="hours"
           items={TIMES.hours}
           refPusher={hoursRefPusher}
+          activeStates={activeStates.hours} // activeStates 추가
         />
         <TimePickerScroll
           type="minutes"
           items={TIMES.minutes}
           refPusher={minutesRefPusher}
+          activeStates={activeStates.minutes} // activeStates 추가
         />
       </TimePickerObserverRoot>
     </T.Selector>

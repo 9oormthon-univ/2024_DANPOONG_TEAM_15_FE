@@ -1,4 +1,9 @@
-import React, {PropsWithChildren, useEffect, useState} from 'react';
+import React, {
+  PropsWithChildren,
+  useEffect,
+  useState,
+  ReactElement,
+} from 'react';
 import * as T from '@/styles/components/TimePickerObserverRootStyle';
 
 interface TimePickerObserverRootProps {
@@ -6,14 +11,18 @@ interface TimePickerObserverRootProps {
   handler: {[key: string]: (type: string, value: string) => void};
 }
 
+interface TimePickerChildProps {
+  activeStates: {[key: string]: boolean};
+}
+
 export default function TimePickerObserverRoot({
   children,
   observees,
   handler,
 }: PropsWithChildren<TimePickerObserverRootProps>) {
-  const [activeStates, setActiveStates] = useState<{
-    [key: string]: boolean;
-  }>({});
+  const [activeStates, setActiveStates] = useState<{[key: string]: boolean}>(
+    {},
+  );
 
   useEffect(() => {
     const observerCallback: IntersectionObserverCallback = observerEntries => {
@@ -61,9 +70,9 @@ export default function TimePickerObserverRoot({
     <T.ObserverRoot className="time-picker__observer-root">
       {children &&
         React.Children.map(children, child => {
-          if (!React.isValidElement(child)) return child;
+          if (!React.isValidElement<TimePickerChildProps>(child)) return child;
 
-          return React.cloneElement(child, {
+          return React.cloneElement<TimePickerChildProps>(child, {
             activeStates, // activeStates 전달
           });
         })}
