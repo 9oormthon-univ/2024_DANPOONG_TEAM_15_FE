@@ -50,6 +50,7 @@ export const FileSpace = styled.div`
 
 export const FooterContainer = styled.div`
   padding: 16px 20px 50px;
+  background-color: ${COLOR.WHITE_01};
 `;
 
 export const Button = styled.button<ButtonProps>`

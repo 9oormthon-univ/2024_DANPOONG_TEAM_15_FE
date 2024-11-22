@@ -72,6 +72,7 @@ export const FooterContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  background-color: ${COLOR.WHITE_01};
 `;
 
 export const Badge = styled.div`
