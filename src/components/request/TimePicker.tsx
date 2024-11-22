@@ -13,9 +13,6 @@ export default function TimePicker({
   onTimeSelect,
   initialTime,
 }: TimePickerProps) {
-  const [ampm, setAmpm] = useState(TIMES.ampm[0]);
-  const [hour, setHour] = useState(TIMES.hours[0].toString());
-  const [minute, setMinute] = useState(TIMES.minutes[0].toString());
   const [observees, setObservees] = useState<HTMLLIElement[]>([]); // observees 초기화
   const [activeStates, setActiveStates] = useState({
     ampm: TIMES.ampm[0],
@@ -51,9 +48,6 @@ export default function TimePicker({
     if (initialTime) {
       const [initialAmpm, initialTimeStr] = initialTime.split(' ');
       const [initialHour, initialMinute] = initialTimeStr.split(':');
-      setAmpm(initialAmpm);
-      setHour(initialHour);
-      setMinute(initialMinute);
       setActiveStates({
         ampm: initialAmpm,
         hours: initialHour,
@@ -65,10 +59,6 @@ export default function TimePicker({
   const handler = {
     handleSetTimes(type: string, value: string) {
       setActiveStates(prev => ({...prev, [type]: value}));
-
-      if (type === 'ampm') setAmpm(value);
-      if (type === 'hours') setHour(value);
-      if (type === 'minutes') setMinute(value);
 
       // 새로운 시간 조합을 onTimeSelect로 전달
       const newTime = `${activeStates.ampm} ${activeStates.hours}:${activeStates.minutes}`;
@@ -83,19 +73,19 @@ export default function TimePicker({
           type="ampm"
           items={TIMES.ampm}
           refPusher={ampmRefPusher}
-          activeStates={activeStates.ampm} // activeStates 추가
+          activeState={activeStates.ampm} // 단일 문자열 전달
         />
         <TimePickerScroll
           type="hours"
           items={TIMES.hours}
           refPusher={hoursRefPusher}
-          activeStates={activeStates.hours} // activeStates 추가
+          activeState={activeStates.hours} // 단일 문자열 전달
         />
         <TimePickerScroll
           type="minutes"
           items={TIMES.minutes}
           refPusher={minutesRefPusher}
-          activeStates={activeStates.minutes} // activeStates 추가
+          activeState={activeStates.minutes} // 단일 문자열 전달
         />
       </TimePickerObserverRoot>
     </T.Selector>

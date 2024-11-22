@@ -1,9 +1,4 @@
-import React, {
-  PropsWithChildren,
-  useEffect,
-  useState,
-  ReactElement,
-} from 'react';
+import React, {PropsWithChildren, useEffect, useState} from 'react';
 import * as T from '@/styles/components/TimePickerObserverRootStyle';
 
 interface TimePickerObserverRootProps {

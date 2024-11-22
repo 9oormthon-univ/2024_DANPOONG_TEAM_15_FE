@@ -4,29 +4,26 @@ interface TimePickerScrollProps {
   type: 'ampm' | 'hours' | 'minutes';
   items: (string | number)[];
   refPusher: (el: HTMLLIElement) => void;
-  activeStates: {[key: string]: boolean}; // activeStates 전달받음
+  activeState: string | number; // 단일 값으로 변경
 }
 
 export default function TimePickerScroll({
   type,
   items,
   refPusher,
-  activeStates,
+  activeState,
 }: TimePickerScrollProps) {
   return (
     <T.TimePickerScroll>
-      {items.map(item => {
-        const key = `${type}-${item}`; // type과 item으로 고유 key 생성
-        return (
-          <T.TimePickerScrollItem
-            key={key}
-            ref={refPusher}
-            isActive={!!activeStates[key]} // activeStates를 기반으로 isActive 계산
-            className={`time-picker__scroll-item ${type}`}>
-            {item}
-          </T.TimePickerScrollItem>
-        );
-      })}
+      {items.map(item => (
+        <T.TimePickerScrollItem
+          key={`${type}-${item}`} // 고유 key 생성
+          ref={refPusher}
+          isActive={item === activeState} // activeState와 비교하여 isActive 계산
+          className={`time-picker__scroll-item ${type}`}>
+          {item}
+        </T.TimePickerScrollItem>
+      ))}
     </T.TimePickerScroll>
   );
 }

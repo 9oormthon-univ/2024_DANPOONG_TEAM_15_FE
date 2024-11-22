@@ -7,7 +7,7 @@ import LeftIcon from '@/assets/icons/request/arrow-left.svg';
 import RightIcon from '@/assets/icons/request/arrow-right.svg';
 
 interface CalendarProps {
-  onDateSelect: (date: Date | null) => void;
+  onDateSelect: (date: Date) => void;
 }
 
 const Calendar: React.FC<CalendarProps> = ({onDateSelect}) => {

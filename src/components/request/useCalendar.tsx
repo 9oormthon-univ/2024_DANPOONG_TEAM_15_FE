@@ -3,7 +3,6 @@ import {
   subMonths,
   addMonths,
   startOfMonth,
-  endOfMonth,
   getDay,
 } from 'date-fns';
 import React from 'react';
