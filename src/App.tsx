@@ -12,6 +12,7 @@ import CertificateConfirm from './routes/CertificateConfirm';
 import Absent from './routes/Absent';
 import AbsentConfirm from './routes/AbsentConfirm';
 import Schedule from './routes/Schedule';
+import Time from './routes/Time';
 import Pay from './routes/Pay';
 import Done from './routes/Done';
 import CertificateList from './routes/CertificateList';
@@ -62,6 +63,7 @@ function App() {
           <Route path="/request/absent" element={<Absent />} />
           <Route path="/request/absent-confirm" element={<AbsentConfirm />} />
           <Route path="/request/schedule" element={<Schedule />} />
+          <Route path="/request/time" element={<Time />} />
           <Route path="/request/pay" element={<Pay />} />
           <Route path="/request/done" element={<Done />} />
 

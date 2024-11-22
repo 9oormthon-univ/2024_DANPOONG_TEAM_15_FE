@@ -16,10 +16,20 @@ export const PageSpace = styled.div`
 `;
 
 export const Container = styled.div`
-  padding: 12px 20px;
+  padding: 8px 20px;
   display: flex;
   flex: 1;
   flex-direction: column;
+`;
+
+export const NumTitle = styled.div`
+  color: ${COLOR.GRAY_04};
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.3px;
+
+  margin-top: 24px;
 `;
 
 export const Title = styled.div`
@@ -28,22 +38,42 @@ export const Title = styled.div`
   font-weight: 600;
   line-height: 28px;
   letter-spacing: -0.45px;
-`;
-
-export const SubTitle = styled.div`
-  color: ${COLOR.GRAY_04};
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: -0.35px;
 
   margin: 4px 0 32px;
 `;
 
-export const CardContainer = styled.div`
+export const TimeContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+`;
+
+export const DateContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+export const TimeTitle = styled.div`
+  color: ${COLOR.GRAY_04};
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: -0.3px;
+`;
+
+export const DateText = styled.div`
+  color: ${COLOR.BLACK_00};
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+`;
+
+export const SelectTimeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 export const FooterContainer = styled.div`

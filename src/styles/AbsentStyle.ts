@@ -12,7 +12,7 @@ export const Background = styled.div`
 export const PageSpace = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100dvh;
+  min-height: 100dvh;
 `;
 
 export const Container = styled.div`
