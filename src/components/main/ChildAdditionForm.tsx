@@ -185,7 +185,7 @@ const ChildAdditionForm = ({
         {formData.image ? (
           <img src={formData.image} alt="아이 사진" />
         ) : (
-          <IvoryRemoveBgIcon height={150} width={'auto'} />
+          <IvoryRemoveBgIcon height={150} />
         )}
       </ImagePreview>
     </Card>

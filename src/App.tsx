@@ -2,8 +2,6 @@ import {Routes, Route} from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 import Splash from './routes/Splash';
-import Join from './routes/Join';
-import JoinSecond from './routes/JoinSecond';
 import Login from './routes/Login';
 import Mypage from './routes/Mypage';
 import Main from './routes/Main';
@@ -26,6 +24,8 @@ import StatusDetail from './routes/StatusDetail';
 import CertificateDownload from './routes/CertificateDownload';
 import IncomeType from './routes/IncomeType';
 import ChildAddition from './routes/ChildAddition';
+import CreateAccount from './routes/CreateAccount';
+import CreateChild from './routes/CreateChild';
 
 function App() {
   return (
@@ -36,8 +36,11 @@ function App() {
           <Route path="/" element={<Splash />} />
 
           {/* 회원가입, 로그인, 마이페이지 */}
-          <Route path="/join" element={<Join />} />
-          <Route path="/join-second" element={<JoinSecond />} />
+          <Route path="/create-account/" element={<CreateAccount />} />
+          <Route
+            path="/create-account/child-addition"
+            element={<CreateChild />}
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route

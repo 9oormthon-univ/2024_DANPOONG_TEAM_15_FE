@@ -13,6 +13,7 @@ export const COLOR = {
   GRAY_06: '#E5E5EC',
   GRAY_09: '#D9D9D9',
   GRAY_10: '#999999',
+  RED_01: '#DC0000',
   GRAY_LIGHT: 'rgba(0, 0, 0, 0.04)',
   ORANGE_01: '#FC986C',
   ORANGE_02: '#FF631F',
