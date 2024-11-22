@@ -76,6 +76,48 @@ export const SelectTimeContainer = styled.div`
   gap: 8px;
 `;
 
+export const TimePickerContainer = styled.div`
+  padding: 24px 38px;
+  border-radius: 12px;
+  background-color: ${COLOR.WHITE_07};
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+`;
+
+export const SelectContainer = styled.div`
+  border-radius: 100px;
+  background: ${COLOR.WHITE_01};
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > div:nth-child(2) {
+    margin-left: -10px;
+  }
+`;
+
+export const Select = styled.div<{isActive: boolean}>`
+  width: 114px;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  background-color: ${({isActive}) =>
+    isActive ? COLOR.ORANGE_01 : COLOR.WHITE_01};
+  color: ${({isActive}) => (isActive ? COLOR.WHITE_01 : COLOR.GRAY_04)};
+  z-index: ${({isActive}) => (isActive ? 10 : 5)};
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.375px;
+  cursor: pointer;
+`;
+
 export const FooterContainer = styled.div`
   padding: 16px 20px 50px;
   background-color: ${COLOR.WHITE_01};
