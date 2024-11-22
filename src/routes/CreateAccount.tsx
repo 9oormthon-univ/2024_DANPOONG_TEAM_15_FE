@@ -13,30 +13,20 @@ function CreateAccount() {
     password: '',
     incomeType: 'A',
   });
-  const handleNextStep = (data: Partial<typeof formData>) => {
+
+  const handleNextStep = (data: Partial<SignUpRequestBody>) => {
     setFormData(prev => ({...prev, ...data}));
-    setCurrentStep(prevStep => prevStep + 1); // 다음 단계로 이동
+    setCurrentStep(prevStep => prevStep + 1);
   };
 
-  const handlePreviousStep = () => {
-    setCurrentStep(prevStep => prevStep - 1);
-  };
-
-  const handleSubmit = async () => {
-    try {
-      const response = await fetch('/api/endpoint', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        alert('회원가입이 성공적으로 완료되었습니다!');
-      } else {
-        alert('회원가입에 실패했습니다.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  // 최종 제출
+  const handleSubmit = async (data: {incomeType: string}) => {
+    setFormData(prev => ({...prev, ...data}));
+    const submitData = {...formData, ...data};
+    console.log(
+      '🚀 ~ file: CreateAccount.tsx:27 ~ handleSubmit ~ newData:',
+      submitData,
+    );
   };
 
   return (
@@ -49,7 +39,6 @@ function CreateAccount() {
             )}
             {currentStep === 2 && (
               <CreateAccountSecond
-                onPrevious={handlePreviousStep}
                 onSubmit={handleSubmit}
                 formData={formData}
               />
