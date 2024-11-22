@@ -4,6 +4,7 @@ import * as S from '../styles/RequestStyle';
 import {COLOR} from '@/const/color';
 import TopBackXBar from '@/components/common/TopBackXBar';
 import {KakaoPayIcon} from '@/assets/icons/request';
+import ProgressBar from '@/components/request/ProgressBar';
 
 const PageSpace = styled.div`
   display: flex;
@@ -126,6 +127,7 @@ function Pay() {
               <PageSpace>
                 <TopBackXBar />
                 <Container>
+                  <ProgressBar isStatus={3} />
                   <InfoContainer>
                     <GrayBoldText>3. 결제</GrayBoldText>
                     <BlackBigText>

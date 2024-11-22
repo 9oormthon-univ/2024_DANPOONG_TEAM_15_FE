@@ -1,8 +1,10 @@
+import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/RequestStyle';
 import {COLOR} from '@/const/color';
 import {CircleCheckIcon, DoneIvoryIcon} from '@/assets/icons/request';
+import ProgressBar from '@/components/request/ProgressBar';
 
 const PageSpace = styled.div`
   display: flex;
@@ -76,6 +78,12 @@ const HomeButton = styled.button`
 `;
 
 function Done() {
+  const navigate = useNavigate();
+
+  const handleNavLinkClick = (path: string): void => {
+    navigate(path);
+  };
+
   return (
     <>
       <C.Page>
@@ -86,6 +94,7 @@ function Done() {
                 {/* <TopBackBar /> */}
                 <PaddingTop />
                 <Container>
+                  <ProgressBar isStatus={4} />
                   <InfoContainer>
                     <GrayBoldText>4. 신청 완료</GrayBoldText>
                   </InfoContainer>
@@ -101,7 +110,9 @@ function Done() {
                 </Container>
                 <FooterContainer>
                   <DoneIvoryIcon />
-                  <HomeButton>홈으로 가기</HomeButton>
+                  <HomeButton onClick={() => handleNavLinkClick('/main')}>
+                    홈으로 가기
+                  </HomeButton>
                 </FooterContainer>
               </PageSpace>
             </C.PageSpace>
