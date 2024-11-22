@@ -67,6 +67,7 @@ export const FileUploadButton = styled.div`
     width: 300px;
     height: 400px;
     background-color: ${COLOR.ORANGE_05};
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
     object-fit: cover;
     z-index: 15;
