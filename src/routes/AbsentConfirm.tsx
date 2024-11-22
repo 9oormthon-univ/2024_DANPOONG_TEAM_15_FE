@@ -18,7 +18,7 @@ function AbsentConfirm() {
   const navigate = useNavigate();
 
   // 더미 데이터
-  const [certificateData, setCertificateData] = useState<CertificateData>({
+  const [certificateData] = useState<CertificateData>({
     name: '홍길동',
     date: '0000-00-00 ~ 0000-00-00',
     reason: '병명',

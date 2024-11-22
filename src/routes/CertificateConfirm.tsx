@@ -21,7 +21,7 @@ function CertificateConfirm() {
   const navigate = useNavigate();
 
   // 더미 데이터
-  const [certificateData, setCertificateData] = useState<CertificateData>({
+  const [certificateData] = useState<CertificateData>({
     name: '홍길동',
     parentName: '김구름',
     address: '서울시 oo구 oo동 123-4',

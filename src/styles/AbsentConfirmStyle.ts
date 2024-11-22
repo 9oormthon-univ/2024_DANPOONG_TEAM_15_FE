@@ -94,7 +94,7 @@ export const BadgeCircle = styled.img`
   width: 20px;
 `;
 
-export const Button = styled.button<ButtonProps>`
+export const Button = styled.button`
   border-radius: 8px;
   border: none;
   background-color: ${COLOR.ORANGE_01};
