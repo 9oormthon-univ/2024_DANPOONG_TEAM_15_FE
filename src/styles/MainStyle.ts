@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 
 export const Background = styled.div`
-  width: 100%;
-  height: 100%;
   background: #ffeadc;
-  position: relative;
 `;
 
 export const IconWrapper = styled.div`
@@ -13,8 +10,8 @@ export const IconWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(100% - 150px); /* Footer를 위한 공간 확보 */
   text-align: center;
+  margin-top: 150px;
   gap: 16px;
 `;
 
@@ -22,7 +19,7 @@ export const Text = styled.div`
   font-size: 18px;
   font-family: 'Pretendard', sans-serif;
   font-weight: 600;
-  color: #333333;
+  color: #b45a5a;
   line-height: 1.5;
   text-align: center;
 `;
@@ -30,13 +27,12 @@ export const Text = styled.div`
 export const Footer = styled.div`
   position: absolute;
   bottom: 0;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px; /* 버튼과 로그인 텍스트 간 간격 */
-  padding: 20px 16px; /* 하단 간격 추가 */
-  background-color: #ffeadc; /* 배경색 유지 */
+  gap: 12px;
+  padding: 60px 16px;
+  background-color: #ffeadc;
 `;
 
 export const Main = styled.button`
