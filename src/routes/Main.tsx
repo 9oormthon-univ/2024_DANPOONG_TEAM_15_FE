@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/MainStyle';
-
 import Header from '@/components/Header';
 import BoryBaby from '@/assets/bory-baby.svg';
 import RequestButton from '@/components/main/RequestButton';

@@ -2,8 +2,6 @@ import {Routes, Route} from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 import Splash from './routes/Splash';
-import Start from './routes/Start';
-import Signin from './routes/Signin';
 import Login from './routes/Login';
 import Mypage from './routes/Mypage';
 import Main from './routes/Main';
@@ -38,7 +36,7 @@ function App() {
           <Route path="/" element={<Splash />} />
 
           {/* 시작화면 */}
-          <Route path="/start" element={<Start />} />
+          <Route path="/splash" element={<Splash />} />
 
           {/* 회원가입, 로그인, 마이페이지 */}
           <Route path="/create-account/" element={<CreateAccount />} />
