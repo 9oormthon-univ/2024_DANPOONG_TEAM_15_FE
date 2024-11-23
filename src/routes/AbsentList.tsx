@@ -10,7 +10,7 @@ function AbsentList() {
   const navigate = useNavigate();
   const [selectedPaper, setSelectedPaper] = useState<string | null>(null);
   const [certificateList, setCertificateList] = useState<
-    {id: string; title: string}[]
+    {id: string; title: string; startDate: string; endDate: string}[]
   >([]);
 
   useEffect(() => {
