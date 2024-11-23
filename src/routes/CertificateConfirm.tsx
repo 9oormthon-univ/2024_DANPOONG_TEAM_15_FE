@@ -1,5 +1,4 @@
-import {useNavigate} from 'react-router-dom';
-import {useState} from 'react';
+import {useNavigate, useLocation} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/CertificateConfirmStyle';
 
@@ -9,27 +8,43 @@ import CheckIcon from '@/assets/icons/request/green-check.svg';
 
 interface CertificateData {
   name: string;
-  parentName: string;
   address: string;
-  date: string;
-  disease: string;
-  content: string;
+  diagnosisDate: string;
+  diagnosisName: string;
+  diagnosisContent: string;
   doctorName: string;
 }
 
 function CertificateConfirm() {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // 더미 데이터
-  const [certificateData] = useState<CertificateData>({
-    name: '홍길동',
-    parentName: '김구름',
-    address: '서울시 oo구 oo동 123-4',
-    date: '0000-00-00',
-    disease: '병명',
-    content: `내용`,
-    doctorName: 'ooo',
-  });
+  // location.state에서 전달받은 데이터 가져오기
+  const certificateData: Omit<CertificateData, 'id'> | undefined =
+    location.state;
+
+  // 데이터가 없을 경우 처리
+  if (!certificateData) {
+    return (
+      <C.Page>
+        <C.Center>
+          <S.Background>
+            <C.PageSpace>
+              <S.PageSpace>
+                <TopBackXBar />
+                <S.Container>
+                  <S.Title>진단서 정보를 찾을 수 없습니다.</S.Title>
+                  <S.FooterContainer>
+                    <S.Button onClick={() => navigate(-1)}>뒤로 가기</S.Button>
+                  </S.FooterContainer>
+                </S.Container>
+              </S.PageSpace>
+            </C.PageSpace>
+          </S.Background>
+        </C.Center>
+      </C.Page>
+    );
+  }
 
   // 데이터 가공
   const processedCertificateData = {
@@ -89,11 +104,10 @@ function CertificateConfirm() {
 const getFieldTitle = (key: string): string => {
   const fieldTitles: Record<string, string> = {
     name: '이름',
-    parentName: '보호자 이름',
     address: '주소',
-    date: '진료 날짜',
-    disease: '진단명',
-    content: '진료 내용',
+    diagnosisDate: '진료 날짜',
+    diagnosisName: '진단명',
+    diagnosisContent: '진료 내용',
     doctorName: '의료진 정보',
   };
   return fieldTitles[key] || key; // 필드 제목이 없으면 키 그대로 반환

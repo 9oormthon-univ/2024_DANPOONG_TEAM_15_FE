@@ -7,6 +7,8 @@ import RequestButton from '@/components/main/RequestButton';
 import ChildCard from '@/components/main/ChildCard';
 import ChildCardAdd from '@/components/main/ChildCardAdd';
 import DefaultImage from '@/assets/default-child.svg';
+import {getChildren} from '@/utils/childApi';
+import {getUserInfo} from '@/utils/userApi';
 
 interface ChildData {
   id: number;
@@ -22,26 +24,30 @@ function Main() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const userResponse = {name: '김구름'};
-      const childrenResponse: ChildData[] = [
-        {
-          id: 1,
-          name: '홍길동',
-          age: 8,
-          image: DefaultImage, // 기본 이미지 사용
-          status: '아직 신청 내역이 없습니다',
-        },
-        {
-          id: 2,
-          name: '김구름',
-          age: 6,
-          image: DefaultImage, // 기본 이미지 사용
-          status: '돌봄 서비스 이용 중',
-        },
-      ];
+      try {
+        // `getUserInfo` 호출
+        const userResponse = await getUserInfo();
+        setUserName(userResponse.name); // 사용자 이름 설정
 
-      setUserName(userResponse.name);
-      setChildren(childrenResponse);
+        // `getChildren` API 호출
+        const childrenResponse = await getChildren();
+        console.log('자녀 목록:', childrenResponse);
+
+        // 상태 업데이트
+        if (childrenResponse) {
+          setChildren(
+            childrenResponse.map(child => ({
+              id: child.childId,
+              name: child.childName,
+              age: child.age,
+              image: child.image || DefaultImage, // 이미지 없으면 기본 이미지 사용
+              status: child.recentApplyStatus || '상태 정보 없음', // 상태 없으면 기본 메시지
+            })),
+          );
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
 
     fetchData();

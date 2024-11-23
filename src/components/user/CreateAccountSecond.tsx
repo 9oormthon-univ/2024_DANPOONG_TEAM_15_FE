@@ -27,7 +27,7 @@ const HeaderContainer = styled.div`
 `;
 
 const HeaderSubText = styled.div`
-  font-size: 1.2rem;
+  font-size: 20px;
   font-weight: 600;
   color: ${COLOR.BLACK_01};
 `;
@@ -44,7 +44,7 @@ const DropdownButton = styled.button`
   border-radius: 100px;
   background-color: ${COLOR.WHITE_01};
   color: ${COLOR.BLACK_01};
-  font-size: 0.875rem;
+  font-size: 14px;
   text-align: left;
   cursor: pointer;
   display: flex;
@@ -71,7 +71,7 @@ const DropdownMenu = styled.ul<{$isOpen: boolean}>`
 
 const DropdownItem = styled.li`
   padding: 12px 16px;
-  font-size: 0.875rem;
+  font-size: 14px;
   color: ${COLOR.BLACK_01};
   cursor: pointer;
 
@@ -94,7 +94,6 @@ const PayButton = styled.button`
   background-color: ${COLOR.ORANGE_01};
   color: ${COLOR.WHITE_01};
   font-weight: 600;
-  font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
 
@@ -105,7 +104,7 @@ const PayButton = styled.button`
 `;
 
 const BottomDirectionButton = styled.button`
-  font-size: 0.875rem;
+  font-size: 14px;
   color: ${COLOR.GRAY_04};
   display: flex;
   justify-content: center;
@@ -118,7 +117,7 @@ const BottomDirectionButton = styled.button`
 `;
 
 const BlackText = styled.div`
-  font-size: 0.875rem;
+  font-size: 14px;
   color: ${COLOR.BLACK_03};
 `;
 

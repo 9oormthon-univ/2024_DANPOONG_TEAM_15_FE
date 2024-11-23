@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/StatusStyle';
 import ChildAdditionForm from '@/components/main/ChildAdditionForm';
 import {COLOR} from '@/const/color';
 import TopBackMentBar from '@/components/common/TopBackMentBar';
+import {addChild} from '@/utils/childApi';
 
 const PageSpace = styled.div`
   display: flex;
@@ -21,7 +23,7 @@ const Container = styled.div`
 `;
 
 const HeaderSubText = styled.div`
-  font-size: 1.2rem;
+  font-size: 20px;
   font-weight: 600;
   color: ${COLOR.BLACK_01};
 `;
@@ -41,7 +43,6 @@ const PayButton = styled.button<{$isActive: boolean}>`
     props.$isActive ? COLOR.ORANGE_01 : COLOR.GRAY_04};
   color: ${COLOR.WHITE_01};
   font-weight: 600;
-  font-size: 1rem;
   border-radius: 8px;
   cursor: ${props => (props.$isActive ? 'pointer' : 'not-allowed')};
 
@@ -53,39 +54,51 @@ const PayButton = styled.button<{$isActive: boolean}>`
 `;
 
 function CreateChild() {
+  const navigate = useNavigate(); // 페이지 이동을 위한 네비게이트
   const [formData, setFormData] = useState({
     name: '',
     birthDate: '',
     gender: '',
-    image: '',
+    image: null as File | null, // 이미지 파일 타입
   });
 
   const handleInputChange = (key: string, value: string) => {
     setFormData(prev => ({...prev, [key]: value}));
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      const base64 = await convertToBase64(file);
-      handleInputChange('image', base64 as string);
+      setFormData(prev => ({...prev, image: e.target.files[0]}));
     }
   };
 
-  const convertToBase64 = (file: File) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-  };
-
   const isButtonActive =
-    formData.name !== '' && formData.birthDate !== '' && formData.gender !== '';
+    formData.name !== '' &&
+    formData.birthDate !== '' &&
+    formData.gender !== '' &&
+    formData.image;
 
-  const handleSubmit = () => {
-    console.log('API로 보낼 데이터:', formData);
+  const handleSubmit = async () => {
+    if (!isButtonActive || !formData.image) return;
+
+    try {
+      console.log('API로 보낼 데이터:', formData);
+
+      // addChild API 호출
+      await addChild({
+        childName: formData.name,
+        birthDate: formData.birthDate,
+        gender: formData.gender,
+        image: formData.image,
+      });
+
+      alert('아이 등록이 완료되었습니다.');
+
+      // 메인 페이지로 이동
+      navigate('/main');
+    } catch (error: any) {
+      alert(error.message || '아이 등록 중 문제가 발생했습니다.');
+    }
   };
 
   return (

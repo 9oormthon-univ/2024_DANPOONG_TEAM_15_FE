@@ -13,12 +13,12 @@ const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.875rem;
+  font-size: 14px;
   margin-bottom: 8px;
 `;
 
 const CardSubText = styled.div`
-  font-size: 0.75rem;
+  font-size: 12px;
   color: ${COLOR.GRAY_04};
 `;
 
@@ -31,7 +31,7 @@ const StatusContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.875rem;
+  font-size: 14px;
 `;
 
 const StatusTitle = styled.span`
