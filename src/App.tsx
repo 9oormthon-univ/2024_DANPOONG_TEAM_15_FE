@@ -77,7 +77,10 @@ function App() {
             element={<CertificateInform />}
           />
           <Route path="/absent-list" element={<AbsentList />} />
-          <Route path="/absent-list/information" element={<AbsentInform />} />
+          <Route
+            path="/absent-list/information/:absenceCertificateId"
+            element={<AbsentInform />}
+          />
 
           {/* 신청 현황 */}
           <Route path="/status" element={<Status />} />
