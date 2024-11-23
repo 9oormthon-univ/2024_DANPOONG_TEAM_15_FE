@@ -1,5 +1,3 @@
-import React from 'react';
-import {useState} from 'react';
 import styled from 'styled-components';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/StatusStyle';
@@ -17,7 +15,7 @@ const HeaderSubText = styled.div`
   color: ${COLOR.BLACK_01};
 `;
 
-const ButtonContainer = styled.label`
+const ButtonContainer = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,17 +39,6 @@ const BlackBoldText = styled.div`
   color: ${COLOR.BLACK_01};
 `;
 
-const FileInput = styled.input`
-  display: none;
-`;
-
-const ErrorMessage = styled.div`
-  margin-top: 10px;
-  color: ${COLOR.ORANGE_02};
-  font-size: 14px;
-  font-weight: 600;
-`;
-
 const PreviewContainer = styled.div`
   margin-top: 20px;
   border: 1px solid ${COLOR.GRAY_09};
@@ -66,23 +53,13 @@ const PreviewFrame = styled.iframe`
 `;
 
 function CertificateDownload() {
-  const [pdfFile, setPdfFile] = useState<string | null>(null);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const pdfFilePath = '/src/const/dummy_data/absent-paper.pdf'; // 파일 경로
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-
-    if (file) {
-      const fileType = file.type;
-      if (fileType !== 'application/pdf') {
-        setErrorMessage('올바른 PDF 파일을 업로드해주세요.');
-        setPdfFile(null);
-        return;
-      }
-      setErrorMessage(null);
-      const fileURL = URL.createObjectURL(file);
-      setPdfFile(fileURL);
-    }
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = pdfFilePath; // PDF 파일 경로
+    link.download = 'absent-paper.pdf';
+    link.click();
   };
 
   return (
@@ -94,26 +71,14 @@ function CertificateDownload() {
               <TopBackLeftArrowBar />
               <Container>
                 <HeaderSubText>미등원확인서 파일 다운로드</HeaderSubText>
-                <ButtonContainer htmlFor="pdf-upload">
+                <ButtonContainer onClick={handleDownload}>
                   <DownloadIcon />
                   <WhiteBoldText>PDF 파일 다운로드</WhiteBoldText>
                 </ButtonContainer>
-                <FileInput
-                  id="pdf-upload"
-                  type="file"
-                  accept="application/pdf"
-                  onChange={handleFileUpload}
-                />
-
-                {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-                {pdfFile && (
-                  <>
-                    <BlackBoldText>미리보기</BlackBoldText>
-                    <PreviewContainer>
-                      <PreviewFrame src={pdfFile} title="PDF Preview" />
-                    </PreviewContainer>
-                  </>
-                )}
+                <BlackBoldText>미리보기</BlackBoldText>
+                <PreviewContainer>
+                  <PreviewFrame src={pdfFilePath} title="PDF Preview" />
+                </PreviewContainer>
               </Container>
             </C.PageSpace>
           </S.Background>
