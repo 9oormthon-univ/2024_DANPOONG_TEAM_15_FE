@@ -67,8 +67,9 @@ function CreateChild() {
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData(prev => ({...prev, image: e.target.files[0]}));
+    const files = e.target.files;
+    if (files && files[0]) {
+      setFormData(prev => ({...prev, image: files[0]}));
     }
   };
 
@@ -76,7 +77,7 @@ function CreateChild() {
     formData.name !== '' &&
     formData.birthDate !== '' &&
     formData.gender !== '' &&
-    formData.image;
+    !!formData.image;
 
   const handleSubmit = async () => {
     if (!isButtonActive || !formData.image) return;
@@ -84,7 +85,6 @@ function CreateChild() {
     try {
       console.log('API로 보낼 데이터:', formData);
 
-      // addChild API 호출
       await addChild({
         childName: formData.name,
         birthDate: formData.birthDate,
@@ -93,8 +93,6 @@ function CreateChild() {
       });
 
       alert('아이 등록이 완료되었습니다.');
-
-      // 메인 페이지로 이동
       navigate('/main');
     } catch (error: any) {
       alert(error.message || '아이 등록 중 문제가 발생했습니다.');

@@ -28,6 +28,10 @@ export const getChildren = async (): Promise<
     if (response.status === 200 && response.data.success) {
       console.log('자녀 목록 조회 성공:', response.data.message);
       return response.data.data; // 자녀 데이터 반환
+    } else {
+      // 요청이 성공하지 않았을 때 빈 배열 반환
+      console.warn('자녀 목록 조회 실패:', response.data.message);
+      return [];
     }
   } catch (error: any) {
     if (axios.isAxiosError(error) && error.response) {

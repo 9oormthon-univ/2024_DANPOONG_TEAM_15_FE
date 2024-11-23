@@ -89,6 +89,9 @@ export const getUserInfo = async (): Promise<{
     if (response.status === 200 && response.data.success) {
       console.log('회원 정보 조회 성공:', response.data.message);
       return response.data.data; // 사용자 데이터 반환
+    } else {
+      console.warn('회원 정보 조회 실패: 데이터 없음');
+      throw new Error('회원 정보를 불러올 수 없습니다.');
     }
   } catch (error: any) {
     if (axios.isAxiosError(error) && error.response) {

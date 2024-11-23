@@ -60,7 +60,7 @@ function ChildAddition() {
     name: '',
     birthDate: '',
     gender: '',
-    image: null as File | null,
+    image: null as File | string | null, // 타입 확장
   });
 
   const handleInputChange = (key: string, value: string) => {
@@ -68,8 +68,9 @@ function ChildAddition() {
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData(prev => ({...prev, image: e.target.files[0]}));
+    const file = e.target.files?.[0]; // null 가능성 처리
+    if (file) {
+      setFormData(prev => ({...prev, image: file}));
     }
   };
 
@@ -85,11 +86,9 @@ function ChildAddition() {
         childName: formData.name,
         birthDate: formData.birthDate,
         gender: formData.gender,
-        image: formData.image,
+        image: formData.image as File, // 명시적 타입 캐스팅
       });
 
-      // alert('자녀가 성공적으로 등록되었습니다.');
-      // 필요한 경우 리다이렉션 추가
       navigate('/main');
     } catch (error: any) {
       alert(error.message || '자녀 등록 중 문제가 발생했습니다.');

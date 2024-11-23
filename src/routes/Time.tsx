@@ -17,27 +17,6 @@ function Time() {
   const [lastTime, setLastTime] = useState<string | null>(null);
   const [activeSelect, setActiveSelect] = useState<'start' | 'end'>('start');
 
-  const calculateTimeDifference = (start: string, end: string) => {
-    const [startAmpm, startTime] = start.split(' ');
-    const [startHour, startMinute] = startTime.split(':').map(Number);
-    const startDate = new Date();
-    startDate.setHours(
-      startAmpm === 'PM' && startHour !== 12 ? startHour + 12 : startHour,
-      startMinute,
-    );
-
-    const [endAmpm, endTime] = end.split(' ');
-    const [endHour, endMinute] = endTime.split(':').map(Number);
-    const endDate = new Date();
-    endDate.setHours(
-      endAmpm === 'PM' && endHour !== 12 ? endHour + 12 : endHour,
-      endMinute,
-    );
-
-    const difference = (endDate.getTime() - startDate.getTime()) / (1000 * 60);
-    return difference;
-  };
-
   const convertTo24HourFormat = (date: string, time: string): string => {
     // Ensure both date and time parts are valid
     if (!date || !time) {

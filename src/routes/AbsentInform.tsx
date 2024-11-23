@@ -21,7 +21,6 @@ function AbsentInform() {
   const [certificateData, setCertificateData] =
     useState<CertificateData | null>(null);
 
-  // 제목 데이터를 location.state로 가져옴
   const title = location.state?.title || '미등원 확인서';
 
   useEffect(() => {
@@ -34,13 +33,11 @@ function AbsentInform() {
         if (!absenceCertificateId) {
           throw new Error('미등원 확인서 ID가 누락되었습니다.');
         }
-        // API 호출
         const data = await getAbsentDetails(
           Number(childId),
           Number(absenceCertificateId),
         );
-        const {id, ...rest} = data;
-        setCertificateData(rest);
+        setCertificateData(data); // 그대로 저장
       } catch (error) {
         console.error('미등원 확인서 세부 조회 실패:', error);
       }
@@ -75,10 +72,9 @@ function AbsentInform() {
     );
   }
 
-  // 데이터 가공
   const processedCertificateData = {
     name: certificateData.name,
-    period: `${certificateData.absenceStartDate} ~ ${certificateData.absenceEndDate}`, // 결석 기간
+    period: `${certificateData.absenceStartDate} ~ ${certificateData.absenceEndDate}`,
     reason: certificateData.absenceReason,
     content: certificateData.note,
   };
