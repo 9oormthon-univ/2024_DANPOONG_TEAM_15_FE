@@ -5,6 +5,8 @@ import IvoryTextIcon from './ivory-text.svg?react';
 import ArrowLeftIcon from './arrow-left.svg?react';
 import IvoryRemoveBgIcon from './ivory-remove-bg.svg?react';
 import DownloadIcon from './download.svg?react';
+import IvoryAppLogo from './ivory-app-logo.svg?react';
+import IvoryTextLogo from './ivory-text-logo.svg?react';
 
 export {
   BackXIcon,
@@ -14,4 +16,6 @@ export {
   ArrowLeftIcon,
   IvoryRemoveBgIcon,
   DownloadIcon,
+  IvoryAppLogo,
+  IvoryTextLogo,
 };
