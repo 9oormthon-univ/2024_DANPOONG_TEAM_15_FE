@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/StatusStyle';
 import ChildAdditionForm from '@/components/main/ChildAdditionForm';
 import {COLOR} from '@/const/color';
 import TopBackLeftArrowBar from '@/components/common/TopBackLeftArrowBar';
+import {addChild} from '@/utils/childApi';
 
 const PageSpace = styled.div`
   display: flex;
@@ -52,39 +54,46 @@ const PayButton = styled.button<{$isActive: boolean}>`
 `;
 
 function ChildAddition() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     birthDate: '',
     gender: '',
-    image: '',
+    image: null as File | null,
   });
 
   const handleInputChange = (key: string, value: string) => {
     setFormData(prev => ({...prev, [key]: value}));
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      const base64 = await convertToBase64(file);
-      handleInputChange('image', base64 as string);
+      setFormData(prev => ({...prev, image: e.target.files[0]}));
     }
-  };
-
-  const convertToBase64 = (file: File) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
   };
 
   const isButtonActive =
     formData.name !== '' && formData.birthDate !== '' && formData.gender !== '';
 
-  const handleSubmit = () => {
-    console.log('API로 보낼 데이터:', formData);
+  const handleSubmit = async () => {
+    if (!isButtonActive || !formData.image) return;
+
+    try {
+      // 자녀 등록 API 호출
+      await addChild({
+        childName: formData.name,
+        birthDate: formData.birthDate,
+        gender: formData.gender,
+        image: formData.image,
+      });
+
+      // alert('자녀가 성공적으로 등록되었습니다.');
+      // 필요한 경우 리다이렉션 추가
+      navigate('/main');
+    } catch (error: any) {
+      alert(error.message || '자녀 등록 중 문제가 발생했습니다.');
+    }
   };
 
   return (

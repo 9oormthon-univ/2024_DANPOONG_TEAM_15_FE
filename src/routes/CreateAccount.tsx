@@ -5,7 +5,7 @@ import * as S from '@/styles/JoinStyle';
 import CreateAccountFirst from '@/components/user/CreateAccountFirst';
 import CreateAccountSecond from '@/components/user/CreateAccountSecond';
 import {SignUpRequestBody} from '@/types';
-import {createAccountApi} from '../utils/userApi'
+import {createAccountApi} from '../utils/userApi';
 
 function CreateAccount() {
   const navigate = useNavigate();
