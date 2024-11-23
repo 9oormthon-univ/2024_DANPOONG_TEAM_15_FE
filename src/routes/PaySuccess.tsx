@@ -1,6 +1,31 @@
 import {useEffect} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
+import styled from 'styled-components';
+import * as C from '../styles/CommonStyle';
+import * as S from '../styles/NonStyle';
 import {handleSuccessPayment} from '@/utils/kakaoPay';
+import {COLOR} from '@/const/color';
+import {LoadingIcon} from '@/assets/icons/common';
+
+const Container = styled.div`
+  padding: 200px 20px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+`;
+
+const HeaderMainText = styled.div`
+  padding-top: 32px;
+  font-size: 28px;
+  font-weight: 600;
+  color: ${COLOR.BLACK_01};
+`;
+
+const HeaderSubText = styled.div`
+  color: ${COLOR.BLACK_01};
+`;
 
 const PaySuccess = () => {
   const navigate = useNavigate();
@@ -26,14 +51,26 @@ const PaySuccess = () => {
     } else {
       console.error('pg_token이 URL에 없습니다.');
       alert('결제 인증 토큰이 필요합니다.');
-      navigate('/main'); // pg_token이 없으면 메인 페이지로 이동
+      navigate('/main');
     }
   }, [location, navigate]);
 
   return (
-    <div>
-      <p>결제 처리 중입니다. 잠시만 기다려주세요...</p>
-    </div>
+    <>
+      <C.Page>
+        <C.Center>
+          <S.Background>
+            <C.PageSpace>
+              <Container>
+                <LoadingIcon />
+                <HeaderMainText>서비스 결제 중</HeaderMainText>
+                <HeaderSubText>잠시만 기다려주세요 :)</HeaderSubText>
+              </Container>
+            </C.PageSpace>
+          </S.Background>
+        </C.Center>
+      </C.Page>
+    </>
   );
 };
 
