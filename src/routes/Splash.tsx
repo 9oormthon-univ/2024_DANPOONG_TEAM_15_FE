@@ -1,8 +1,7 @@
 import {useNavigate} from 'react-router-dom'; // useNavigate 추가
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/SplashStyle';
-import {IvoryIcon} from '@/assets/icons/common';
-import {IvoryTextIcon} from '@/assets/icons/common';
+import {SplashIcon} from '@/assets/icons/common';
 
 function Main() {
   const navigate = useNavigate(); // 네비게이터 초기화
@@ -21,13 +20,10 @@ function Main() {
         <S.Background>
           <C.PageSpace>
             <S.IconWrapper>
-              <IvoryIcon />
-              <S.Text>우리 아이의 안심케어를 약속하는</S.Text>
-              <IvoryTextIcon />
+              <SplashIcon />
             </S.IconWrapper>
             <S.Footer>
-              {/* 바로 시작하기 버튼 */}
-              <S.Main onClick={handleStartClick}>바로 시작하기</S.Main>
+              <S.Button onClick={handleStartClick}>바로 시작하기</S.Button>
               <S.LoginContainer>
                 <S.Logintext>계정이 있으신가요?</S.Logintext>
                 <S.LoginLink onClick={handleLoginClick}>로그인</S.LoginLink>

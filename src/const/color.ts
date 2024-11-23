@@ -21,5 +21,6 @@ export const COLOR = {
   ORANGE_03: '#FAE0A7',
   ORANGE_04: '#FFD7AF',
   ORANGE_05: '#FBF2EE',
+  ORANGE_06: '#E07A5F',
   ORANGE_LIGHT: 'rgba(252, 152, 108, 0.15)',
 };
