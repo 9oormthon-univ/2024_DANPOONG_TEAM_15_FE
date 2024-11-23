@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {COLOR} from '@/const/color';
 
 export const Background = styled.div`
   background: #ffeadc;
@@ -9,49 +10,43 @@ export const IconWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  text-align: center;
+  width: 370px;
   margin-top: 200px;
-  gap: 16px;
-`;
-
-export const Text = styled.div`
-  font-size: 14px;
-  font-family: 'Pretendard', sans-serif;
-  font-weight: 500;
-  color: #b45a5a;
-  line-height: 1.5;
-  text-align: center;
-  margin-bottom: -20px;
+  flex-grow: 1;
 `;
 
 export const Footer = styled.div`
   position: absolute;
   bottom: 0;
   display: flex;
-  flex-direction: column;
+  width: 370px;
+  justify-content: center;
   align-items: center;
-  gap: 12px;
-  padding: 60px 16px;
+  flex-direction: column;
   background-color: #ffeadc;
+  margin-bottom: 150px;
 `;
 
-export const Main = styled.button`
-  width: 335px;
-  height: 56px;
-  background: #fc986c;
-  border-radius: 12px;
-  color: white;
-  font-size: 16px;
-  font-family: 'Pretendard', sans-serif;
-  font-weight: 600;
-  line-height: 24px;
-  text-align: center;
-  cursor: pointer;
+export const Button = styled.button`
+  width: 90%;
+  padding: 16px;
+  background-color: ${COLOR.ORANGE_01};
   border: none;
+  border-radius: 8px;
+  color: ${COLOR.WHITE_01};
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  &:disabled {
+    background-color: ${COLOR.GRAY_04};
+    cursor: not-allowed;
+  }
 
   &:hover {
-    background: #e07a5f;
+    background-color: ${COLOR.ORANGE_06};
   }
 `;
 
@@ -59,14 +54,15 @@ export const LoginContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+  width: 370px;
 `;
 
 export const Logintext = styled.span`
   font-size: 14px;
   font-family: 'Pretendard', sans-serif;
   font-weight: 400;
-  color: #333333;
+  color: ${COLOR.BLACK_03};
 `;
 
 export const LoginLink = styled.a`

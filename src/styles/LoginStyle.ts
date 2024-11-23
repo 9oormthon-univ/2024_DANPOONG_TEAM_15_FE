@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {COLOR} from '@/const/color';
 
 export const Background = styled.div`
   background-color: #ffffff;
@@ -32,7 +33,7 @@ export const LoginContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 370px;
   text-align: center;
   gap: 10px;
 `;
@@ -50,7 +51,7 @@ export const Text = styled.div`
 
 export const Input = styled.input`
   width: 80%;
-  height: 40px;
+  height: 34px;
   background: #f3f3f3;
   border-radius: 12px;
   padding: 14px 16px;
@@ -71,31 +72,36 @@ export const Input = styled.input`
     border: 1px solid #e07a5f;
   }
 `;
+
 interface ButtonProps {
   isActive: boolean;
 }
 
 export const LoginButton = styled.button<ButtonProps>`
-  width: 80%;
+  width: 328px;
   height: 56px;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  bottom: 0;
   background: ${({isActive}) => (isActive ? '#fc986c' : '#dfe2e5')};
-  color: ${({isActive}) => (isActive ? 'white' : '#999999')};
+  color: ${COLOR.WHITE_01};
   border-radius: 8px;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
+  padding: 14px 16px;
+
+  font-size: 16px;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+
   cursor: ${({isActive}) => (isActive ? 'pointer' : 'not-allowed')};
+
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
 
   &:hover {
     background: ${({isActive}) => (isActive ? '#e07a5f' : '#dfe2e5')};
@@ -104,13 +110,15 @@ export const LoginButton = styled.button<ButtonProps>`
   &:active {
     background: ${({isActive}) => (isActive ? '#c76349' : '#dfe2e5')};
   }
+`;
 
-  div {
-    text-align: center;
-    font-size: 16px;
-    font-family: 'Pretendard', sans-serif;
-    font-weight: 600;
-    line-height: 24px;
-    word-wrap: break-word;
-  }
+export const Footer = styled.div`
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 370px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 50px;
 `;
