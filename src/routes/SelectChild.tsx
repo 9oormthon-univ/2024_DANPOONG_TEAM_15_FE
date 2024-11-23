@@ -5,6 +5,7 @@ import * as S from '../styles/SelectChildStyle';
 
 import TopBackXBar from '@/components/common/TopBackXBar';
 import SelectChildCard from '@/components/request/SelectChildCard';
+import {getChildren} from '@/utils/childApi';
 
 interface ChildData {
   id: number;
@@ -19,19 +20,30 @@ function SelectChild() {
   const [selectedChild, setSelectedChild] = useState<number | null>(null); // 선택된 아이의 ID
 
   useEffect(() => {
-    // 임시 데이터 (API 호출로 대체 가능)
-    const mockData: ChildData[] = [
-      {id: 1, name: '아이 이름', age: 6, gender: '남성'},
-      {id: 2, name: '아이 이름', age: 7, gender: '여성'},
-      {id: 3, name: '아이 이름', age: 8, gender: '남성'},
-    ];
+    const fetchChildren = async () => {
+      try {
+        const response = await getChildren();
+        // API 응답 데이터를 컴포넌트에 맞게 변환
+        const mappedChildren = response.map(child => ({
+          id: child.childId,
+          name: child.childName,
+          age: child.age,
+          gender: child.gender,
+        }));
+        setChildren(mappedChildren);
+      } catch (error) {
+        console.error('아이 목록 조회 중 오류 발생:', error);
+      }
+    };
 
-    setChildren(mockData);
+    fetchChildren();
   }, []);
 
-  const handleNavLinkClick = (path: string): void => {
+  const handleSaveToLocalStorage = (): void => {
     if (selectedChild !== null) {
-      navigate(path);
+      // 선택한 아이의 ID를 localStorage에 저장
+      localStorage.setItem('childId', selectedChild.toString());
+      navigate('/request/certificate'); // 다음 페이지로 이동
     }
   };
 
@@ -69,7 +81,7 @@ function SelectChild() {
               <S.FooterContainer>
                 <S.Button
                   $isActive={selectedChild !== null}
-                  onClick={() => handleNavLinkClick('/request/certificate')}>
+                  onClick={handleSaveToLocalStorage}>
                   선택 완료
                 </S.Button>
               </S.FooterContainer>
