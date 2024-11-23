@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import {COLOR} from '@/const/color';
 
+interface ButtonProps {
+  $isActive: boolean;
+}
+
 export const Background = styled.div`
   background-color: #ffffff;
 `;
@@ -38,19 +42,19 @@ export const Title = styled.div`
   margin: 4px 0 32px;
 `;
 
-export const InformList = styled.div`
+export const TimeContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
 
-export const TitleText = styled.div`
+export const DateContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
 `;
 
-export const InformTitle = styled.div`
+export const TimeTitle = styled.div`
   color: ${COLOR.GRAY_04};
   font-size: 12px;
   font-weight: 600;
@@ -58,7 +62,7 @@ export const InformTitle = styled.div`
   letter-spacing: -0.3px;
 `;
 
-export const InformText = styled.div`
+export const DateText = styled.div`
   color: ${COLOR.BLACK_00};
   font-size: 14px;
   font-weight: 400;
@@ -66,45 +70,70 @@ export const InformText = styled.div`
   letter-spacing: -0.35px;
 `;
 
-export const FooterContainer = styled.div`
-  padding: 16px 20px 50px;
+export const SelectTimeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const TimePickerContainer = styled.div`
+  padding: 24px 38px;
+  border-radius: 12px;
+  background-color: ${COLOR.WHITE_07};
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
+`;
+
+export const SelectContainer = styled.div`
+  border-radius: 100px;
+  background: ${COLOR.WHITE_01};
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > div:nth-child(2) {
+    margin-left: -10px;
+  }
+`;
+
+export const Select = styled.div<{isActive: boolean}>`
+  width: 114px;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  background-color: ${({isActive}) =>
+    isActive ? COLOR.ORANGE_01 : COLOR.WHITE_01};
+  color: ${({isActive}) => (isActive ? COLOR.WHITE_01 : COLOR.GRAY_04)};
+  z-index: ${({isActive}) => (isActive ? 10 : 5)};
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.375px;
+  cursor: pointer;
+`;
+
+export const FooterContainer = styled.div`
+  padding: 16px 20px 50px;
   background-color: ${COLOR.WHITE_01};
 `;
 
-export const Badge = styled.div`
-  padding: 10px 16px 10px 8px;
-  background-color: ${COLOR.WHITE_08};
-  border-radius: 100px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  color: ${COLOR.BLACK_03};
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: -0.375px;
-  box-shadow: 0px 4px 4px 0px ${COLOR.GRAY_LIGHT};
-`;
-
-export const BadgeCircle = styled.img`
-  width: 20px;
-`;
-
-export const Button = styled.button`
+export const Button = styled.button<ButtonProps>`
   border-radius: 8px;
   border: none;
-  background-color: ${COLOR.ORANGE_01};
+  background-color: ${({$isActive}) =>
+    $isActive ? COLOR.ORANGE_01 : COLOR.GRAY_05};
   width: 100%;
   padding: 16px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  cursor: ${({$isActive}) => ($isActive ? 'pointer' : 'not-allowed')};
 
   color: ${COLOR.WHITE_01};
   font-size: 16px;
@@ -113,7 +142,8 @@ export const Button = styled.button`
   letter-spacing: -0.4px;
 
   &:hover {
-    background-color: ${COLOR.ORANGE_02};
+    background-color: ${({$isActive}) =>
+      $isActive ? COLOR.ORANGE_02 : COLOR.GRAY_05};
     transition: background-color 0.2s;
   }
 `;
