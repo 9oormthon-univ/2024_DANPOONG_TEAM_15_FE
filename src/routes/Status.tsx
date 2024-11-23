@@ -76,7 +76,9 @@ function Status() {
               <TopBackBar />
               <Container>
                 <Header>
-                  <HeaderText>{applicationListData[0].name}</HeaderText>
+                  <HeaderText>
+                    {applicationListData[0]?.name ?? '아이 이름'}
+                  </HeaderText>
                   <HeaderSubText>서비스 신청 내역</HeaderSubText>
                 </Header>
                 <ApplicationCardContainer>

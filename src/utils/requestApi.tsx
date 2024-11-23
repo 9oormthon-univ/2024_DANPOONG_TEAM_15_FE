@@ -96,6 +96,7 @@ export const getMedicalCertificateDetails = async (
   childId: number,
   medicalCertificateId: number,
 ): Promise<{
+  id: string;
   name: string;
   address: string;
   diagnosisDate: string;
