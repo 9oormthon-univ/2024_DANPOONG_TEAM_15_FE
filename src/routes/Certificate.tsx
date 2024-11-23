@@ -2,7 +2,6 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/CertificateStyle';
-
 import TopBackXBar from '@/components/common/TopBackXBar';
 import ProgressBar from '@/components/request/ProgressBar';
 import FileContainer from '@/components/request/FileContainer';

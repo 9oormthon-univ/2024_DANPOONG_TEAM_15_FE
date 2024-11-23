@@ -1,7 +1,6 @@
 import {useState, ChangeEvent} from 'react';
 import {useNavigate} from 'react-router-dom';
 import * as F from '@/styles/components/FileContainerStyle';
-
 import FolderIcon from '@/assets/icons/request/folder.svg';
 import BoxIcon from '@/assets/icons/request/box.svg';
 
@@ -10,10 +9,10 @@ interface FileContainerProps {
   fileListPath: string;
 }
 
-const FileContainer: React.FC<FileContainerProps> = ({
+const FileContainer = ({
   setSelectedPaper,
   fileListPath,
-}) => {
+}: FileContainerProps) => {
   const navigate = useNavigate();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 

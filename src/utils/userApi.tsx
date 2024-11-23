@@ -70,10 +70,7 @@ export const loginApi = async (
   }
 };
 
-export const getUserInfo = async (): Promise<{
-  name: string;
-  incomeType: string;
-}> => {
+export const getUserInfo = async () => {
   try {
     const token = localStorage.getItem('accessToken'); // accessToken 가져오기
 

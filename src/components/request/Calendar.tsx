@@ -2,7 +2,6 @@ import {useState} from 'react';
 import useCalendar from './useCalendar';
 import * as C from '@/styles/components/CalendarStyle';
 import {COLOR} from '@/const/color';
-
 import LeftIcon from '@/assets/icons/request/arrow-left.svg';
 import RightIcon from '@/assets/icons/request/arrow-right.svg';
 
@@ -10,7 +9,7 @@ interface CalendarProps {
   onDateSelect: (date: Date) => void;
 }
 
-const Calendar: React.FC<CalendarProps> = ({onDateSelect}) => {
+const Calendar = ({onDateSelect}: CalendarProps) => {
   const {weekCalendarList, currentDate, goToNextMonth, goToPrevMonth} =
     useCalendar();
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);

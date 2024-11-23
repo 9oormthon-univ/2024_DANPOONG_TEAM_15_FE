@@ -1,6 +1,5 @@
 import {useNavigate} from 'react-router-dom';
 import * as H from '../styles/components/HeaderStyle';
-
 import Logo from '@/assets/ivory-logo.svg';
 import Mypage from '@/assets/mypage.svg';
 
