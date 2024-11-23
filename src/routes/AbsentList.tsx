@@ -80,7 +80,7 @@ function AbsentList() {
                 <S.FooterContainer>
                   <S.Button
                     $isActive={selectedPaper !== null}
-                    onClick={() => handleNavLinkClick('/request/absent')}>
+                    onClick={() => handleNavLinkClick('/request/schedule')}>
                     선택 완료
                   </S.Button>
                 </S.FooterContainer>
