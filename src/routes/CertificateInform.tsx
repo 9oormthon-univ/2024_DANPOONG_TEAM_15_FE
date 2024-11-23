@@ -6,7 +6,7 @@ import TopBackLeftArrowBar from '@/components/common/TopBackLeftArrowBar';
 import {getMedicalCertificateDetails} from '@/utils/requestApi';
 
 interface CertificateData {
-  id?: number; // id를 포함
+  id: number;
   name: string;
   address: string;
   diagnosisDate: string;
@@ -38,6 +38,7 @@ function CertificateInform() {
         );
 
         const {id, ...rest} = data;
+        console.log(id);
         setCertificateData(rest as CertificateData);
       } catch (error) {
         console.error('진단서 세부 조회 실패:', error);

@@ -96,6 +96,7 @@ export const getMedicalCertificateDetails = async (
   childId: number,
   medicalCertificateId: number,
 ): Promise<{
+  id: string;
   name: string;
   address: string;
   diagnosisDate: string;
@@ -277,7 +278,7 @@ export const applyService = async (data: {
   absenceCertificateId: number;
   startDate: string;
   endDate: string;
-}): Promise<void> => {
+}): Promise<number> => {
   try {
     const token = localStorage.getItem('accessToken');
     if (!token) {
@@ -291,6 +292,7 @@ export const applyService = async (data: {
     });
 
     console.log('서비스 신청 성공:', response.data.message);
+    return response.data.data.applyId;
   } catch (error: any) {
     if (axios.isAxiosError(error) && error.response) {
       console.error(

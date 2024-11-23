@@ -31,6 +31,7 @@ function Time() {
     const [_, ampm, hoursStr, minutesStr] = timeMatch;
     const hours = parseInt(hoursStr, 10);
     const minutes = parseInt(minutesStr, 10);
+    console.log(_);
 
     // Ensure hours and minutes are numbers
     if (isNaN(hours) || isNaN(minutes)) {
@@ -77,7 +78,8 @@ function Time() {
           endDate: endDateTime,
         });
 
-        await applyService({
+        // applyService 호출 후 applyId를 반환받기
+        const applyId = await applyService({
           childId,
           medicalCertificateId,
           absenceCertificateId,
@@ -85,7 +87,14 @@ function Time() {
           endDate: endDateTime,
         });
 
-        navigate(path);
+        localStorage.removeItem('childId');
+        localStorage.removeItem('medicalCertificateId');
+        localStorage.removeItem('absenceCertificateId');
+
+        console.log('Navigating to next page with applyId:', applyId);
+
+        // applyId를 다음 페이지로 넘기기
+        navigate(path, {state: {applyId}});
       } catch (error: any) {
         console.error('Error submitting request:', error.message);
       }

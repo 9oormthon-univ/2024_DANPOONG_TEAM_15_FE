@@ -53,6 +53,10 @@ export const FooterContainer = styled.div`
   position: fixed;
   bottom: 0;
   width: calc(100% - 32px);
+
+  @media (hover: hover) and (pointer: fine) {
+    width: calc(360px - 32px);
+  }
 `;
 
 export const Button = styled.button<ButtonProps>`
