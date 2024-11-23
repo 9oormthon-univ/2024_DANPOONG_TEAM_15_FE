@@ -13,7 +13,9 @@ const StatusContainer = styled.div`
   gap: 32px;
 `;
 
-const CircleNumber = styled.div<{isActive: boolean}>`
+const CircleNumber = styled.div.withConfig({
+  shouldForwardProp: prop => prop !== 'isActive',
+})<{isActive: boolean}>`
   width: 18px;
   height: 18px;
   border-radius: 50%;
@@ -25,16 +27,18 @@ const CircleNumber = styled.div<{isActive: boolean}>`
   align-items: center;
 `;
 
+const OrangeText = styled.div.withConfig({
+  shouldForwardProp: prop => prop !== 'isActive',
+})<{isActive: boolean}>`
+  font-size: 14px;
+  color: ${props => (props.isActive ? COLOR.ORANGE_01 : COLOR.BLACK_09)};
+`;
+
 const StatusInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
-`;
-
-const OrangeText = styled.div<{isActive: boolean}>`
-  font-size: 14px;
-  color: ${props => (props.isActive ? COLOR.ORANGE_01 : COLOR.BLACK_09)};
 `;
 
 interface StatusCardProps {
