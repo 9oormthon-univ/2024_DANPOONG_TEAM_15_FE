@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/LoginStyle';
 import {IvoryTextIcon} from '@/assets/icons/common';
+import { loginApi } from '@/utils/userApi';
 
 function Login() {
   const [id, setId] = useState('');
@@ -26,6 +27,7 @@ function Login() {
     if (isButtonActive) {
       console.log('ID:', id);
       console.log('Password:', password);
+      loginApi(id,password);
       navigate('/main');
 
       // TODO: 로그인 API 호출
