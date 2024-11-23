@@ -79,7 +79,7 @@ const Calendar = ({onDateSelect}: CalendarProps) => {
                 const isNextMonth =
                   weekIdx === weekCalendarList.length - 1 && day! <= 7; // 다음 달 날짜
                 const year = currentDate.getFullYear();
-                const month = currentDate.getMonth() + 1;
+                const month = currentDate.getMonth();
 
                 const isDisabled =
                   isToday(year, month, day!) || isPast(year, month, day!);
