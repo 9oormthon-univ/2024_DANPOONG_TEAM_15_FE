@@ -6,3 +6,18 @@ export interface ApplicationDataSchema {
   careTime: string;
   status: string;
 }
+
+export interface ChildDataSchema {
+  childId: number;
+  childName: string;
+  age: number;
+  image: string;
+  recentApplyStatus: string;
+}
+
+export interface ChildInfoSchema {
+  childId: number;
+  childName: string;
+  age: number;
+  gender: string;
+}

@@ -9,6 +9,7 @@ import ChildCardAdd from '@/components/main/ChildCardAdd';
 import DefaultImage from '@/assets/default-child.svg';
 import {getChildren} from '@/utils/childApi';
 import {getUserInfo} from '@/utils/userApi';
+import {ChildDataSchema} from '@/types';
 
 interface ChildData {
   id: number;
@@ -37,7 +38,7 @@ function Main() {
         // 상태 업데이트
         if (childrenResponse) {
           setChildren(
-            childrenResponse.map(child => ({
+            childrenResponse.map((child: ChildDataSchema) => ({
               id: child.childId,
               name: child.childName,
               age: child.age,
