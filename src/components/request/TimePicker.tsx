@@ -1,8 +1,8 @@
 import {useState, useEffect, useRef} from 'react';
-import * as T from '@/styles/components/TimePickerStyle';
 import TimePickerScroll from './TimePickerScroll';
-import {TIMES} from '@/const/time-constants';
 import TimePickerObserverRoot from './TimePickerObserverRoot';
+import * as T from '@/styles/components/TimePickerStyle';
+import {TIMES} from '@/const/time-constants';
 
 interface TimePickerProps {
   onTimeSelect: (time: string) => void; // 시간 선택 콜백

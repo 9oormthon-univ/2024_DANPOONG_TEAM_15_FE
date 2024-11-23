@@ -9,6 +9,7 @@ import ChildCardAdd from '@/components/main/ChildCardAdd';
 import DefaultImage from '@/assets/default-child.svg';
 import {getChildren} from '@/utils/childApi';
 import {getUserInfo} from '@/utils/userApi';
+import {ChildDataSchema} from '@/types';
 
 interface ChildData {
   id: number;
@@ -21,6 +22,7 @@ interface ChildData {
 function Main() {
   const [userName, setUserName] = useState<string>(''); // 사용자 이름
   const [children, setChildren] = useState<ChildData[]>([]); // 아이 목록
+  console.log('🚀 ~ file: Main.tsx:24 ~ Main ~ children:', children);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +38,7 @@ function Main() {
         // 상태 업데이트
         if (childrenResponse) {
           setChildren(
-            childrenResponse.map(child => ({
+            childrenResponse.map((child: ChildDataSchema) => ({
               id: child.childId,
               name: child.childName,
               age: child.age,
@@ -78,6 +80,7 @@ function Main() {
                       {children.map(child => (
                         <ChildCard
                           key={child.id}
+                          childId={child.id}
                           name={child.name}
                           age={child.age}
                           image={child.image}

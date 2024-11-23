@@ -10,7 +10,9 @@ const CardContainer = styled.div`
   justify-content: space-between;
 `;
 
-const ImageContainer = styled.div<{hasCaregiver: boolean}>`
+const ImageContainer = styled.div.withConfig({
+  shouldForwardProp: prop => prop !== 'hasCaregiver',
+})<{hasCaregiver: boolean}>`
   border-radius: 50%;
   overflow: hidden;
   width: 58px;

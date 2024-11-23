@@ -1,6 +1,5 @@
 import {useNavigate} from 'react-router-dom';
 import * as S from '@/styles/components/AbsentCardStyle';
-
 import RightIcon from '@/assets/icons/request/arrow-right.svg';
 
 interface AbsentCardProps {
@@ -9,11 +8,7 @@ interface AbsentCardProps {
   onSelect: (id: string) => void;
 }
 
-const AbsentCard: React.FC<AbsentCardProps> = ({
-  certificate,
-  isSelected,
-  onSelect,
-}) => {
+const AbsentCard = ({certificate, isSelected, onSelect}: AbsentCardProps) => {
   const navigate = useNavigate();
 
   const handleNavLinkClick = (): void => {

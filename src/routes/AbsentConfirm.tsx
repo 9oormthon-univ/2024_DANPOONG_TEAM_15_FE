@@ -1,7 +1,6 @@
 import {useNavigate, useLocation} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/AbsentConfirmStyle';
-
 import TopBackXBar from '@/components/common/TopBackXBar';
 import ProgressBar from '@/components/request/ProgressBar';
 import CheckIcon from '@/assets/icons/request/green-check.svg';

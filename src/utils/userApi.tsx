@@ -8,10 +8,11 @@ export const createAccountApi = async (data: {
   password: string;
   incomeType: string;
 }): Promise<void> => {
+  console.log('🚀 ~ file: userApi.tsx:14 ~ BASE_URL:', BASE_URL);
   try {
     const response = await axios.post(`${BASE_URL}/auth/sign-up`, data);
-
     // accessToken 저장
+    console.log('🚀 ~ file: userApi.tsx:14 ~ BASE_URL:', BASE_URL);
     const {accessToken} = response.data.data;
     localStorage.setItem('accessToken', accessToken);
   } catch (error: any) {
@@ -69,10 +70,7 @@ export const loginApi = async (
   }
 };
 
-export const getUserInfo = async (): Promise<{
-  name: string;
-  incomeType: string;
-}> => {
+export const getUserInfo = async () => {
   try {
     const token = localStorage.getItem('accessToken'); // accessToken 가져오기
 

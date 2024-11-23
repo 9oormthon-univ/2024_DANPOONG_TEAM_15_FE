@@ -2,10 +2,10 @@ import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/SelectChildStyle';
-
 import TopBackXBar from '@/components/common/TopBackXBar';
 import SelectChildCard from '@/components/request/SelectChildCard';
 import {getChildren} from '@/utils/childApi';
+import {ChildInfoSchema} from '@/types';
 
 interface ChildData {
   id: number;
@@ -16,15 +16,15 @@ interface ChildData {
 
 function SelectChild() {
   const navigate = useNavigate();
-  const [children, setChildren] = useState<ChildData[]>([]); // 아이 목록 상태
-  const [selectedChild, setSelectedChild] = useState<number | null>(null); // 선택된 아이의 ID
+  const [children, setChildren] = useState<ChildData[]>([]);
+  const [selectedChild, setSelectedChild] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchChildren = async () => {
       try {
         const response = await getChildren();
         // API 응답 데이터를 컴포넌트에 맞게 변환
-        const mappedChildren = response.map(child => ({
+        const mappedChildren = response.map((child: ChildInfoSchema) => ({
           id: child.childId,
           name: child.childName,
           age: child.age,

@@ -6,7 +6,7 @@ interface RequestCardProps {
   text: string;
 }
 
-const RequestCard: React.FC<RequestCardProps> = ({icon, title, text}) => {
+const RequestCard = ({icon, title, text}: RequestCardProps) => {
   return (
     <R.CardContainer>
       <R.Circle>

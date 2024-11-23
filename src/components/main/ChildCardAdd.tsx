@@ -1,6 +1,5 @@
 import {useNavigate} from 'react-router-dom';
 import * as C from '@/styles/components/ChildCardStyle';
-
 import CircleAddIcon from '@/assets/circle-add.svg';
 
 function ChildCardAdd() {

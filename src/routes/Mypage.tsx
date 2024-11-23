@@ -1,3 +1,4 @@
+import {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
@@ -9,6 +10,7 @@ import {
   IvoryTextIcon,
 } from '@/assets/icons/common';
 import TopMentBar from '@/components/common/TopMentBar';
+import {getUserInfo} from '@/utils/userApi';
 
 const PageSpace = styled.div`
   display: flex;
@@ -43,13 +45,12 @@ const UserInfo = styled.div`
 `;
 
 const UserName = styled.div`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: ${COLOR.WHITE_01};
 `;
 
 const UserType = styled.div`
-  font-size: 20px;
   color: ${COLOR.WHITE_01};
 `;
 
@@ -95,6 +96,20 @@ const OrangeSmallText = styled.div`
 
 function Mypage() {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userResponse = await getUserInfo();
+        setUserName(userResponse.name);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // 소득 유형 변경 페이지로 이동
   const onClickIncomeType = () => {
@@ -120,7 +135,7 @@ function Mypage() {
                 <Container>
                   <UserCard>
                     <UserInfo>
-                      <UserName>이주연님</UserName>
+                      <UserName>{userName || '\u00A0\u00A0\u00A0'}님</UserName>
                       <UserType>소득유형 | 나형</UserType>
                     </UserInfo>
                     <IvoryRemoveBgIcon width={110} height={110} />

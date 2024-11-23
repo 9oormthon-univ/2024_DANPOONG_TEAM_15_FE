@@ -1,8 +1,7 @@
-import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import {useState, useEffect} from 'react';
+import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/AbsentInformStyle';
-
 import TopBackLeftArrowBar from '@/components/common/TopBackLeftArrowBar';
 import {getAbsentDetails} from '@/utils/requestApi';
 

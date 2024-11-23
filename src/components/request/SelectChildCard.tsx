@@ -8,13 +8,13 @@ interface SelectChildCardProps {
   onClick: () => void;
 }
 
-const SelectChildCard: React.FC<SelectChildCardProps> = ({
+const SelectChildCard = ({
   name,
   age,
   gender,
   isSelected,
   onClick,
-}) => {
+}: SelectChildCardProps) => {
   return (
     <R.CardContainer $isSelected={isSelected} onClick={onClick}>
       <R.Name>{name}</R.Name>

@@ -1,5 +1,4 @@
 import * as R from '@/styles/components/RequestLoadingStyle';
-
 import ListIcon from '@/assets/icons/request/list.svg';
 
 function RequestLoading() {

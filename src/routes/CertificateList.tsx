@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/CertificateListStyle';
-
 import TopBackLeftArrowBar from '@/components/common/TopBackLeftArrowBar';
 import CertificateCard from '@/components/request/CertificateCard';
 import {getMedicalCertificates} from '@/utils/requestApi';

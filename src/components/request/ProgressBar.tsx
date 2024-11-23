@@ -4,7 +4,7 @@ interface ProgressBarProps {
   isStatus: number; // 현재 상태를 나타내는 숫자 (0부터 시작)
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({isStatus}) => {
+const ProgressBar = ({isStatus}: ProgressBarProps) => {
   return (
     <P.ProgressBar>
       <P.LeftHalfBar $isActive={isStatus >= 0} />

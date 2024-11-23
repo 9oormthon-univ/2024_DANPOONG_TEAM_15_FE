@@ -123,7 +123,7 @@ interface ChildAdditionFormProps {
     name: string;
     birthDate: string;
     gender: string;
-    image: string;
+    image: string | File | null;
   };
   handleInputChange: (key: string, value: string) => void;
   handleImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -180,7 +180,11 @@ const ChildAdditionForm = ({
       </RowFlex>
       <ImagePreview>
         {formData.image ? (
-          <img src={formData.image} alt="아이 사진" />
+          typeof formData.image === 'string' ? (
+            <img src={formData.image} alt="아이 사진" />
+          ) : (
+            <img src={URL.createObjectURL(formData.image)} alt="아이 사진" />
+          )
         ) : (
           <IvoryRemoveBgIcon height={150} />
         )}
