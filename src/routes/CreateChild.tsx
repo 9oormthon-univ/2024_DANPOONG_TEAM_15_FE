@@ -86,6 +86,7 @@ function CreateChild() {
 
   const handleSubmit = () => {
     console.log('API로 보낼 데이터:', formData);
+    
   };
 
   return (
