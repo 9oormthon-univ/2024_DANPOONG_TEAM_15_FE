@@ -128,12 +128,12 @@ function CreateAccountFirst({onNext, formData}: CreateAccountFirstProps) {
           {errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
         </InputContainer>
         <InputContainer>
-          <Label htmlFor="email">아이디</Label>
+          <Label htmlFor="email">이메일</Label>
           <Input
             id="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            placeholder="아이디를 입력해주세요 (최소 8자 이상)"
+            placeholder="이메일을 입력해주세요 (최소 8자 이상)"
           />
           {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
         </InputContainer>

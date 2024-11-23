@@ -1,3 +1,4 @@
+import {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/RequestStyle';
@@ -6,6 +7,7 @@ import TopBackXBar from '@/components/common/TopBackXBar';
 import {KakaoPayIcon} from '@/assets/icons/request';
 import ProgressBar from '@/components/request/ProgressBar';
 import {postPayment} from '@/utils/kakaoPay';
+import {getChildDetailStatus} from '@/utils/mainApi';
 
 const PageSpace = styled.div`
   display: flex;
@@ -104,19 +106,34 @@ const PayButton = styled.button`
 `;
 
 function Pay() {
-  const tempData = {
-    applyDate: '2024년 11월 19일',
-    name: '김단풍',
-    birthDate: '2019-03-21',
-    age: 5,
-    incomeType: '가형',
-    careDate: '2024-11-20',
-    careTime: '09:00 ~ 18:00',
-    totalAmount: '125,100',
-    subsidy: '106,335',
-    copay: '18,765',
-    status: '서비스 신청 완료',
-  };
+  const params = new URLSearchParams(window.location.search);
+  const applyId = params.get('applyId');
+  const [applicationDetailData, setApplicationDetailData] = useState<any>(null);
+  console.log(
+    '🚀 ~ file: Pay.tsx:126 ~ Pay ~ applicationDetailData:',
+    applicationDetailData,
+  );
+
+  useEffect(() => {
+    if (!applyId) {
+      return;
+    }
+
+    const fetchData = async () => {
+      try {
+        const appData = await getChildDetailStatus(applyId);
+        setApplicationDetailData(appData.data); // 실제 데이터를 상태에 저장
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [applyId]);
+
+  if (!applicationDetailData) {
+    return;
+  }
 
   const makePayment = async () => {
     try {
@@ -158,39 +175,42 @@ function Pay() {
                   </InfoContainer>
                   <InfoContainer>
                     <GrayBoldText>이름</GrayBoldText>
-                    <BlackText>{tempData.name}</BlackText>
+                    <BlackText>{applicationDetailData.name}</BlackText>
                   </InfoContainer>
                   <InfoContainer>
                     <GrayBoldText>생년월일</GrayBoldText>
                     <BlackText>
-                      {tempData.birthDate}
-                      <OrangeText>(만 {tempData.age}세)</OrangeText>
+                      {applicationDetailData.birthDate}
+                      <OrangeText>
+                        (만 {applicationDetailData.age}세)
+                      </OrangeText>
                     </BlackText>
                   </InfoContainer>
                   <InfoContainer>
                     <GrayBoldText>정부지원 유형</GrayBoldText>
-                    <BlackText>{tempData.incomeType}</BlackText>
+                    <BlackText>{applicationDetailData.incomeType}</BlackText>
                   </InfoContainer>
                   <InfoContainer>
                     <GrayBoldText>돌봄 일정</GrayBoldText>
                     <BlackText>
-                      {tempData.careDate} | {tempData.careTime}
+                      {applicationDetailData.careDate} |{' '}
+                      {applicationDetailData.careTime}
                     </BlackText>
                   </InfoContainer>
                   <Divider />
                   <GrayBoldText>총 합계</GrayBoldText>
                   <FlexRowContainer>
                     <GrayBoldText>기본요금</GrayBoldText>
-                    <BlackText>{tempData.totalAmount}원</BlackText>
+                    <BlackText>{applicationDetailData.totalAmount}원</BlackText>
                   </FlexRowContainer>
                   <FlexRowContainer>
                     <GrayBoldText>정부지원 판정금</GrayBoldText>
-                    <BlackText>{tempData.subsidy}원</BlackText>
+                    <BlackText>{applicationDetailData.subsidy}원</BlackText>
                   </FlexRowContainer>
                   <FlexRowContainer>
                     <GrayBoldText>본인 부담금</GrayBoldText>
                     <CostContainer>
-                      <OrangeText>{tempData.copay}</OrangeText>
+                      <OrangeText>{applicationDetailData.copay}</OrangeText>
                       <BlackText>원</BlackText>
                     </CostContainer>
                   </FlexRowContainer>
@@ -201,7 +221,7 @@ function Pay() {
                     <KakaoPayText>카카오페이로 간편결제!</KakaoPayText>
                   </KakaoPayContainer>
                   <PayButton onClick={handlePay}>
-                    {tempData.copay}원 결제하기
+                    {applicationDetailData.copay}원 결제하기
                   </PayButton>
                 </FooterContainer>
               </PageSpace>

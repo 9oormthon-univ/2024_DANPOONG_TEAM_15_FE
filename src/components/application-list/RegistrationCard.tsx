@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {useNavigate} from 'react-router-dom';
 import {COLOR} from '@/const/color';
 import {ArrowRightIcon} from '@/assets/icons/common';
 
@@ -50,19 +51,22 @@ export default function RegistrationCard({
   medicalCertificate,
   absenceCertificate,
 }: RegistrationCardProps) {
+  const navigate = useNavigate();
   const onClickMedicalDetail = () => {
     console.log(`진단서 상세보기 클릭 - ID: ${medicalCertificate.id}`);
+    navigate(`/certificate-list/information/${medicalCertificate.id}`);
   };
 
   const onClickAbsenceDetail = () => {
     console.log(`결석계 상세보기 클릭 - ID: ${absenceCertificate.id}`);
+    navigate(`/absent-list/information/${absenceCertificate.id}`);
   };
 
   return (
     <>
       <CardContainer>
         <HeaderInfo>
-          <Black3Text>{medicalCertificate.title}</Black3Text>
+          <Black3Text>{medicalCertificate.title} 진단서</Black3Text>
           <PointerStyle onClick={onClickMedicalDetail}>
             상세보기 <ArrowRightIcon />
           </PointerStyle>
@@ -71,7 +75,7 @@ export default function RegistrationCard({
       </CardContainer>
       <CardContainer>
         <HeaderInfo>
-          <Black3Text>{absenceCertificate.title}</Black3Text>
+          <Black3Text>{absenceCertificate.title} 미등원 확인서</Black3Text>
           <PointerStyle onClick={onClickAbsenceDetail}>
             상세보기 <ArrowRightIcon />
           </PointerStyle>
