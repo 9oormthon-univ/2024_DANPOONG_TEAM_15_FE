@@ -53,7 +53,7 @@ export const addChild = async (formData: FormData): Promise<void> => {
     },
   });
 
-  if (response.status !== 201) {
+  if (response.status !== 200) {
     throw new Error(response.data.message || '자녀 등록에 실패했습니다.');
   }
 

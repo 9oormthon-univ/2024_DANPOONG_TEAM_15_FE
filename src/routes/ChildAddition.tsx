@@ -78,7 +78,10 @@ function ChildAddition() {
     formData.name !== '' && formData.birthDate !== '' && formData.gender !== '';
 
   const handleSubmit = async () => {
-    if (!isButtonActive || !formData.image) return;
+    if (!isButtonActive) {
+      console.warn('조건이 충족되지 않음:', {isButtonActive});
+      return;
+    }
 
     try {
       console.log('API로 보낼 데이터:', formData);
@@ -88,16 +91,34 @@ function ChildAddition() {
       formDataToSend.append('birthDate', formData.birthDate);
       formDataToSend.append('gender', formData.gender);
 
+      // 이미지가 없을 경우 기본 이미지 추가
       if (formData.image instanceof File) {
         formDataToSend.append('image', formData.image);
+      } else {
+        const defaultImageBlob = await fetch('/pwa-512x512.png', {
+          method: 'GET',
+        }).then(response => {
+          if (!response.ok) {
+            throw new Error('기본 이미지 로드 실패');
+          }
+          return response.blob();
+        });
+
+        formDataToSend.append('image', defaultImageBlob, 'pwa-512x512.png');
+      }
+
+      // FormData 디버깅 출력
+      console.log('FormData에 추가된 데이터:');
+      for (let pair of formDataToSend.entries()) {
+        console.log(`${pair[0]}: ${pair[1]}`);
       }
 
       await addChild(formDataToSend);
-
-      alert('아이 등록이 완료되었습니다.');
-      navigate('/main');
+      console.log('등록 성공, 메인으로 이동합니다.');
+      navigate('/main'); // 메인으로 이동
     } catch (error: any) {
-      alert(error.message || '아이 등록 중 문제가 발생했습니다.');
+      console.error('등록 중 에러:', error);
+      navigate('/main'); // 메인으로 이동
     }
   };
 
