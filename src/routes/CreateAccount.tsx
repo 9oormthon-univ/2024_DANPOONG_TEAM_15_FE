@@ -5,6 +5,7 @@ import * as S from '@/styles/JoinStyle';
 import CreateAccountFirst from '@/components/user/CreateAccountFirst';
 import CreateAccountSecond from '@/components/user/CreateAccountSecond';
 import {SignUpRequestBody} from '@/types';
+import {CreateAccountApi} from '../utils/userApi'
 
 function CreateAccount() {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ function CreateAccount() {
       '🚀 ~ file: CreateAccount.tsx:27 ~ handleSubmit ~ newData:',
       submitData,
     );
+    CreateAccountApi(submitData);
     // 아이등록 페이지로 이동
     navigate('/create-account/child-addition');
   };
