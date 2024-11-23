@@ -68,13 +68,14 @@ function Login() {
                   onChange={handlePasswordChange}
                 />
               </S.LoginContainer>
-
-              <S.LoginButton
-                onClick={handleSubmit}
-                disabled={!isButtonActive}
-                isActive={isButtonActive}>
-                <div>로그인</div>
-              </S.LoginButton>
+              <S.Footer>
+                <S.LoginButton
+                  onClick={handleSubmit}
+                  disabled={!isButtonActive}
+                  isActive={isButtonActive}>
+                  <div>로그인</div>
+                </S.LoginButton>
+              </S.Footer>
             </C.PageSpace>
           </S.Background>
         </C.Center>
