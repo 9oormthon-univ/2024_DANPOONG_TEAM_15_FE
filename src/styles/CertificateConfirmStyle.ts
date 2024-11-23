@@ -64,6 +64,7 @@ export const InformText = styled.div`
   font-weight: 400;
   line-height: 20px;
   letter-spacing: -0.35px;
+  white-space: pre-line;
 `;
 
 export const FooterContainer = styled.div`
