@@ -11,6 +11,7 @@ const CardContainer = styled.div`
   font-size: 14px;
   gap: 10px;
 `;
+
 const HeaderInfo = styled.div`
   display: flex;
   justify-content: space-between;
@@ -31,27 +32,54 @@ const PointerStyle = styled.div`
   cursor: pointer;
 `;
 
-export default function RegistrationCard() {
-  // 임시 데이터
-  const registrationData = {
-    name: '0000년 0월 0일 진단서',
-    applyDate: '2021-08-01',
+interface RegistrationCardProps {
+  medicalCertificate: {
+    id: number;
+    title: string;
+    createdAt: string;
+  };
+  absenceCertificate: {
+    id: number;
+    title: string;
+    startDate: string;
+    endDate: string;
+  };
+}
+
+export default function RegistrationCard({
+  medicalCertificate,
+  absenceCertificate,
+}: RegistrationCardProps) {
+  const onClickMedicalDetail = () => {
+    console.log(`진단서 상세보기 클릭 - ID: ${medicalCertificate.id}`);
   };
 
-  // TODO: 상세 보기 클릭 시 액션 추가
-  const onClickDetail = () => {
-    console.log('상세보기 클릭');
+  const onClickAbsenceDetail = () => {
+    console.log(`결석계 상세보기 클릭 - ID: ${absenceCertificate.id}`);
   };
 
   return (
-    <CardContainer>
-      <HeaderInfo>
-        <Black3Text>{registrationData.name}</Black3Text>
-        <PointerStyle onClick={onClickDetail}>
-          상세보기 <ArrowRightIcon />
-        </PointerStyle>
-      </HeaderInfo>
-      <GrayText>{registrationData.applyDate}</GrayText>
-    </CardContainer>
+    <>
+      <CardContainer>
+        <HeaderInfo>
+          <Black3Text>{medicalCertificate.title}</Black3Text>
+          <PointerStyle onClick={onClickMedicalDetail}>
+            상세보기 <ArrowRightIcon />
+          </PointerStyle>
+        </HeaderInfo>
+        <GrayText>{medicalCertificate.createdAt}</GrayText>
+      </CardContainer>
+      <CardContainer>
+        <HeaderInfo>
+          <Black3Text>{absenceCertificate.title}</Black3Text>
+          <PointerStyle onClick={onClickAbsenceDetail}>
+            상세보기 <ArrowRightIcon />
+          </PointerStyle>
+        </HeaderInfo>
+        <GrayText>
+          {absenceCertificate.startDate} ~ {absenceCertificate.endDate}
+        </GrayText>
+      </CardContainer>
+    </>
   );
 }

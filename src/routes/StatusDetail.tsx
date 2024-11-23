@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/RequestStyle';
 import TopBackBar from '@/components/application-list/TopBackBar';
-import {dummyApplicationDetailList} from '@/const/dummy_data/dummy_application_detail_list';
 import {COLOR} from '@/const/color';
 import StatusCard from '@/components/application-list/StatusCard';
 import CaregiverCard from '@/components/application-list/CaregiverCard';
@@ -71,17 +70,10 @@ const CostContainer = styled.div`
 const Divider = styled.div`
   border-bottom: 1px solid ${COLOR.WHITE_LIGHT};
 `;
-
 function StatusDetail() {
-  const applicationDetailData = dummyApplicationDetailList;
-
   const params = new URLSearchParams(window.location.search);
   const applyId = params.get('applyId');
-  const [applicationListData, setAppListData] = useState();
-  console.log(
-    '🚀 ~ file: Status.tsx:47 ~ Status ~ appListData:',
-    applicationListData,
-  );
+  const [applicationDetailData, setApplicationDetailData] = useState<any>(null);
 
   useEffect(() => {
     if (!applyId) {
@@ -91,7 +83,7 @@ function StatusDetail() {
     const fetchData = async () => {
       try {
         const appData = await getChildDetailStatus(applyId);
-        setAppListData(appData.data);
+        setApplicationDetailData(appData.data); // 실제 데이터를 상태에 저장
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -100,7 +92,7 @@ function StatusDetail() {
     fetchData();
   }, [applyId]);
 
-  if (!applicationListData) {
+  if (!applicationDetailData) {
     return;
   }
 
@@ -126,7 +118,14 @@ function StatusDetail() {
                 </ContentContainer>
                 <ContentContainer>
                   <GrayBoldText>등록한 서류</GrayBoldText>
-                  <RegistrationCard />
+                  <RegistrationCard
+                    medicalCertificate={
+                      applicationDetailData.medicalCertificates
+                    }
+                    absenceCertificate={
+                      applicationDetailData.absenceCertificates
+                    }
+                  />
                 </ContentContainer>
                 <InfoContainer>
                   <GrayBoldText>이름</GrayBoldText>
@@ -163,7 +162,7 @@ function StatusDetail() {
                 <FlexRowContainer>
                   <GrayBoldText>본인 부담금</GrayBoldText>
                   <CostContainer>
-                    <OrangeText>{applicationDetailData.subsidy}</OrangeText>
+                    <OrangeText>{applicationDetailData.copay}</OrangeText>
                     <BlackText>원</BlackText>
                   </CostContainer>
                 </FlexRowContainer>
