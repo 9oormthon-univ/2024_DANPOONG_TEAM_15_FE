@@ -14,7 +14,7 @@ export const LogoContainer = styled.div`
   margin-bottom: 50px;
   text-align: center;
   flex-grow: 2;
-  gap: 8px; /* 요소 간 간격 */
+  gap: 8px;
 `;
 
 export const IvoryText = styled.div`
