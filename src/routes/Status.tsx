@@ -1,3 +1,4 @@
+import {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/StatusStyle';
@@ -5,6 +6,7 @@ import {dummyApplicationList} from '@/const/dummy_data/dummy_application_list';
 import {COLOR} from '@/const/color';
 import TopBackBar from '@/components/application-list/TopBackBar';
 import ApplicationCard from '@/components/application-list/ApplicationCard';
+import {getChildStatus} from '@/utils/mainApi';
 
 const Container = styled.div`
   padding: 8px 20px 50px;
@@ -35,6 +37,28 @@ const ApplicationCardContainer = styled.div`
 `;
 
 function Status() {
+  const params = new URLSearchParams(window.location.search);
+  const childId = params.get('childId');
+  const [appListData, setAppListData] = useState();
+  console.log('🚀 ~ file: Status.tsx:47 ~ Status ~ appListData:', appListData);
+
+  useEffect(() => {
+    if (!childId) {
+      return;
+    }
+
+    const fetchData = async () => {
+      try {
+        const appData = await getChildStatus(childId);
+        setAppListData(appData.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [childId]);
+
   const applicationListData = dummyApplicationList;
   console.log(
     '🚀 ~ file: Status.tsx:40 ~ Status ~ applicationListData:',

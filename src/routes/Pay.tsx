@@ -5,6 +5,7 @@ import {COLOR} from '@/const/color';
 import TopBackXBar from '@/components/common/TopBackXBar';
 import {KakaoPayIcon} from '@/assets/icons/request';
 import ProgressBar from '@/components/request/ProgressBar';
+import {postPayment} from '@/utils/kakaoPay';
 
 const PageSpace = styled.div`
   display: flex;
@@ -117,6 +118,28 @@ function Pay() {
     status: '서비스 신청 완료',
   };
 
+  const makePayment = async () => {
+    try {
+      const applyId = 2;
+      const response = await postPayment(applyId);
+      // 모바일 환경 감지
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      const redirectUrl = isMobile
+        ? response.data.next_redirect_mobile_url
+        : response.data.next_redirect_pc_url;
+
+      window.location.href = redirectUrl;
+    } catch (error: any) {
+      console.error('에러 발생:', error.message);
+    }
+  };
+
+  // 결제하기 클릭
+  const handlePay = () => {
+    makePayment();
+  };
+
   return (
     <>
       <C.Page>
@@ -177,7 +200,9 @@ function Pay() {
                     <KakaoPayIcon />
                     <KakaoPayText>카카오페이로 간편결제!</KakaoPayText>
                   </KakaoPayContainer>
-                  <PayButton>{tempData.copay}원 결제하기</PayButton>
+                  <PayButton onClick={handlePay}>
+                    {tempData.copay}원 결제하기
+                  </PayButton>
                 </FooterContainer>
               </PageSpace>
             </C.PageSpace>

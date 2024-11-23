@@ -27,6 +27,7 @@ import IncomeType from './routes/IncomeType';
 import ChildAddition from './routes/ChildAddition';
 import CreateAccount from './routes/CreateAccount';
 import CreateChild from './routes/CreateChild';
+import PaySuccess from './routes/PaySuccess';
 
 function App() {
   return (
@@ -35,10 +36,8 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Splash />} />
-
           {/* 시작화면 */}
           <Route path="/splash" element={<Splash />} />
-
           {/* 회원가입, 로그인, 마이페이지 */}
           <Route path="/create-account/" element={<CreateAccount />} />
           <Route
@@ -52,7 +51,6 @@ function App() {
             element={<CertificateDownload />}
           />
           <Route path="/mypage/income-type" element={<IncomeType />} />
-
           {/* 메인, 서비스 신청 */}
           <Route path="/main" element={<Main />} />
           <Route path="/main/child-addition" element={<ChildAddition />} />
@@ -68,8 +66,9 @@ function App() {
           <Route path="/request/schedule" element={<Schedule />} />
           <Route path="/request/time" element={<Time />} />
           <Route path="/request/pay" element={<Pay />} />
+          {/* /apply/payments/success */}
+          <Route path="/apply/payments/success" element={<PaySuccess />} />
           <Route path="/request/done" element={<Done />} />
-
           {/* 진단서, 미등원 확인서 */}
           <Route path="/certificate-list" element={<CertificateList />} />
           <Route
@@ -78,11 +77,9 @@ function App() {
           />
           <Route path="/absent-list" element={<AbsentList />} />
           <Route path="/absent-list/information" element={<AbsentInform />} />
-
           {/* 신청 현황 */}
           <Route path="/status" element={<Status />} />
           <Route path="/status/detail" element={<StatusDetail />} />
-
           {/* 404 */}
           <Route path="/*" element={<Non />} />
         </Routes>
