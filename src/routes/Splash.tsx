@@ -1,5 +1,4 @@
 import {useNavigate} from 'react-router-dom'; // useNavigate 추가
-import styled from 'styled-components';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/SplashStyle';
 import {SplashIcon} from '@/assets/icons/common';

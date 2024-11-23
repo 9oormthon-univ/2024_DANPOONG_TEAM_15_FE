@@ -53,10 +53,10 @@ function Login() {
               </S.LogoContainer>
 
               <S.LoginContainer>
-                <S.Text>아이디</S.Text>
+                <S.Text>이메일</S.Text>
                 <S.Input
                   type="text"
-                  placeholder="아이디를 입력해주세요"
+                  placeholder="이메일을 입력해주세요"
                   value={id}
                   onChange={handleIdChange}
                 />

@@ -74,6 +74,10 @@ function StatusDetail() {
   const params = new URLSearchParams(window.location.search);
   const applyId = params.get('applyId');
   const [applicationDetailData, setApplicationDetailData] = useState<any>(null);
+  console.log(
+    '🚀 ~ file: StatusDetail.tsx:77 ~ StatusDetail ~ applicationDetailData:',
+    applicationDetailData,
+  );
 
   useEffect(() => {
     if (!applyId) {
