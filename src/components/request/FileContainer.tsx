@@ -1,5 +1,6 @@
 import {useState, ChangeEvent} from 'react';
 import {useNavigate} from 'react-router-dom';
+import heic2any from 'heic2any';
 import * as F from '@/styles/components/FileContainerStyle';
 import FolderIcon from '@/assets/icons/request/folder.svg';
 import BoxIcon from '@/assets/icons/request/box.svg';
@@ -16,14 +17,37 @@ const FileContainer = ({
   const navigate = useNavigate();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-  const setImageFn = (event: ChangeEvent<HTMLInputElement>): void => {
+  const setImageFn = async (
+    event: ChangeEvent<HTMLInputElement>,
+  ): Promise<void> => {
     const file = event.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      const isHeic = file.type === 'image/heic' || file.name.endsWith('.heic');
+
+      if (isHeic) {
+        try {
+          const imageBuffer = await file.arrayBuffer();
+          const imageBlob = new Blob([imageBuffer]);
+          const jpegBlob = await heic2any({
+            blob: imageBlob,
+            toType: 'image/jpeg',
+          });
+
+          // Ensure jpegBlob is a single Blob
+          const finalBlob = Array.isArray(jpegBlob) ? jpegBlob[0] : jpegBlob;
+          const imageUrl = URL.createObjectURL(finalBlob);
+
+          setImagePreview(imageUrl);
+        } catch (error) {
+          console.error('HEIC 이미지 처리 중 오류가 발생했습니다.', error);
+        }
+      } else {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImagePreview(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+      }
       setSelectedPaper(file); // 파일을 부모 상태로 전달
     }
   };
@@ -40,7 +64,7 @@ const FileContainer = ({
               type="file"
               name="file"
               id="file"
-              accept="image/*"
+              accept="image/*, .heic"
               onChange={setImageFn}
             />
             <div id="file-preview">
