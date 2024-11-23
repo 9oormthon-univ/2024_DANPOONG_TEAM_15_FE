@@ -4,6 +4,7 @@ import * as C from '../styles/CommonStyle';
 import * as S from '../styles/AbsentListStyle';
 import TopBackLeftArrowBar from '@/components/common/TopBackLeftArrowBar';
 import AbsentCard from '@/components/request/AbsentCard';
+import {getAbsent} from '@/utils/requestApi';
 
 function AbsentList() {
   const navigate = useNavigate();
@@ -15,43 +16,41 @@ function AbsentList() {
   useEffect(() => {
     const fetchCertificates = async () => {
       try {
-        const mockCertificates = [
-          {
-            id: '1',
-            title: '0000년 0월 0일',
-            startDate: '0000-00-00',
-            endDate: '0000-00-00',
-          },
-          {
-            id: '2',
-            title: '0000년 0월 0일',
-            startDate: '0000-00-00',
-            endDate: '0000-00-00',
-          },
-          {
-            id: '3',
-            title: '0000년 0월 0일',
-            startDate: '0000-00-00',
-            endDate: '0000-00-00',
-          },
-        ];
-        setCertificateList(mockCertificates);
+        const childId = localStorage.getItem('childId');
+        if (!childId) {
+          throw new Error('선택된 아이의 정보가 없습니다.');
+        }
+
+        // API 호출
+        const certificates = await getAbsent(Number(childId));
+
+        // 데이터 가공
+        const mappedCertificates = certificates.map(certificate => ({
+          id: certificate.id.toString(),
+          title: certificate.title,
+          startDate: certificate.startDate,
+          endDate: certificate.endDate,
+        }));
+
+        setCertificateList(mappedCertificates);
       } catch (error) {
-        console.error('Failed to fetch certificates:', error);
+        console.error('미등원 확인서 목록 조회 실패:', error);
       }
     };
 
     fetchCertificates();
   }, []);
 
-  const handleNavLinkClick = (path: string): void => {
-    if (selectedPaper !== null) {
-      navigate(path);
-    }
-  };
-
+  // 선택된 미등원 확인서의 ID 업데이트
   const handleSelectPaper = (id: string) => {
     setSelectedPaper(id);
+  };
+
+  const handleNavLinkClick = (path: string): void => {
+    if (selectedPaper !== null) {
+      localStorage.setItem('absenceCertificateId', selectedPaper);
+      navigate(path);
+    }
   };
 
   return (

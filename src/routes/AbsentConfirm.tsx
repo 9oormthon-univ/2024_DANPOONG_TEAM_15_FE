@@ -1,5 +1,4 @@
-import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/AbsentConfirmStyle';
 import TopBackXBar from '@/components/common/TopBackXBar';
@@ -8,21 +7,49 @@ import CheckIcon from '@/assets/icons/request/green-check.svg';
 
 interface CertificateData {
   name: string;
-  date: string;
+  startdate: string;
+  enddate: string;
   reason: string;
   content: string;
 }
 
 function AbsentConfirm() {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // 더미 데이터
-  const [certificateData] = useState<CertificateData>({
-    name: '홍길동',
-    date: '0000-00-00 ~ 0000-00-00',
-    reason: '병명',
-    content: '내용',
-  });
+  // location.state에서 전달받은 데이터 가져오기
+  const certificateData: CertificateData | undefined = location.state;
+
+  // 데이터가 없을 경우 처리
+  if (!certificateData) {
+    return (
+      <C.Page>
+        <C.Center>
+          <S.Background>
+            <C.PageSpace>
+              <S.PageSpace>
+                <TopBackXBar />
+                <S.Container>
+                  <S.Title>진단서 정보를 찾을 수 없습니다.</S.Title>
+                  <S.FooterContainer>
+                    <S.Button onClick={() => navigate(-1)}>뒤로 가기</S.Button>
+                  </S.FooterContainer>
+                </S.Container>
+              </S.PageSpace>
+            </C.PageSpace>
+          </S.Background>
+        </C.Center>
+      </C.Page>
+    );
+  }
+
+  // 가공된 데이터
+  const processedCertificateData = {
+    name: certificateData.name,
+    period: `${certificateData.startdate} ~ ${certificateData.enddate}`, // 결석 기간
+    reason: certificateData.reason,
+    content: certificateData.content,
+  };
 
   const handleNavLinkClick = (path: string): void => {
     navigate(path);
@@ -41,12 +68,14 @@ function AbsentConfirm() {
                   <S.NumTitle>1. 서류 제출</S.NumTitle>
                   <S.Title>미등원 확인서 제출</S.Title>
                   <S.InformList>
-                    {Object.entries(certificateData).map(([key, value]) => (
-                      <S.TitleText key={key}>
-                        <S.InformTitle>{getFieldTitle(key)}</S.InformTitle>
-                        <S.InformText>{value}</S.InformText>
-                      </S.TitleText>
-                    ))}
+                    {Object.entries(processedCertificateData).map(
+                      ([key, value]) => (
+                        <S.TitleText key={key}>
+                          <S.InformTitle>{getFieldTitle(key)}</S.InformTitle>
+                          <S.InformText>{value}</S.InformText>
+                        </S.TitleText>
+                      ),
+                    )}
                   </S.InformList>
                 </S.Container>
                 <S.FooterContainer>
@@ -72,7 +101,7 @@ function AbsentConfirm() {
 const getFieldTitle = (key: string): string => {
   const fieldTitles: Record<string, string> = {
     name: '이름',
-    date: '결석 기간',
+    period: '결석 기간',
     reason: '결석 사유',
     content: '비고',
   };

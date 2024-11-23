@@ -60,7 +60,7 @@ function ChildAddition() {
     name: '',
     birthDate: '',
     gender: '',
-    image: null as File | null,
+    image: null as File | string | null, // 타입 확장
   });
 
   const handleInputChange = (key: string, value: string) => {

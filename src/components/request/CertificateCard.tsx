@@ -15,8 +15,8 @@ const CertificateCard = ({
 }: CertificateCardProps) => {
   const navigate = useNavigate();
 
-  const handleNavLinkClick = (path: string): void => {
-    navigate(path);
+  const handleNavLinkClick = (): void => {
+    navigate(`/certificate-list/information/${certificate.id}`);
   };
 
   return (
@@ -37,8 +37,7 @@ const CertificateCard = ({
           <S.Title>{certificate.title} 진단서</S.Title>
           <S.Date>{certificate.date} 생성</S.Date>
         </S.Text>
-        <S.Button
-          onClick={() => handleNavLinkClick('/certificate-list/information')}>
+        <S.Button onClick={handleNavLinkClick}>
           상세보기
           <S.RightIcon src={RightIcon} alt="상세보기" />
         </S.Button>

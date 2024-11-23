@@ -11,8 +11,10 @@ interface AbsentCardProps {
 const AbsentCard = ({certificate, isSelected, onSelect}: AbsentCardProps) => {
   const navigate = useNavigate();
 
-  const handleNavLinkClick = (path: string): void => {
-    navigate(path);
+  const handleNavLinkClick = (): void => {
+    navigate(`/absent-list/information/${certificate.id}`, {
+      state: {title: certificate.title},
+    });
   };
 
   return (
@@ -35,8 +37,7 @@ const AbsentCard = ({certificate, isSelected, onSelect}: AbsentCardProps) => {
             결석 기간: {certificate.startDate} ~ {certificate.endDate}
           </S.Date>
         </S.Text>
-        <S.Button
-          onClick={() => handleNavLinkClick('/absent-list/information')}>
+        <S.Button onClick={handleNavLinkClick}>
           상세보기
           <S.RightIcon src={RightIcon} alt="상세보기" />
         </S.Button>

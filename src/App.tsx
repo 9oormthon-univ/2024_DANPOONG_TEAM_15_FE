@@ -72,11 +72,15 @@ function App() {
           {/* 진단서, 미등원 확인서 */}
           <Route path="/certificate-list" element={<CertificateList />} />
           <Route
-            path="/certificate-list/information"
+            path="/certificate-list/information/:medicalCertificateId"
             element={<CertificateInform />}
           />
           <Route path="/absent-list" element={<AbsentList />} />
-          <Route path="/absent-list/information" element={<AbsentInform />} />
+          <Route
+            path="/absent-list/information/:absenceCertificateId"
+            element={<AbsentInform />}
+          />
+
           {/* 신청 현황 */}
           <Route path="/status" element={<Status />} />
           <Route path="/status/detail" element={<StatusDetail />} />
