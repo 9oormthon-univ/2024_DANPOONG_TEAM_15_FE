@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import {COLOR} from '@/const/color';
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
 export const Background = styled.div`
   background: #ffeadc;
 `;
@@ -11,20 +17,16 @@ export const IconWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 370px;
-  margin-top: 200px;
   flex-grow: 1;
 `;
 
 export const Footer = styled.div`
-  position: absolute;
-  bottom: 0;
   display: flex;
-  width: 370px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background-color: #ffeadc;
-  margin-bottom: 150px;
+  margin-bottom: 50px;
 `;
 
 export const Button = styled.button`

@@ -1,4 +1,5 @@
 import {useNavigate} from 'react-router-dom'; // useNavigate 추가
+import styled from 'styled-components';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/SplashStyle';
 import {SplashIcon} from '@/assets/icons/common';
@@ -19,16 +20,18 @@ function Main() {
       <C.Center>
         <S.Background>
           <C.PageSpace>
-            <S.IconWrapper>
-              <SplashIcon />
-            </S.IconWrapper>
-            <S.Footer>
-              <S.Button onClick={handleStartClick}>바로 시작하기</S.Button>
-              <S.LoginContainer>
-                <S.Logintext>계정이 있으신가요?</S.Logintext>
-                <S.LoginLink onClick={handleLoginClick}>로그인</S.LoginLink>
-              </S.LoginContainer>
-            </S.Footer>
+            <S.Container>
+              <S.IconWrapper>
+                <SplashIcon />
+              </S.IconWrapper>
+              <S.Footer>
+                <S.Button onClick={handleStartClick}>바로 시작하기</S.Button>
+                <S.LoginContainer>
+                  <S.Logintext>계정이 있으신가요?</S.Logintext>
+                  <S.LoginLink onClick={handleLoginClick}>로그인</S.LoginLink>
+                </S.LoginContainer>
+              </S.Footer>
+            </S.Container>
           </C.PageSpace>
         </S.Background>
       </C.Center>

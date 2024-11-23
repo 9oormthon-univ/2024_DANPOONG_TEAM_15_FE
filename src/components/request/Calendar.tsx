@@ -37,16 +37,16 @@ const Calendar = ({onDateSelect}: CalendarProps) => {
 
     const newDate = new Date(year, month, day);
 
-    // 비활성화된 날짜 처리
-    if (
-      isPrevMonth ||
-      isNextMonth ||
-      isToday(year, month, day) ||
-      isPast(year, month, day)
-    ) {
-      alert('선택이 불가능한 날짜입니다.');
-      return;
-    }
+    // // 비활성화된 날짜 처리
+    // if (
+    //   isPrevMonth ||
+    //   isNextMonth ||
+    //   isToday(year, month, day) ||
+    //   isPast(year, month, day)
+    // ) {
+    //   alert('선택이 불가능한 날짜입니다.');
+    //   return;
+    // }
 
     // 활성화된 날짜 처리
     setSelectedDate(newDate);
@@ -79,7 +79,7 @@ const Calendar = ({onDateSelect}: CalendarProps) => {
                 const isNextMonth =
                   weekIdx === weekCalendarList.length - 1 && day! <= 7; // 다음 달 날짜
                 const year = currentDate.getFullYear();
-                const month = currentDate.getMonth();
+                const month = currentDate.getMonth() + 1;
 
                 const isDisabled =
                   isToday(year, month, day!) || isPast(year, month, day!);
