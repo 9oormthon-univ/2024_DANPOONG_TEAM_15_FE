@@ -93,8 +93,8 @@ function Time() {
 
         console.log('Navigating to next page with applyId:', applyId);
 
-        // applyId를 다음 페이지로 넘기기
-        navigate(path, {state: {applyId}});
+        // applyId를 다음 페이지로 넘기기 query string으로
+        navigate(`${path}?applyId=${applyId}`);
       } catch (error: any) {
         console.error('Error submitting request:', error.message);
       }
