@@ -9,7 +9,6 @@ import CheckIcon from '@/assets/icons/request/green-check.svg';
 
 interface CertificateData {
   name: string;
-  parentName: string;
   address: string;
   date: string;
   disease: string;
@@ -23,7 +22,6 @@ function CertificateConfirm() {
   // 더미 데이터
   const [certificateData] = useState<CertificateData>({
     name: '홍길동',
-    parentName: '김구름',
     address: '서울시 oo구 oo동 123-4',
     date: '0000-00-00',
     disease: '병명',
@@ -89,7 +87,6 @@ function CertificateConfirm() {
 const getFieldTitle = (key: string): string => {
   const fieldTitles: Record<string, string> = {
     name: '이름',
-    parentName: '보호자 이름',
     address: '주소',
     date: '진료 날짜',
     disease: '진단명',
