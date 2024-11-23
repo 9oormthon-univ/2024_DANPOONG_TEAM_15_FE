@@ -1,6 +1,5 @@
 import {useNavigate} from 'react-router-dom';
 import * as S from '@/styles/components/CertificateCardStyle';
-
 import RightIcon from '@/assets/icons/request/arrow-right.svg';
 
 interface CertificateCardProps {
@@ -9,11 +8,11 @@ interface CertificateCardProps {
   onSelect: (id: string) => void;
 }
 
-const CertificateCard: React.FC<CertificateCardProps> = ({
+const CertificateCard = ({
   certificate,
   isSelected,
   onSelect,
-}) => {
+}: CertificateCardProps) => {
   const navigate = useNavigate();
 
   const handleNavLinkClick = (path: string): void => {

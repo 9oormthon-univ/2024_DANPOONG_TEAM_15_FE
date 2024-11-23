@@ -1,6 +1,5 @@
 import {useNavigate} from 'react-router-dom';
 import * as R from '@/styles/components/RequestButtonStyle';
-
 import RightIcon from '@/assets/orange-arrow-right.svg';
 
 function RequestButton() {

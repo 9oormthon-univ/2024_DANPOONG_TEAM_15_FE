@@ -20,6 +20,7 @@ export default function TimePickerObserverRoot({
   );
 
   useEffect(() => {
+    // eslint-disable-next-line no-undef
     const observerCallback: IntersectionObserverCallback = observerEntries => {
       const newActiveStates: {[key: string]: boolean} = {};
 

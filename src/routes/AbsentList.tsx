@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/AbsentListStyle';
-
 import TopBackLeftArrowBar from '@/components/common/TopBackLeftArrowBar';
 import AbsentCard from '@/components/request/AbsentCard';
 
