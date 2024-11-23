@@ -6,17 +6,17 @@ import * as S from '../styles/TimeStyle';
 import TopBackXBar from '@/components/common/TopBackXBar';
 import ProgressBar from '@/components/request/ProgressBar';
 import TimePicker from '@/components/request/TimePicker';
+import {applyService} from '@/utils/requestApi';
 
 function Time() {
   const navigate = useNavigate();
   const location = useLocation();
   const {selectedDate} = location.state || {selectedDate: '0000-00-00'};
 
-  const [startTime, setStartTime] = useState<string | null>(null); // 시작 시간
-  const [lastTime, setLastTime] = useState<string | null>(null); // 마무리 시간
-  const [activeSelect, setActiveSelect] = useState<'start' | 'end'>('start'); // 활성 버튼 상태
+  const [startTime, setStartTime] = useState<string | null>(null);
+  const [lastTime, setLastTime] = useState<string | null>(null);
+  const [activeSelect, setActiveSelect] = useState<'start' | 'end'>('start');
 
-  // 시간 차이를 계산하는 함수
   const calculateTimeDifference = (start: string, end: string) => {
     const [startAmpm, startTime] = start.split(' ');
     const [startHour, startMinute] = startTime.split(':').map(Number);
@@ -34,18 +34,85 @@ function Time() {
       endMinute,
     );
 
-    const difference = (endDate.getTime() - startDate.getTime()) / (1000 * 60); // 차이를 분 단위로 계산
-    return difference; // 차이를 반환
+    const difference = (endDate.getTime() - startDate.getTime()) / (1000 * 60);
+    return difference;
   };
 
-  const handleNavLinkClick = (path: string): void => {
-    if (startTime !== null && lastTime !== null) {
-      const timeDifference = calculateTimeDifference(startTime, lastTime);
-      if (timeDifference >= 120) {
-        navigate(path); // 최소 2시간 이상일 경우 이동
-      } else {
-        alert('최소 2시간 이상 선택해야 합니다.'); // 조건 불만족 시 알림
+  const convertTo24HourFormat = (date: string, time: string): string => {
+    // Ensure both date and time parts are valid
+    if (!date || !time) {
+      throw new Error(`Invalid date or time: date="${date}", time="${time}"`);
+    }
+
+    // Extract AM/PM and time parts
+    const timeMatch = time.match(/(오전|오후) (\d{1,2}):(\d{2})/);
+    if (!timeMatch) {
+      throw new Error(`Invalid time format in: ${time}`);
+    }
+
+    const [_, ampm, hoursStr, minutesStr] = timeMatch;
+    const hours = parseInt(hoursStr, 10);
+    const minutes = parseInt(minutesStr, 10);
+
+    // Ensure hours and minutes are numbers
+    if (isNaN(hours) || isNaN(minutes)) {
+      throw new Error(`Invalid hours or minutes in: ${time}`);
+    }
+
+    // Convert to 24-hour format
+    let adjustedHours = hours;
+    if (ampm === '오후' && hours !== 12) {
+      adjustedHours += 12;
+    } else if (ampm === '오전' && hours === 12) {
+      adjustedHours = 0;
+    }
+
+    return `${date} ${String(adjustedHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00`;
+  };
+
+  const handleNavLinkClick = async (path: string): Promise<void> => {
+    if (selectedDate && startTime && lastTime) {
+      try {
+        console.log('Selected Date:', selectedDate);
+        console.log('Start Time:', startTime);
+        console.log('Last Time:', lastTime);
+
+        const startDateTime = convertTo24HourFormat(selectedDate, startTime);
+        const endDateTime = convertTo24HourFormat(selectedDate, lastTime);
+
+        console.log('Formatted Start DateTime:', startDateTime);
+        console.log('Formatted End DateTime:', endDateTime);
+
+        const childId = Number(localStorage.getItem('childId'));
+        const medicalCertificateId = Number(
+          localStorage.getItem('medicalCertificateId'),
+        );
+        const absenceCertificateId = Number(
+          localStorage.getItem('absenceCertificateId'),
+        );
+
+        console.log('Request Data:', {
+          childId,
+          medicalCertificateId,
+          absenceCertificateId,
+          startDate: startDateTime,
+          endDate: endDateTime,
+        });
+
+        await applyService({
+          childId,
+          medicalCertificateId,
+          absenceCertificateId,
+          startDate: startDateTime,
+          endDate: endDateTime,
+        });
+
+        navigate(path);
+      } catch (error: any) {
+        console.error('Error submitting request:', error.message);
       }
+    } else {
+      alert('날짜와 시간을 모두 선택하세요.');
     }
   };
 
@@ -93,7 +160,7 @@ function Time() {
                           onTimeSelect={handleTimeSelect}
                           initialTime={
                             activeSelect === 'start' ? startTime : lastTime
-                          } // 초기값 전달
+                          }
                         />
                       </S.TimePickerContainer>
                     </S.SelectTimeContainer>

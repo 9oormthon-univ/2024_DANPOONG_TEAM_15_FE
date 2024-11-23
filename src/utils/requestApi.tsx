@@ -270,3 +270,38 @@ export const getAbsentDetails = async (
     }
   }
 };
+
+export const applyService = async (data: {
+  childId: number;
+  medicalCertificateId: number;
+  absenceCertificateId: number;
+  startDate: string;
+  endDate: string;
+}): Promise<void> => {
+  try {
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
+      throw new Error('로그인이 필요합니다.');
+    }
+
+    const response = await axios.post(`${BASE_URL}/apply`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log('서비스 신청 성공:', response.data.message);
+  } catch (error: any) {
+    if (axios.isAxiosError(error) && error.response) {
+      console.error(
+        '서비스 신청 실패:',
+        `상태코드: ${error.response.status}, 메시지:`,
+        error.response.data.message,
+      );
+      throw new Error(error.response.data.message);
+    } else {
+      console.error('서비스 신청 중 알 수 없는 오류 발생:', error);
+      throw new Error('서비스 신청 중 알 수 없는 오류가 발생했습니다.');
+    }
+  }
+};
