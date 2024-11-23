@@ -50,6 +50,7 @@ const PointerStyle = styled.div`
 `;
 
 interface ApplicationCardProps {
+  applyId: string;
   applyDate: string;
   careDate: string;
   careTime: string;
@@ -57,6 +58,7 @@ interface ApplicationCardProps {
 }
 
 const ApplicationCard = ({
+  applyId,
   applyDate,
   careDate,
   careTime,
@@ -64,9 +66,8 @@ const ApplicationCard = ({
 }: ApplicationCardProps) => {
   const navigate = useNavigate();
 
-  // x 클릭 시 -> main 페이지로 이동
   const goDetail = () => {
-    navigate('/status/detail');
+    navigate(`/status/detail?applyId=${applyId}`);
   };
 
   return (

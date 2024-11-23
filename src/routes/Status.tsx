@@ -2,11 +2,11 @@ import {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/StatusStyle';
-import {dummyApplicationList} from '@/const/dummy_data/dummy_application_list';
 import {COLOR} from '@/const/color';
 import TopBackBar from '@/components/application-list/TopBackBar';
 import ApplicationCard from '@/components/application-list/ApplicationCard';
 import {getChildStatus} from '@/utils/mainApi';
+import {ApplicationDataSchema} from '@/types';
 
 const Container = styled.div`
   padding: 8px 20px 50px;
@@ -39,8 +39,12 @@ const ApplicationCardContainer = styled.div`
 function Status() {
   const params = new URLSearchParams(window.location.search);
   const childId = params.get('childId');
-  const [appListData, setAppListData] = useState();
-  console.log('🚀 ~ file: Status.tsx:47 ~ Status ~ appListData:', appListData);
+  const [applicationListData, setAppListData] =
+    useState<ApplicationDataSchema[]>();
+  console.log(
+    '🚀 ~ file: Status.tsx:47 ~ Status ~ appListData:',
+    applicationListData,
+  );
 
   useEffect(() => {
     if (!childId) {
@@ -59,11 +63,9 @@ function Status() {
     fetchData();
   }, [childId]);
 
-  const applicationListData = dummyApplicationList;
-  console.log(
-    '🚀 ~ file: Status.tsx:40 ~ Status ~ applicationListData:',
-    applicationListData,
-  );
+  if (!applicationListData) {
+    return;
+  }
 
   return (
     <>
@@ -81,6 +83,7 @@ function Status() {
                   {applicationListData.map((item, index) => (
                     <ApplicationCard
                       key={index}
+                      applyId={item.id}
                       applyDate={item.applyDate}
                       careDate={item.careDate}
                       careTime={item.careTime}
