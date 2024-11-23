@@ -11,18 +11,17 @@ export const IconWrapper = styled.div`
   align-items: center;
   width: 100%;
   text-align: center;
-  margin-top: 200px;
+  margin-top: 150px;
   gap: 16px;
 `;
 
 export const Text = styled.div`
-  font-size: 14px;
+  font-size: 18px;
   font-family: 'Pretendard', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   color: #b45a5a;
   line-height: 1.5;
   text-align: center;
-  margin-bottom: -20px;
 `;
 
 export const Footer = styled.div`

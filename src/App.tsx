@@ -36,6 +36,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Splash />} />
 
+          {/* 시작화면 */}
+          <Route path="/splash" element={<Splash />} />
+
           {/* 회원가입, 로그인, 마이페이지 */}
           <Route path="/create-account/" element={<CreateAccount />} />
           <Route
