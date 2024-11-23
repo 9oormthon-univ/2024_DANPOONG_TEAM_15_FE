@@ -18,13 +18,13 @@ const Header = styled.div`
 `;
 
 const HeaderText = styled.div`
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: 600;
   color: ${COLOR.BLACK_01};
 `;
 
 const HeaderSubText = styled.div`
-  font-size: 1.5rem;
+  font-size: 24px;
   color: ${COLOR.BLACK_01};
 `;
 

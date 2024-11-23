@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 const HeaderSubText = styled.div`
-  font-size: 1.2rem;
+  font-size: 20px;
   font-weight: 600;
   color: ${COLOR.BLACK_01};
 `;
@@ -48,7 +48,7 @@ const FileInput = styled.input`
 const ErrorMessage = styled.div`
   margin-top: 10px;
   color: ${COLOR.ORANGE_02};
-  font-size: 0.9rem;
+  font-size: 14px;
   font-weight: 600;
 `;
 

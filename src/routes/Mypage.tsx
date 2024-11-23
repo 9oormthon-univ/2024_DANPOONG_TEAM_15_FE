@@ -43,13 +43,13 @@ const UserInfo = styled.div`
 `;
 
 const UserName = styled.div`
-  font-size: 1.2rem;
+  font-size: 20px;
   font-weight: 600;
   color: ${COLOR.WHITE_01};
 `;
 
 const UserType = styled.div`
-  font-size: 0.9rem;
+  font-size: 20px;
   color: ${COLOR.WHITE_01};
 `;
 
@@ -61,7 +61,7 @@ const ListContainer = styled.div`
 `;
 
 const BlackText = styled.div`
-  font-size: 0.875rem;
+  font-size: 14px;
   color: ${COLOR.BLACK_03};
 `;
 
@@ -89,7 +89,7 @@ const FooterContainer = styled.div`
 `;
 
 const OrangeSmallText = styled.div`
-  font-size: 0.8rem;
+  font-size: 14px;
   color: ${COLOR.ORANGE_01};
 `;
 

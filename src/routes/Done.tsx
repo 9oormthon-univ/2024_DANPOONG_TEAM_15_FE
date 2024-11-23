@@ -30,7 +30,7 @@ const GrayBoldText = styled.div`
 `;
 
 const BlackBoldText = styled.div`
-  font-size: 1.3rem;
+  font-size: 20px;
   font-weight: 600;
   color: ${COLOR.BLACK_03};
 `;
@@ -67,7 +67,6 @@ const HomeButton = styled.button`
   background-color: ${COLOR.ORANGE_01};
   color: ${COLOR.WHITE_01};
   font-weight: 600;
-  font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
 

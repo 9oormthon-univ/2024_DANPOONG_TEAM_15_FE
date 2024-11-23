@@ -30,7 +30,7 @@ const BlackText = styled.div`
 `;
 
 const BlackBigText = styled.div`
-  font-size: 1.2rem;
+  font-size: 20px;
   color: ${COLOR.BLACK_01};
   padding-bottom: 8px;
 `;
@@ -55,7 +55,7 @@ const FlexRowContainer = styled.div`
 const CostContainer = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 20px;
   font-weight: 600;
 `;
 
@@ -83,7 +83,7 @@ const KakaoPayContainer = styled.div`
 `;
 
 const KakaoPayText = styled.div`
-  font-size: 0.875rem;
+  font-size: 14px;
   color: ${COLOR.BLACK_01};
 `;
 
@@ -93,7 +93,6 @@ const PayButton = styled.button`
   background-color: ${COLOR.ORANGE_01};
   color: ${COLOR.WHITE_01};
   font-weight: 600;
-  font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
 

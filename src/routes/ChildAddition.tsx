@@ -21,7 +21,7 @@ const Container = styled.div`
 `;
 
 const HeaderSubText = styled.div`
-  font-size: 1.2rem;
+  font-size: 20px;
   font-weight: 600;
   color: ${COLOR.BLACK_01};
 `;
@@ -41,7 +41,6 @@ const PayButton = styled.button<{$isActive: boolean}>`
     props.$isActive ? COLOR.ORANGE_01 : COLOR.GRAY_04};
   color: ${COLOR.WHITE_01};
   font-weight: 600;
-  font-size: 1rem;
   border-radius: 8px;
   cursor: ${props => (props.$isActive ? 'pointer' : 'not-allowed')};
 

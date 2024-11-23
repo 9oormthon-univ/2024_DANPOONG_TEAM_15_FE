@@ -16,14 +16,12 @@ const SectionHeader = styled.div`
   padding-top: 8px;
   font-weight: 600;
   color: ${COLOR.BLACK_03};
-  font-size: 1rem;
 `;
 
 const Input = styled.input`
   padding: 12px;
   border: 1px solid ${COLOR.GRAY_04};
   border-radius: 8px;
-  font-size: 1rem;
 
   &:focus {
     outline: none;
@@ -74,7 +72,6 @@ const RadioLabel = styled.label`
     }
   }
   span {
-    font-size: 1rem;
     font-weight: 400;
     color: ${COLOR.BLACK_03};
   }
@@ -102,7 +99,7 @@ const AddImageButton = styled.label`
   margin-top: 8px;
   padding: 4px 12px;
   color: ${COLOR.ORANGE_01};
-  font-size: 0.875rem;
+  font-size: 12px;
   font-weight: 600;
   border: 1px solid ${COLOR.ORANGE_01};
   border-radius: 12px;
