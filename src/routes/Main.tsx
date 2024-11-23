@@ -21,6 +21,7 @@ interface ChildData {
 function Main() {
   const [userName, setUserName] = useState<string>(''); // 사용자 이름
   const [children, setChildren] = useState<ChildData[]>([]); // 아이 목록
+  console.log('🚀 ~ file: Main.tsx:24 ~ Main ~ children:', children);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,6 +79,7 @@ function Main() {
                       {children.map(child => (
                         <ChildCard
                           key={child.id}
+                          childId={child.id}
                           name={child.name}
                           age={child.age}
                           image={child.image}

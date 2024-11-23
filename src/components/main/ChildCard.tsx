@@ -6,13 +6,14 @@ interface ChildCardProps {
   age: number;
   image: string;
   status: string;
+  childId: number;
 }
 
-function ChildCard({name, age, image, status}: ChildCardProps) {
+function ChildCard({name, age, image, status, childId}: ChildCardProps) {
   const navigate = useNavigate();
 
   const handleNavLinkClick = (path: string) => {
-    navigate(path);
+    navigate(`${path}?childId=${childId}`);
   };
 
   return (

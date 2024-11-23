@@ -1,3 +1,4 @@
+import {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/RequestStyle';
@@ -7,6 +8,7 @@ import {COLOR} from '@/const/color';
 import StatusCard from '@/components/application-list/StatusCard';
 import CaregiverCard from '@/components/application-list/CaregiverCard';
 import RegistrationCard from '@/components/application-list/RegistrationCard';
+import {getChildDetailStatus} from '@/utils/mainApi';
 
 const Container = styled.div`
   padding: 8px 20px 50px;
@@ -72,6 +74,35 @@ const Divider = styled.div`
 
 function StatusDetail() {
   const applicationDetailData = dummyApplicationDetailList;
+
+  const params = new URLSearchParams(window.location.search);
+  const applyId = params.get('applyId');
+  const [applicationListData, setAppListData] = useState();
+  console.log(
+    '🚀 ~ file: Status.tsx:47 ~ Status ~ appListData:',
+    applicationListData,
+  );
+
+  useEffect(() => {
+    if (!applyId) {
+      return;
+    }
+
+    const fetchData = async () => {
+      try {
+        const appData = await getChildDetailStatus(applyId);
+        setAppListData(appData.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [applyId]);
+
+  if (!applicationListData) {
+    return;
+  }
 
   return (
     <>
