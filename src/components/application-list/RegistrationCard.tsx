@@ -8,7 +8,7 @@ const CardContainer = styled.div`
   padding: 16px;
   display: flex;
   flex-direction: column;
-  font-size: 0.875rem;
+  font-size: 14px;
   gap: 10px;
 `;
 const HeaderInfo = styled.div`

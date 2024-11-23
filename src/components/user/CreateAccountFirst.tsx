@@ -25,7 +25,6 @@ const InputContainer = styled.div`
 
 const Label = styled.label`
   display: flex;
-  font-size: 1rem;
   font-weight: 600;
   color: ${COLOR.BLACK_03};
 `;
@@ -34,7 +33,7 @@ const Input = styled.input`
   padding: 12px;
   border: 1px solid ${COLOR.WHITE_07};
   border-radius: 8px;
-  font-size: 0.875rem;
+  font-size: 14px;
   color: ${COLOR.BLACK_03};
   background-color: ${COLOR.WHITE_07};
 
@@ -49,7 +48,7 @@ const Input = styled.input`
 `;
 
 const ErrorMessage = styled.div`
-  font-size: 0.875rem;
+  font-size: 14px;
   color: ${COLOR.RED_01};
 `;
 
@@ -60,7 +59,6 @@ const SubmitButton = styled.button`
   border: none;
   border-radius: 8px;
   color: ${COLOR.WHITE_01};
-  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
 

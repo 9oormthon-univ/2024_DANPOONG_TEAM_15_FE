@@ -33,7 +33,7 @@ const StatusInfo = styled.div`
 `;
 
 const OrangeText = styled.div<{isActive: boolean}>`
-  font-size: 0.875rem;
+  font-size: 14px;
   color: ${props => (props.isActive ? COLOR.ORANGE_01 : COLOR.BLACK_09)};
 `;
 

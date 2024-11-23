@@ -16,7 +16,7 @@ const Container = styled.div`
 `;
 
 const HeaderText = styled.div`
-  font-size: 1.25rem;
+  font-size: 20px;
   padding: 8px 0px 12px;
   font-weight: 600;
   color: ${COLOR.BLACK_01};
@@ -29,7 +29,7 @@ const GrayBoldText = styled.div`
 
 const GrayBoldBigText = styled.div`
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 20px;
   color: ${COLOR.GRAY_04};
 `;
 
@@ -62,7 +62,7 @@ const FlexRowContainer = styled.div`
 const CostContainer = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 20px;
   font-weight: 600;
 `;
 

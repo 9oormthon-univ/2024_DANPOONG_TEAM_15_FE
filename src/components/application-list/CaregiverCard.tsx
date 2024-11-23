@@ -43,7 +43,6 @@ const InnerCircle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
   font-weight: 600;
   color: ${COLOR.GRAY_04};
 `;
@@ -56,7 +55,7 @@ const TextContainer = styled.div`
 
 const BlackText = styled.div`
   color: ${COLOR.BLACK_03};
-  font-size: 0.875rem;
+  font-size: 14px;
 `;
 
 interface CaregiverCardProps {
