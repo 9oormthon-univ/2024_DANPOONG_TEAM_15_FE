@@ -7,50 +7,60 @@ import RightIcon from '@/assets/icons/request/arrow-right.svg';
 
 interface CalendarProps {
   onDateSelect: (date: Date) => void;
+  disabledDateRange?: {start: Date; end: Date}; // 비활성화 범위 추가
 }
 
-const Calendar = ({onDateSelect}: CalendarProps) => {
+const Calendar = ({onDateSelect, disabledDateRange}: CalendarProps) => {
   const {weekCalendarList, currentDate, goToNextMonth, goToPrevMonth} =
     useCalendar();
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const today = new Date();
-  const isToday = (year: number, month: number, day: number) =>
-    today.getFullYear() === year &&
-    today.getMonth() === month &&
-    today.getDate() === day;
-
-  const isPast = (year: number, month: number, day: number) =>
-    new Date(year, month, day) < today;
 
   const handleDateClick = (
-    day: number,
+    day: number | null,
     isPrevMonth: boolean,
     isNextMonth: boolean,
   ) => {
+    if (day === null) return; // null-safe 처리
+
+    // 비활성화된 날짜 클릭 방지
+    if (isPrevMonth || isNextMonth) return;
+
     let year = currentDate.getFullYear();
     let month = currentDate.getMonth();
 
-    // 이전 달, 다음 달에 해당하는 경우 월 수정
-    if (isPrevMonth) month -= 1;
-    if (isNextMonth) month += 1;
+    if (isPrevMonth) {
+      month -= 1;
+      if (month < 0) {
+        month = 11;
+        year -= 1;
+      }
+    }
+
+    if (isNextMonth) {
+      month += 1;
+      if (month > 11) {
+        month = 0;
+        year += 1;
+      }
+    }
 
     const newDate = new Date(year, month, day);
 
-    // // 비활성화된 날짜 처리
-    // if (
-    //   isPrevMonth ||
-    //   isNextMonth ||
-    //   isToday(year, month, day) ||
-    //   isPast(year, month, day)
-    // ) {
-    //   alert('선택이 불가능한 날짜입니다.');
-    //   return;
-    // }
+    // 오늘 이전 날짜 클릭 방지
+    if (newDate < today) return;
 
-    // 활성화된 날짜 처리
+    // 비활성화 범위 안에 날짜가 있는지 확인
+    if (
+      disabledDateRange &&
+      (newDate < disabledDateRange.start || newDate > disabledDateRange.end)
+    ) {
+      return;
+    }
+
     setSelectedDate(newDate);
-    onDateSelect(newDate); // 부모로 선택 날짜 전달
+    onDateSelect(newDate);
   };
 
   return (
@@ -75,31 +85,44 @@ const Calendar = ({onDateSelect}: CalendarProps) => {
           {weekCalendarList.map((week, weekIdx) => (
             <tr key={weekIdx}>
               {week.map((day, dayIdx) => {
-                const isPrevMonth = weekIdx === 0 && day! > 7; // 이전 달 날짜
-                const isNextMonth =
-                  weekIdx === weekCalendarList.length - 1 && day! <= 7; // 다음 달 날짜
-                const year = currentDate.getFullYear();
-                const month = currentDate.getMonth();
+                if (day === null) return <td key={dayIdx}></td>;
+
+                const isPrevMonth = weekIdx === 0 && day > 20;
+                const isNextMonth = weekIdx >= 4 && day <= 14;
+
+                const displayYear = isPrevMonth
+                  ? currentDate.getFullYear() -
+                    (currentDate.getMonth() === 0 ? 1 : 0)
+                  : isNextMonth
+                    ? currentDate.getFullYear() +
+                      (currentDate.getMonth() === 11 ? 1 : 0)
+                    : currentDate.getFullYear();
+
+                const displayMonth = isPrevMonth
+                  ? (currentDate.getMonth() - 1 + 12) % 12
+                  : isNextMonth
+                    ? (currentDate.getMonth() + 1) % 12
+                    : currentDate.getMonth();
 
                 const isDisabled =
-                  isToday(year, month, day!) || isPast(year, month, day!);
+                  new Date(displayYear, displayMonth, day) < today ||
+                  (disabledDateRange &&
+                    (new Date(displayYear, displayMonth, day) <
+                      disabledDateRange.start ||
+                      new Date(displayYear, displayMonth, day) >
+                        disabledDateRange.end));
 
                 const isSelected =
                   selectedDate &&
-                  selectedDate.getFullYear() === year &&
-                  selectedDate.getMonth() ===
-                    (isPrevMonth
-                      ? month - 1
-                      : isNextMonth
-                        ? month + 1
-                        : month) &&
-                  selectedDate.getDate() === day!;
+                  selectedDate.getFullYear() === displayYear &&
+                  selectedDate.getMonth() === displayMonth &&
+                  selectedDate.getDate() === day;
 
                 const textColor =
                   isPrevMonth || isNextMonth
                     ? COLOR.GRAY_10 // 이전 달/다음 달은 회색
                     : isDisabled
-                      ? COLOR.BLACK_01 // 이번 달의 비활성화 날짜는 검정색
+                      ? COLOR.GRAY_10 // 이번 달의 비활성화 날짜는 회색
                       : isSelected
                         ? COLOR.WHITE_01 // 선택된 날짜는 흰색
                         : COLOR.BLACK_01; // 기본 검정색

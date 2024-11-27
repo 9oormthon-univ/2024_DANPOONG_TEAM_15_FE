@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/ScheduleStyle';
 import TopBackXBar from '@/components/common/TopBackXBar';
@@ -9,7 +9,18 @@ import Calendar from '@/components/request/Calendar';
 
 function Schedule() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const {startdate, enddate} = location.state || {}; // 전달받은 데이터
+
+  // startdate와 enddate를 Date 객체로 변환
+  const disabledDateRange =
+    startdate && enddate
+      ? {
+          start: new Date(startdate - 1),
+          end: new Date(enddate),
+        }
+      : undefined;
 
   const handleNavLinkClick = (path: string): void => {
     if (selectedDate !== null) {
@@ -45,7 +56,10 @@ function Schedule() {
                       </S.WarnText>
                     </S.WarnTexts>
                   </S.WarnContainer>
-                  <Calendar onDateSelect={setSelectedDate} />
+                  <Calendar
+                    onDateSelect={setSelectedDate}
+                    disabledDateRange={disabledDateRange}
+                  />
                 </S.Container>
                 <S.FooterContainer>
                   <S.Button
