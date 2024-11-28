@@ -4,8 +4,8 @@ import * as C from '../styles/CommonStyle';
 import * as S from '../styles/ScheduleStyle';
 import TopBackXBar from '@/components/common/TopBackXBar';
 import ProgressBar from '@/components/request/ProgressBar';
-import WarnIcon from '@/assets/icons/request/circle-warn.svg';
 import Calendar from '@/components/request/Calendar';
+import WarnCard from '@/components/request/WarnCard';
 
 function Schedule() {
   const navigate = useNavigate();
@@ -45,17 +45,7 @@ function Schedule() {
                   <ProgressBar isStatus={2} />
                   <S.NumTitle>2. 일정 선택</S.NumTitle>
                   <S.Title>돌봄 일정 선택</S.Title>
-                  <S.WarnContainer>
-                    <S.WarnIcon src={WarnIcon} alt="주의사항" />
-                    <S.WarnTexts>
-                      <S.WarnTitle>이렇게는 일정 선택이 안돼요</S.WarnTitle>
-                      <S.WarnText>
-                        1. 당일 선택
-                        <br />
-                        2. 결석 기간 외 기간 선택
-                      </S.WarnText>
-                    </S.WarnTexts>
-                  </S.WarnContainer>
+                  <WarnCard />
                   <Calendar
                     onDateSelect={setSelectedDate}
                     disabledDateRange={disabledDateRange}

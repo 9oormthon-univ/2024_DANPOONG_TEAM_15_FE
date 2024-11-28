@@ -48,8 +48,20 @@ function AbsentList() {
 
   const handleNavLinkClick = (path: string): void => {
     if (selectedPaper !== null) {
-      localStorage.setItem('absenceCertificateId', selectedPaper);
-      navigate(path);
+      // 선택된 Certificate 찾기
+      const selectedCertificate = certificateList.find(
+        certificate => certificate.id === selectedPaper,
+      );
+
+      if (selectedCertificate) {
+        localStorage.setItem('absenceCertificateId', selectedPaper);
+        navigate(path, {
+          state: {
+            startdate: selectedCertificate.startDate, // 시작 날짜 전달
+            enddate: selectedCertificate.endDate, // 종료 날짜 전달
+          },
+        });
+      }
     }
   };
 
