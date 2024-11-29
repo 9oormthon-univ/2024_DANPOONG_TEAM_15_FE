@@ -1719,6 +1719,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@lottiefiles/dotlottie-react@npm:^0.11.0":
+  version: 0.11.0
+  resolution: "@lottiefiles/dotlottie-react@npm:0.11.0"
+  dependencies:
+    "@lottiefiles/dotlottie-web": "npm:0.38.1"
+  peerDependencies:
+    react: ^17 || ^18
+  checksum: 10c0/5209792b1e357f47e93fe6680b7dc534b007b4e208cd2250faaade853ed6c2d77abdbcb480ca941987322a643783b031f5bd2f6e5a85d670f3cf64fc9062ed9b
+  languageName: node
+  linkType: hard
+
+"@lottiefiles/dotlottie-web@npm:0.38.1":
+  version: 0.38.1
+  resolution: "@lottiefiles/dotlottie-web@npm:0.38.1"
+  checksum: 10c0/2248a86dfb6f5258dac720be5a82c7bf2a6fe47e14adbe45a6a6b26fc32a8e6a1f6fb365ac1f98a0ba75a41ec2e1371d3327f7e9f0062d3b1158c291c4ac443b
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -4876,6 +4894,7 @@ __metadata:
   resolution: "ivory@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.13.0"
+    "@lottiefiles/dotlottie-react": "npm:^0.11.0"
     "@tanstack/eslint-plugin-query": "npm:4"
     "@tanstack/react-query": "npm:^5.60.6"
     "@tanstack/react-query-devtools": "npm:^5.60.5"

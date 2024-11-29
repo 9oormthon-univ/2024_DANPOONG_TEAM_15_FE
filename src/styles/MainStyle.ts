@@ -41,8 +41,9 @@ export const ImgSpace = styled.div`
   padding: 34px 0 8px;
 `;
 
-export const BoryImg = styled.img`
+export const LottieContainer = styled.div`
   width: 198px;
+  height: 198px;
 `;
 
 export const ChildContainer = styled.div`
