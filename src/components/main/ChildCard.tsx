@@ -27,7 +27,7 @@ function ChildCard({name, age, image, status, childId}: ChildCardProps) {
           <C.Line />
           <>{age}살</>
         </C.Information>
-        <C.StatusContainer onClick={() => handleNavLinkClick('/status/detail')}>
+        <C.StatusContainer onClick={() => handleNavLinkClick('/status')}>
           <C.StatusTitle>최근 신청 현황</C.StatusTitle>
           <C.StatusBar />
           <C.StatusText>{status}</C.StatusText>
