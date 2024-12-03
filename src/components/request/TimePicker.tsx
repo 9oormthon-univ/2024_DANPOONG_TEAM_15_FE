@@ -79,24 +79,24 @@ export default function TimePicker({
 
       // 24시간제를 12시간제와 AM/PM으로 변환
       const targetAmpm = targetHours24 >= 12 ? '오후' : '오전';
-      const targetHours12 = targetHours24 % 12 || 12; // 0시를 12시로 변환
+      // const targetHours12 = targetHours24 % 12 || 12; // 0시를 12시로 변환
 
-      // 시간 필터링: AM/PM과 시간 기준으로 필터링
-      const filteredHours = TIMES.hours.filter(hour => {
-        const hourNumber = Number(hour); // 문자열을 숫자로 변환
-        if (targetAmpm === '오후') {
-          return (
-            targetHours24 >= 12 &&
-            hourNumber >= (targetHours12 === 12 ? 12 : targetHours12)
-          );
-        } else {
-          return targetHours24 < 12 && hourNumber >= targetHours12;
-        }
-      });
+      // // 시간 필터링: AM/PM과 시간 기준으로 필터링
+      // const filteredHours = TIMES.hours.filter(hour => {
+      //   const hourNumber = Number(hour); // 문자열을 숫자로 변환
+      //   if (targetAmpm === '오후') {
+      //     return (
+      //       targetHours24 >= 12 &&
+      //       hourNumber >= (targetHours12 === 12 ? 12 : targetHours12)
+      //     );
+      //   } else {
+      //     return targetHours24 < 12 && hourNumber >= targetHours12;
+      //   }
+      // });
 
       setAvailableTimes({
         ampm: TIMES.ampm.filter(ampm => ampm >= targetAmpm), // 현재 시간 이후의 AM/PM
-        hours: filteredHours,
+        hours: TIMES.hours,
         minutes: TIMES.minutes,
       });
     } else {

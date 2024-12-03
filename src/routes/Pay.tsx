@@ -137,7 +137,8 @@ function Pay() {
 
   const makePayment = async () => {
     try {
-      const applyId = 2;
+      // const applyId = 2;
+      const applyId = Number(params.get('applyId'));
       const response = await postPayment(applyId);
       // 모바일 환경 감지
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
