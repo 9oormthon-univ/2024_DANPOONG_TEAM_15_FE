@@ -12,6 +12,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       devOptions: {enabled: true}, // vite dev 로 돌려도 PWA 까지 볼 수 있게끔 주는 옵션
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+      workbox: {
+        maximumFileSizeToCacheInBytes: 5000000, // 파일 크기 제한을 5MB로 증가
+      },
       manifest: {
         name: '아이보리', // 설치 배너에 표시되는 이름
         short_name: '아이보리', // 아이콘 아래에 표시될 이름

@@ -11,6 +11,7 @@
     "pwa": "pwa-assets-generator --preset minimal public/ivory.svg"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.11.0",
     "@tanstack/react-query": "^5.60.6",
     "@tanstack/react-query-devtools": "^5.60.5",
     "axios": "^1.7.7",

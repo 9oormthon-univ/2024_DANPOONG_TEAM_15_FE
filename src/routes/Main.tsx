@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
+import {DotLottieReact} from '@lottiefiles/dotlottie-react';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/MainStyle';
 import Header from '@/components/Header';
-import BoryBaby from '@/assets/bory-baby.svg';
 import RequestButton from '@/components/main/RequestButton';
 import ChildCard from '@/components/main/ChildCard';
 import ChildCardAdd from '@/components/main/ChildCardAdd';
@@ -71,7 +71,13 @@ function Main() {
                     <S.SubTitle>오늘도 마음 편히 보내세요!</S.SubTitle>
                   </S.Title>
                   <S.ImgSpace>
-                    <S.BoryImg src={BoryBaby} alt="보리와 아기" />
+                    <S.LottieContainer>
+                      <DotLottieReact
+                        src="https://lottie.host/4a0ced8f-4a78-4df8-a5cd-8d6a7fa256cf/u4G7etyXbb.json"
+                        loop
+                        autoplay
+                      />
+                    </S.LottieContainer>
                   </S.ImgSpace>
                   <RequestButton />
                   <S.ChildContainer>

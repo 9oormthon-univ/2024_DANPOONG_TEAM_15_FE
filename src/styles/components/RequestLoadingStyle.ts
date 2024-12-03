@@ -39,17 +39,3 @@ export const LoadingContainer = styled.div`
   letter-spacing: -0.35px;
   z-index: 60;
 `;
-
-export const Circle = styled.div`
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background-color: ${COLOR.ORANGE_01};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ListIcon = styled.img`
-  width: 24px;
-`;

@@ -1,5 +1,5 @@
+import {DotLottieReact} from '@lottiefiles/dotlottie-react';
 import * as R from '@/styles/components/RequestLoadingStyle';
-import ListIcon from '@/assets/icons/request/list.svg';
 
 function RequestLoading() {
   return (
@@ -7,10 +7,13 @@ function RequestLoading() {
       <R.Space>
         <R.Background>
           <R.LoadingContainer>
-            <R.Circle>
-              <R.ListIcon src={ListIcon} alt="서류 검증 중" />
-            </R.Circle>
-            서류 검증하는 중...
+            <DotLottieReact
+              src="https://lottie.host/87e4ad75-c92b-41d1-869e-4ea0794f8556/y0kMyOnqcX.lottie"
+              loop
+              autoplay
+              style={{width: '200px', height: '200px'}}
+            />
+            서류를 확인하는 중이에요!
           </R.LoadingContainer>
         </R.Background>
       </R.Space>
