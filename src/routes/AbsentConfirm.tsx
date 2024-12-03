@@ -52,7 +52,12 @@ function AbsentConfirm() {
   };
 
   const handleNavLinkClick = (path: string): void => {
-    navigate(path);
+    navigate(path, {
+      state: {
+        startdate: certificateData.startdate, // 시작 날짜 전달
+        enddate: certificateData.enddate, // 종료 날짜 전달
+      },
+    });
   };
 
   return (

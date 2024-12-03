@@ -5,6 +5,7 @@ import * as S from '../styles/TimeStyle';
 import TopBackXBar from '@/components/common/TopBackXBar';
 import ProgressBar from '@/components/request/ProgressBar';
 import TimePicker from '@/components/request/TimePicker';
+import WarnCard from '@/components/request/WarnCard';
 import {applyService} from '@/utils/requestApi';
 
 function Time() {
@@ -58,6 +59,17 @@ function Time() {
 
         const startDateTime = convertTo24HourFormat(selectedDate, startTime);
         const endDateTime = convertTo24HourFormat(selectedDate, lastTime);
+
+        // Calculate time difference in hours
+        const start = new Date(startDateTime);
+        const end = new Date(endDateTime);
+        const timeDifference =
+          (end.getTime() - start.getTime()) / (1000 * 60 * 60); // in hours
+
+        if (timeDifference < 2) {
+          alert('2시간 이상 선택해주세요.');
+          return; // Prevent navigation
+        }
 
         console.log('Formatted Start DateTime:', startDateTime);
         console.log('Formatted End DateTime:', endDateTime);
@@ -123,6 +135,7 @@ function Time() {
                   <ProgressBar isStatus={2} />
                   <S.NumTitle>2. 일정 선택</S.NumTitle>
                   <S.Title>돌봄 일정 선택</S.Title>
+                  <WarnCard />
                   <S.TimeContainer>
                     <S.DateContainer>
                       <S.TimeTitle>선택한 날짜</S.TimeTitle>
@@ -148,6 +161,7 @@ function Time() {
                           initialTime={
                             activeSelect === 'start' ? startTime : lastTime
                           }
+                          selectedDate={selectedDate}
                         />
                       </S.TimePickerContainer>
                     </S.SelectTimeContainer>

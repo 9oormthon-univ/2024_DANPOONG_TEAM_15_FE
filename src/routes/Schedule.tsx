@@ -1,15 +1,26 @@
 import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/ScheduleStyle';
 import TopBackXBar from '@/components/common/TopBackXBar';
 import ProgressBar from '@/components/request/ProgressBar';
-import WarnIcon from '@/assets/icons/request/circle-warn.svg';
 import Calendar from '@/components/request/Calendar';
+import WarnCard from '@/components/request/WarnCard';
 
 function Schedule() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const {startdate, enddate} = location.state || {}; // 전달받은 데이터
+
+  // startdate와 enddate를 Date 객체로 변환
+  const disabledDateRange =
+    startdate && enddate
+      ? {
+          start: new Date(startdate - 1),
+          end: new Date(enddate),
+        }
+      : undefined;
 
   const handleNavLinkClick = (path: string): void => {
     if (selectedDate !== null) {
@@ -34,18 +45,11 @@ function Schedule() {
                   <ProgressBar isStatus={2} />
                   <S.NumTitle>2. 일정 선택</S.NumTitle>
                   <S.Title>돌봄 일정 선택</S.Title>
-                  <S.WarnContainer>
-                    <S.WarnIcon src={WarnIcon} alt="주의사항" />
-                    <S.WarnTexts>
-                      <S.WarnTitle>이렇게는 일정 선택이 안돼요</S.WarnTitle>
-                      <S.WarnText>
-                        1. 당일 선택
-                        <br />
-                        2. 결석 기간 외 기간 선택
-                      </S.WarnText>
-                    </S.WarnTexts>
-                  </S.WarnContainer>
-                  <Calendar onDateSelect={setSelectedDate} />
+                  <WarnCard />
+                  <Calendar
+                    onDateSelect={setSelectedDate}
+                    disabledDateRange={disabledDateRange}
+                  />
                 </S.Container>
                 <S.FooterContainer>
                   <S.Button

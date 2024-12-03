@@ -39,13 +39,14 @@ export const Title = styled.div`
   line-height: 28px;
   letter-spacing: -0.45px;
 
-  margin: 4px 0 32px;
+  margin: 4px 0 8px;
 `;
 
 export const TimeContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-top: 4px;
 `;
 
 export const DateContainer = styled.div`

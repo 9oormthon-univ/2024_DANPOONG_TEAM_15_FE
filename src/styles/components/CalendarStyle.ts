@@ -53,3 +53,8 @@ export const TableBody = styled.td`
   line-height: 140%;
   letter-spacing: -0.3px;
 `;
+
+export const CenterContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
