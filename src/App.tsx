@@ -29,6 +29,7 @@ import ChildAddition from './routes/ChildAddition';
 import CreateAccount from './routes/CreateAccount';
 import CreateChild from './routes/CreateChild';
 import PaySuccess from './routes/PaySuccess';
+import Notifications from './routes/Notifications';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
             element={<CertificateDownload />}
           />
           <Route path="/mypage/income-type" element={<IncomeType />} />
+          <Route path="/notifications" element={<Notifications />} />
           {/* 메인, 서비스 신청 */}
           <Route path="/main" element={<Main />} />
           <Route path="/main/child-addition" element={<ChildAddition />} />
