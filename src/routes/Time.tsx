@@ -6,7 +6,6 @@ import TopBackXBar from '@/components/common/TopBackXBar';
 import ProgressBar from '@/components/request/ProgressBar';
 import TimePicker from '@/components/request/TimePicker';
 import WarnCard from '@/components/request/WarnCard';
-import {applyService} from '@/utils/requestApi';
 
 function Time() {
   const navigate = useNavigate();
@@ -74,39 +73,10 @@ function Time() {
         console.log('Formatted Start DateTime:', startDateTime);
         console.log('Formatted End DateTime:', endDateTime);
 
-        const childId = Number(localStorage.getItem('childId'));
-        const medicalCertificateId = Number(
-          localStorage.getItem('medicalCertificateId'),
-        );
-        const absenceCertificateId = Number(
-          localStorage.getItem('absenceCertificateId'),
-        );
+        localStorage.setItem('startDate', startDateTime);
+        localStorage.setItem('endDate', endDateTime);
 
-        console.log('Request Data:', {
-          childId,
-          medicalCertificateId,
-          absenceCertificateId,
-          startDate: startDateTime,
-          endDate: endDateTime,
-        });
-
-        // applyService 호출 후 applyId를 반환받기
-        const applyId = await applyService({
-          childId,
-          medicalCertificateId,
-          absenceCertificateId,
-          startDate: startDateTime,
-          endDate: endDateTime,
-        });
-
-        localStorage.removeItem('childId');
-        localStorage.removeItem('medicalCertificateId');
-        localStorage.removeItem('absenceCertificateId');
-
-        console.log('Navigating to next page with applyId:', applyId);
-
-        // applyId를 다음 페이지로 넘기기 query string으로
-        navigate(`${path}?applyId=${applyId}`);
+        navigate(path);
       } catch (error: any) {
         console.error('Error submitting request:', error.message);
       }
@@ -170,7 +140,7 @@ function Time() {
                 <S.FooterContainer>
                   <S.Button
                     $isActive={startTime !== null && lastTime !== null}
-                    onClick={() => handleNavLinkClick('/request/pay')}>
+                    onClick={() => handleNavLinkClick('/request/memo')}>
                     다음
                   </S.Button>
                 </S.FooterContainer>

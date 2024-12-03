@@ -278,6 +278,7 @@ export const applyService = async (data: {
   absenceCertificateId: number;
   startDate: string;
   endDate: string;
+  memo: string;
 }): Promise<number> => {
   try {
     const token = localStorage.getItem('accessToken');
