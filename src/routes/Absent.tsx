@@ -7,11 +7,14 @@ import ProgressBar from '@/components/request/ProgressBar';
 import FileContainer from '@/components/request/FileContainer';
 import RequestLoading from '@/components/request/RequestLoading';
 import {uploadAbsent} from '@/utils/requestApi';
+import AlarmToast from '@/components/alarm/AlarmToast';
+import CloseIcon from '@/assets/icons/request/circle-close.svg';
 
 function Absent() {
   const navigate = useNavigate();
   const [selectedPaper, setSelectedPaper] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showToast, setShowToast] = useState<boolean>(false);
 
   const handleNavLinkClick = async (): Promise<void> => {
     if (!selectedPaper) return;
@@ -43,9 +46,15 @@ function Absent() {
         },
       });
     } catch (error: any) {
+      setShowToast(true);
       alert(error.message || '미등원 확인서 업로드 중 문제가 발생했습니다.');
     } finally {
       setIsLoading(false);
+
+      // 3초 후 토스트 숨기기
+      setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
     }
   };
 
@@ -68,7 +77,13 @@ function Absent() {
                     />
                   </S.FileSpace>
                 </S.Container>
-                <S.FooterContainer>
+                <S.FooterContainer showToast={showToast}>
+                  {showToast && (
+                    <AlarmToast
+                      text="적합하지 않은 서류입니다!"
+                      imageSrc={CloseIcon}
+                    />
+                  )}
                   <S.Button
                     $isActive={selectedPaper !== null}
                     onClick={handleNavLinkClick}>
