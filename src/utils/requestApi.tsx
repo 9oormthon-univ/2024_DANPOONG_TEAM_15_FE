@@ -11,8 +11,6 @@ export const uploadMedicalCertificate = async (
   address: string;
   diagnosisDate: string;
   diagnosisName: string;
-  diagnosisContent: string;
-  doctorName: string;
 }> => {
   try {
     const token = localStorage.getItem('accessToken'); // accessToken 가져오기
@@ -101,8 +99,6 @@ export const getMedicalCertificateDetails = async (
   address: string;
   diagnosisDate: string;
   diagnosisName: string;
-  diagnosisContent: string;
-  doctorName: string;
 }> => {
   try {
     const token = localStorage.getItem('accessToken');

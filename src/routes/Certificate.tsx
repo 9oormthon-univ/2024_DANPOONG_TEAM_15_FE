@@ -45,8 +45,6 @@ function Certificate() {
           address: response.address,
           diagnosisDate: response.diagnosisDate,
           diagnosisName: response.diagnosisName,
-          diagnosisContent: response.diagnosisContent,
-          doctorName: response.doctorName,
         },
       });
     } catch (error: any) {

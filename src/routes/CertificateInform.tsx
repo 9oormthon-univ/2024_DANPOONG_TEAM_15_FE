@@ -11,8 +11,6 @@ interface CertificateData {
   address: string;
   diagnosisDate: string;
   diagnosisName: string;
-  diagnosisContent: string;
-  doctorName: string;
 }
 
 function CertificateInform() {
@@ -83,13 +81,6 @@ function CertificateInform() {
     );
   }
 
-  const processedCertificateData = {
-    ...certificateData,
-    doctorName: certificateData.doctorName.includes('의사')
-      ? certificateData.doctorName
-      : `${certificateData.doctorName} 의사`,
-  };
-
   return (
     <>
       <C.Page>
@@ -104,14 +95,12 @@ function CertificateInform() {
                     {formatDate(certificateData.diagnosisDate)} 진단서
                   </S.Title>
                   <S.InformList>
-                    {Object.entries(processedCertificateData).map(
-                      ([key, value]) => (
-                        <S.TitleText key={key}>
-                          <S.InformTitle>{getFieldTitle(key)}</S.InformTitle>
-                          <S.InformText>{value}</S.InformText>
-                        </S.TitleText>
-                      ),
-                    )}
+                    {Object.entries(certificateData).map(([key, value]) => (
+                      <S.TitleText key={key}>
+                        <S.InformTitle>{getFieldTitle(key)}</S.InformTitle>
+                        <S.InformText>{value}</S.InformText>
+                      </S.TitleText>
+                    ))}
                   </S.InformList>
                 </S.Container>
                 <S.FooterContainer>
@@ -133,8 +122,8 @@ const getFieldTitle = (key: string): string => {
     address: '주소',
     diagnosisDate: '진료 날짜',
     diagnosisName: '진단명',
-    diagnosisContent: '진료 내용',
-    doctorName: '의료진 정보',
+    // diagnosisContent: '진료 내용',
+    // doctorName: '의료진 정보',
   };
   return fieldTitles[key] || key;
 };

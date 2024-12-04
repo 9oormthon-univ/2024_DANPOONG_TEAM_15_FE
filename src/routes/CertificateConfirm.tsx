@@ -11,8 +11,6 @@ interface CertificateData {
   address: string;
   diagnosisDate: string;
   diagnosisName: string;
-  diagnosisContent: string;
-  doctorName: string;
 }
 
 function CertificateConfirm() {
@@ -46,14 +44,6 @@ function CertificateConfirm() {
     );
   }
 
-  // 데이터 가공
-  const processedCertificateData = {
-    ...certificateData,
-    doctorName: certificateData.doctorName.includes('의사')
-      ? certificateData.doctorName
-      : `${certificateData.doctorName} 의사`,
-  };
-
   const handleNavLinkClick = (path: string): void => {
     navigate(path);
   };
@@ -71,14 +61,12 @@ function CertificateConfirm() {
                   <S.NumTitle>1. 서류 제출</S.NumTitle>
                   <S.Title>진단서 제출</S.Title>
                   <S.InformList>
-                    {Object.entries(processedCertificateData).map(
-                      ([key, value]) => (
-                        <S.TitleText key={key}>
-                          <S.InformTitle>{getFieldTitle(key)}</S.InformTitle>
-                          <S.InformText>{value}</S.InformText>
-                        </S.TitleText>
-                      ),
-                    )}
+                    {Object.entries(certificateData).map(([key, value]) => (
+                      <S.TitleText key={key}>
+                        <S.InformTitle>{getFieldTitle(key)}</S.InformTitle>
+                        <S.InformText>{value}</S.InformText>
+                      </S.TitleText>
+                    ))}
                   </S.InformList>
                 </S.Container>
                 <S.FooterContainer>
@@ -104,8 +92,6 @@ const getFieldTitle = (key: string): string => {
     address: '주소',
     diagnosisDate: '진료 날짜',
     diagnosisName: '진단명',
-    diagnosisContent: '진료 내용',
-    doctorName: '의료진 정보',
   };
   return fieldTitles[key] || key; // 필드 제목이 없으면 키 그대로 반환
 };
