@@ -10,6 +10,7 @@ import DefaultImage from '@/assets/default-child.svg';
 import {getChildren} from '@/utils/childApi';
 import {getUserInfo} from '@/utils/userApi';
 import {ChildDataSchema} from '@/types';
+// import MainAlarmToast from '@/components/alarm/MainAlarmToast';
 
 interface ChildData {
   id: number;
@@ -102,6 +103,7 @@ function Main() {
           </S.Background>
         </C.Center>
       </C.Page>
+      {/* <MainAlarmToast text="돌보미가 정해졌어요!" /> */}
     </>
   );
 }

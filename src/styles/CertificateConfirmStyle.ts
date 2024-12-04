@@ -76,26 +76,6 @@ export const FooterContainer = styled.div`
   background-color: ${COLOR.WHITE_01};
 `;
 
-export const Badge = styled.div`
-  padding: 10px 16px 10px 8px;
-  background-color: ${COLOR.WHITE_08};
-  border-radius: 100px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  color: ${COLOR.BLACK_03};
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: -0.375px;
-  box-shadow: 0px 4px 4px 0px ${COLOR.GRAY_LIGHT};
-`;
-
-export const BadgeCircle = styled.img`
-  width: 20px;
-`;
-
 export const Button = styled.button`
   border-radius: 8px;
   border: none;

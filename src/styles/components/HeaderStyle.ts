@@ -13,7 +13,13 @@ export const LogoImg = styled.img`
   cursor: pointer;
 `;
 
-export const MypageImg = styled.img`
+export const LittleImg = styled.img`
   width: 28px;
   cursor: pointer;
+`;
+
+export const ImgContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
 `;

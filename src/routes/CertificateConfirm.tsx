@@ -4,6 +4,7 @@ import * as S from '../styles/CertificateConfirmStyle';
 import TopBackXBar from '@/components/common/TopBackXBar';
 import ProgressBar from '@/components/request/ProgressBar';
 import CheckIcon from '@/assets/icons/request/green-check.svg';
+import AlarmToast from '@/components/alarm/AlarmToast';
 
 interface CertificateData {
   name: string;
@@ -81,10 +82,7 @@ function CertificateConfirm() {
                   </S.InformList>
                 </S.Container>
                 <S.FooterContainer>
-                  <S.Badge>
-                    <S.BadgeCircle src={CheckIcon} alt="올바른 서류" />
-                    올바른 서류입니다!
-                  </S.Badge>
+                  <AlarmToast text="올바른 서류입니다!" imageSrc={CheckIcon} />
                   <S.Button
                     onClick={() => handleNavLinkClick('/request/absent')}>
                     다음

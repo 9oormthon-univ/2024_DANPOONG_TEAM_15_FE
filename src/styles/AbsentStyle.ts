@@ -5,6 +5,10 @@ interface ButtonProps {
   $isActive: boolean;
 }
 
+interface FooterContainerProps {
+  showToast: boolean;
+}
+
 export const Background = styled.div`
   background-color: #ffffff;
 `;
@@ -48,9 +52,14 @@ export const FileSpace = styled.div`
   align-items: center;
 `;
 
-export const FooterContainer = styled.div`
+export const FooterContainer = styled.div<FooterContainerProps>`
   padding: 16px 20px 50px;
   background-color: ${COLOR.WHITE_01};
+
+  display: ${({showToast}) => (showToast ? 'flex' : 'block')};
+  flex-direction: ${({showToast}) => (showToast ? 'column' : 'unset')};
+  align-items: ${({showToast}) => (showToast ? 'center' : 'unset')};
+  gap: ${({showToast}) => (showToast ? '24px' : 'unset')};
 `;
 
 export const Button = styled.button<ButtonProps>`
