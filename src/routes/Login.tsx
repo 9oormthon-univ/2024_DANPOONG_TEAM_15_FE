@@ -32,8 +32,14 @@ function Login() {
         // 로그인 API 호출
         await loginApi(id, password);
 
-        // 성공 시 메인 페이지로 이동
-        navigate('/main');
+        const authority = localStorage.getItem('authority');
+
+        // 권한에 따라 경로 변경
+        if (authority === 'ROLE_CAREGIVER') {
+          navigate('/caregiver-main');
+        } else {
+          navigate('/main');
+        }
       } catch (error: any) {
         // 실패 시 에러 메시지 출력
         alert(error.message || '로그인 중 문제가 발생했습니다.');
