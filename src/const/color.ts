@@ -25,4 +25,6 @@ export const COLOR = {
   ORANGE_05: '#FBF2EE',
   ORANGE_06: '#E07A5F',
   ORANGE_LIGHT: 'rgba(252, 152, 108, 0.15)',
+  BROWN_01: '#C28C70',
+  BROWN_LIGHT: 'rgba(163, 15, 250, 0.05)',
 };
