@@ -27,6 +27,17 @@ function CaregiverList() {
     }, 300);
   };
 
+  const parseDate = (dateString: string): string => {
+    // "2024년 11월 26일" 형식을 "2024-11-26"로 변환
+    const regex = /(\d{4})년 (\d{1,2})월 (\d{1,2})일/;
+    const match = dateString.match(regex);
+    if (match) {
+      const [, year, month, day] = match;
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`; // ISO 8601 형식
+    }
+    return dateString; // 원본 반환 (오류 방지)
+  };
+
   useEffect(() => {
     const fetchCare = async () => {
       try {
@@ -55,7 +66,14 @@ function CaregiverList() {
                 : addressList[Math.floor(Math.random() * addressList.length)],
           }),
         );
-        setCare(mappedCare);
+
+        const sortedCare = mappedCare.sort((a: CareData, b: CareData) => {
+          const dateA = new Date(parseDate(a.applyDate)).getTime();
+          const dateB = new Date(parseDate(b.applyDate)).getTime();
+          return dateB - dateA; // 내림차순
+        });
+
+        setCare(sortedCare);
       } catch (error) {
         console.error('돌봄 목록 조회 중 오류 발생:', error);
       }
