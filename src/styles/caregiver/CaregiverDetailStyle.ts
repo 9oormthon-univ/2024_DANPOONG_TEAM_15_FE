@@ -56,6 +56,15 @@ export const InformText = styled.div`
   white-space: pre-line;
 `;
 
+export const GrayInformText = styled.div`
+  color: ${COLOR.GRAY_04};
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  white-space: pre-line;
+`;
+
 export const DateContainer = styled.div`
   display: flex;
   align-items: center;

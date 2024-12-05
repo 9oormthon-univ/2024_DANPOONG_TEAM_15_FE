@@ -110,7 +110,11 @@ function CaregiverDetail() {
                     </S.TitleText>
                     <S.TitleText>
                       <S.InformTitle>돌봄 메모</S.InformTitle>
-                      <S.InformText>{caregiversData.memo}</S.InformText>
+                      {caregiversData.memo ? (
+                        <S.InformText>{caregiversData.memo}</S.InformText>
+                      ) : (
+                        <S.GrayInformText>작성된 메모 없음</S.GrayInformText>
+                      )}
                     </S.TitleText>
                     <S.Line />
                     <S.BigTitle>돌봄 아이 정보</S.BigTitle>
