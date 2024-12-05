@@ -102,9 +102,15 @@ function App() {
           <Route element={<CaregiverRoute />}>
             <Route path="/caregiver-main" element={<CaregiverMain />} />
             <Route path="/caregiver-list" element={<CaregiverList />} />
-            <Route path="/caregiver-detail" element={<CaregiverDetail />} />
+            <Route
+              path="/caregiver-detail/:applyId"
+              element={<CaregiverDetail />}
+            />
             <Route path="/caregiver-done" element={<CaregiverDone />} />
-            <Route path="/caregiver-inform" element={<CaregiverInform />} />
+            <Route
+              path="/caregiver-inform/:applyId"
+              element={<CaregiverInform />}
+            />
           </Route>
           {/* 404 */}
           <Route path="/*" element={<Non />} />

@@ -20,10 +20,10 @@ function CaregiverList() {
   const [care, setCare] = useState<CareData[]>([]);
   const [selectedCare, setSelectedCare] = useState<number | null>(null);
 
-  const handleCardClick = (id: number): void => {
+  const handleCardClick = (id: number, carePlace: string): void => {
     setSelectedCare(prev => (prev === id ? null : id));
     setTimeout(() => {
-      navigate(`/caregiver-detail/${id}`);
+      navigate(`/caregiver-detail/${id}`, {state: {carePlace}});
     }, 300);
   };
 
@@ -83,7 +83,7 @@ function CaregiverList() {
                       careTime={care.careTime}
                       carePlace={care.carePlace}
                       isSelected={selectedCare === care.id}
-                      onClick={() => handleCardClick(care.id)}
+                      onClick={() => handleCardClick(care.id, care.carePlace)}
                     />
                   ))}
                 </S.CardContainer>
