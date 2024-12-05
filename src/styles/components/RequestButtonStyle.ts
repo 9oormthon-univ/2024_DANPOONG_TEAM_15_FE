@@ -60,3 +60,30 @@ export const CareButtonContainer = styled.div`
   line-height: 18px;
   letter-spacing: -0.3px;
 `;
+
+// 돌보미 활동 중
+export const GrayButtonContainer = styled.div`
+  background-color: ${COLOR.GRAY_10};
+  border-radius: 16px;
+  padding: 23px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: not-allowed;
+
+  color: ${COLOR.WHITE_01};
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.3px;
+`;
+
+export const GrayCircle = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: ${COLOR.GRAY_04};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

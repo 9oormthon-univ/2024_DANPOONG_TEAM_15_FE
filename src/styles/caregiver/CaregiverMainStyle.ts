@@ -93,3 +93,29 @@ export const Button = styled.div`
 export const RightIcon = styled.img`
   width: 12px;
 `;
+
+export const InitialContainer = styled.div`
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const InitialButton = styled.div`
+  color: ${COLOR.GRAY_04};
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: -0.3px;
+  text-decoration-line: underline;
+  cursor: pointer;
+`;
+
+export const InitialInform = styled.div`
+  color: #c5c5c5;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.3px;
+`;

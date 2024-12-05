@@ -5,6 +5,7 @@ import * as C from '@/styles/CommonStyle';
 import * as S from '@/styles/caregiver/CaregiverMainStyle';
 import CareHeader from '@/components/CareHeader';
 import RequestCareButton from '@/components/main/RequestCareButton';
+import GrayCareButton from '@/components/caregiver/GrayCareButton';
 import RightIcon from '@/assets/icons/request/arrow-right.svg';
 import NoneCareCard from '@/components/main/NonCareCard';
 import CareCard from '@/components/main/CareCard';
@@ -40,6 +41,7 @@ function CaregiverMain() {
           age: careResponse.age,
           image: careResponse.image || DefaultImage, // 이미지 없으면 기본 이미지
         });
+        // setCare(null);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -79,14 +81,17 @@ function CaregiverMain() {
                       />
                     </S.LottieContainer>
                   </S.ImgSpace>
-                  <RequestCareButton />
+                  {care ? <GrayCareButton /> : <RequestCareButton />}
                   <S.CareContainer>
                     <S.CareTitleContainer>
                       <S.Care>매칭된 돌봄 활동</S.Care>
                       {care && (
                         <S.Button
                           onClick={() =>
-                            handleNavLinkClick(care.id, care.place || '')
+                            handleNavLinkClick(
+                              care.id,
+                              '서울특별시 성북구 고려대로 97번길',
+                            )
                           }>
                           상세보기
                           <S.RightIcon src={RightIcon} alt="상세보기" />
@@ -106,6 +111,12 @@ function CaregiverMain() {
                       <NoneCareCard />
                     )}
                   </S.CareContainer>
+                  {care && (
+                    <S.InitialContainer>
+                      <S.InitialButton>초기화하기</S.InitialButton>
+                      <S.InitialInform>데모 시연용 기능입니다</S.InitialInform>
+                    </S.InitialContainer>
+                  )}
                 </S.Container>
               </S.Main>
             </C.PageSpace>
