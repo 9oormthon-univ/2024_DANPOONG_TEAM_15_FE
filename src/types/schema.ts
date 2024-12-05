@@ -21,3 +21,10 @@ export interface ChildInfoSchema {
   age: number;
   gender: string;
 }
+
+export interface CareInfoSchema {
+  applyId: number;
+  applyDate: string;
+  careDate: string;
+  careTime: string;
+}

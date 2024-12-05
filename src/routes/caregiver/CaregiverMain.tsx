@@ -92,7 +92,7 @@ function CaregiverMain() {
                       <CareCard
                         date={care.date}
                         time={care.time}
-                        place="서울시"
+                        place="서울특별시 성북구 고려대로 97번길"
                         name={care.name}
                         age={care.age}
                         image={care.image}
