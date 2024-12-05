@@ -48,8 +48,8 @@ function CaregiverMain() {
     fetchData();
   }, []);
 
-  const handleNavLinkClick = (): void => {
-    navigate(`/caregiver-inform`);
+  const handleNavLinkClick = (id: number, carePlace: string): void => {
+    navigate(`/caregiver-inform/${id}`, {state: {carePlace}});
   };
 
   return (
@@ -83,10 +83,15 @@ function CaregiverMain() {
                   <S.CareContainer>
                     <S.CareTitleContainer>
                       <S.Care>매칭된 돌봄 활동</S.Care>
-                      <S.Button onClick={handleNavLinkClick}>
-                        상세보기
-                        <S.RightIcon src={RightIcon} alt="상세보기" />
-                      </S.Button>
+                      {care && (
+                        <S.Button
+                          onClick={() =>
+                            handleNavLinkClick(care.id, care.place || '')
+                          }>
+                          상세보기
+                          <S.RightIcon src={RightIcon} alt="상세보기" />
+                        </S.Button>
+                      )}
                     </S.CareTitleContainer>
                     {care ? (
                       <CareCard
