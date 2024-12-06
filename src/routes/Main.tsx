@@ -10,6 +10,7 @@ import DefaultImage from '@/assets/default-child.svg';
 import {getChildren} from '@/utils/childApi';
 import {getUserInfo} from '@/utils/userApi';
 import {ChildDataSchema} from '@/types';
+import useWebSocket from '@/utils/useWebSocket';
 // import MainAlarmToast from '@/components/alarm/MainAlarmToast';
 
 interface ChildData {
@@ -24,6 +25,8 @@ function Main() {
   const [userName, setUserName] = useState<string>(''); // 사용자 이름
   const [children, setChildren] = useState<ChildData[]>([]); // 아이 목록
   console.log('🚀 ~ file: Main.tsx:24 ~ Main ~ children:', children);
+  const messages = useWebSocket();
+  console.log('🚀 ~ file: Main.tsx:29 ~ Main ~ messages:', messages);
 
   useEffect(() => {
     const fetchData = async () => {
