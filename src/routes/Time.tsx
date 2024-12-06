@@ -6,6 +6,8 @@ import TopBackXBar from '@/components/common/TopBackXBar';
 import ProgressBar from '@/components/request/ProgressBar';
 import TimePicker from '@/components/request/TimePicker';
 import WarnCard from '@/components/request/WarnCard';
+import AlarmToast from '@/components/alarm/AlarmToast';
+import WarnIcon from '@/assets/icons/request/circle-warn.svg';
 
 function Time() {
   const navigate = useNavigate();
@@ -15,6 +17,7 @@ function Time() {
   const [startTime, setStartTime] = useState<string | null>(null);
   const [lastTime, setLastTime] = useState<string | null>(null);
   const [activeSelect, setActiveSelect] = useState<'start' | 'end'>('start');
+  const [showToast, setShowToast] = useState<boolean>(false);
 
   const convertTo24HourFormat = (date: string, time: string): string => {
     // Ensure both date and time parts are valid
@@ -85,12 +88,22 @@ function Time() {
           (end.getTime() - start.getTime()) / (1000 * 60 * 60);
 
         if (!isTimeValid(startTime)) {
-          alert('선택하신 시작 시간은 현재 시간 기준 4시간 뒤여야 합니다.');
+          // alert('선택하신 시작 시간은 현재 시간 기준 4시간 뒤여야 합니다.');
+          setShowToast(true);
+          // 3초 후 토스트 숨기기
+          setTimeout(() => {
+            setShowToast(false);
+          }, 3000);
           return;
         }
 
         if (timeDifference < 2) {
-          alert('2시간 이상 선택해주세요.');
+          // alert('2시간 이상 선택해주세요.');
+          setShowToast(true);
+          // 3초 후 토스트 숨기기
+          setTimeout(() => {
+            setShowToast(false);
+          }, 3000);
           return;
         }
 
@@ -158,7 +171,13 @@ function Time() {
                     </S.SelectTimeContainer>
                   </S.TimeContainer>
                 </S.Container>
-                <S.FooterContainer>
+                <S.FooterContainer showToast={showToast}>
+                  {showToast && (
+                    <AlarmToast
+                      text="신청할 수 없는 시간입니다!"
+                      imageSrc={WarnIcon}
+                    />
+                  )}
                   <S.Button
                     $isActive={startTime !== null && lastTime !== null}
                     onClick={() => handleNavLinkClick('/request/memo')}>
