@@ -49,29 +49,50 @@ function Time() {
     return `${date} ${String(adjustedHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00`;
   };
 
+  const isTimeValid = (selectedTime: string | null): boolean => {
+    if (selectedDate) {
+      const currentDate = new Date();
+      const selectedDateObj = new Date(selectedDate);
+
+      if (
+        currentDate.toDateString() === selectedDateObj.toDateString() &&
+        selectedTime
+      ) {
+        const currentHours24 = currentDate.getHours();
+        const currentMinutes = currentDate.getMinutes();
+        const currentDateWithOffset = new Date(currentDate);
+        currentDateWithOffset.setHours(currentHours24 + 4);
+        currentDateWithOffset.setMinutes(currentMinutes);
+
+        const selectedDateTime = new Date(
+          convertTo24HourFormat(selectedDate, selectedTime),
+        );
+        return selectedDateTime >= currentDateWithOffset;
+      }
+    }
+    return true;
+  };
+
   const handleNavLinkClick = async (path: string): Promise<void> => {
     if (selectedDate && startTime && lastTime) {
       try {
-        console.log('Selected Date:', selectedDate);
-        console.log('Start Time:', startTime);
-        console.log('Last Time:', lastTime);
-
         const startDateTime = convertTo24HourFormat(selectedDate, startTime);
         const endDateTime = convertTo24HourFormat(selectedDate, lastTime);
 
-        // Calculate time difference in hours
         const start = new Date(startDateTime);
         const end = new Date(endDateTime);
         const timeDifference =
-          (end.getTime() - start.getTime()) / (1000 * 60 * 60); // in hours
+          (end.getTime() - start.getTime()) / (1000 * 60 * 60);
+
+        if (!isTimeValid(startTime)) {
+          alert('선택하신 시작 시간은 현재 시간 기준 4시간 뒤여야 합니다.');
+          return;
+        }
 
         if (timeDifference < 2) {
           alert('2시간 이상 선택해주세요.');
-          return; // Prevent navigation
+          return;
         }
-
-        console.log('Formatted Start DateTime:', startDateTime);
-        console.log('Formatted End DateTime:', endDateTime);
 
         localStorage.setItem('startDate', startDateTime);
         localStorage.setItem('endDate', endDateTime);
