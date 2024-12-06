@@ -53,35 +53,37 @@ function Login() {
         <C.Center>
           <S.Background>
             <C.PageSpace>
-              <S.LogoContainer>
-                <S.IvoryText>우리 아이의 안심 케어를 약속하는</S.IvoryText>
-                <IvoryTextIcon />
-              </S.LogoContainer>
+              <S.Container>
+                <S.LogoContainer>
+                  <S.IvoryText>우리 아이의 안심 케어를 약속하는</S.IvoryText>
+                  <IvoryTextIcon />
+                </S.LogoContainer>
 
-              <S.LoginContainer>
-                <S.Text>이메일</S.Text>
-                <S.Input
-                  type="text"
-                  placeholder="이메일을 입력해주세요"
-                  value={id}
-                  onChange={handleIdChange}
-                />
-                <S.Text>비밀번호</S.Text>
-                <S.Input
-                  type="password"
-                  placeholder="비밀번호를 입력해주세요"
-                  value={password}
-                  onChange={handlePasswordChange}
-                />
-              </S.LoginContainer>
-              <S.Footer>
-                <S.LoginButton
-                  onClick={handleSubmit}
-                  disabled={!isButtonActive}
-                  isActive={isButtonActive}>
-                  <div>로그인</div>
-                </S.LoginButton>
-              </S.Footer>
+                <S.LoginContainer>
+                  <S.Text>이메일</S.Text>
+                  <S.Input
+                    type="text"
+                    placeholder="이메일을 입력해주세요"
+                    value={id}
+                    onChange={handleIdChange}
+                  />
+                  <S.Text>비밀번호</S.Text>
+                  <S.Input
+                    type="password"
+                    placeholder="비밀번호를 입력해주세요"
+                    value={password}
+                    onChange={handlePasswordChange}
+                  />
+                </S.LoginContainer>
+                <S.Footer>
+                  <S.LoginButton
+                    onClick={handleSubmit}
+                    disabled={!isButtonActive}
+                    isActive={isButtonActive}>
+                    로그인
+                  </S.LoginButton>
+                </S.Footer>
+              </S.Container>
             </C.PageSpace>
           </S.Background>
         </C.Center>

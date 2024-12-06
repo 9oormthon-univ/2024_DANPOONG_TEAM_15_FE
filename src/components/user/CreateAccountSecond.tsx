@@ -44,6 +44,7 @@ const DropdownButton = styled.button`
   border-radius: 100px;
   background-color: ${COLOR.WHITE_01};
   color: ${COLOR.BLACK_01};
+  font-family: 'Pretendard';
   font-size: 14px;
   text-align: left;
   cursor: pointer;
@@ -95,6 +96,7 @@ const PayButton = styled.button`
   color: ${COLOR.WHITE_01};
   font-weight: 600;
   border-radius: 8px;
+  font-family: 'Pretendard';
   cursor: pointer;
 
   &:hover {
@@ -113,6 +115,7 @@ const BottomDirectionButton = styled.button`
   background-color: ${COLOR.WHITE_01};
   margin: 0 auto;
   gap: 8px;
+  font-family: 'Pretendard';
   cursor: pointer;
 `;
 

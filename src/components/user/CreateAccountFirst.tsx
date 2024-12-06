@@ -30,13 +30,13 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  padding: 12px;
+  padding: 14px 16px;
   border: 1px solid ${COLOR.WHITE_07};
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 14px;
   color: ${COLOR.BLACK_03};
   background-color: ${COLOR.WHITE_07};
-
+  font-family: 'Pretendard';
   &::placeholder {
     color: ${COLOR.GRAY_04};
   }
@@ -60,6 +60,7 @@ const SubmitButton = styled.button`
   border-radius: 8px;
   color: ${COLOR.WHITE_01};
   font-weight: 600;
+  font-family: 'Pretendard';
   cursor: pointer;
 
   &:disabled {

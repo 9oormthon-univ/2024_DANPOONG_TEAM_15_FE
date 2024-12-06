@@ -5,16 +5,21 @@ export const Background = styled.div`
   background-color: #ffffff;
 `;
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
 export const LogoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 100px;
-  margin-bottom: 50px;
+  margin-top: 45px;
+  margin-bottom: 78px;
   text-align: center;
-  flex-grow: 2;
   gap: 8px;
 `;
 
@@ -25,51 +30,41 @@ export const IvoryText = styled.div`
   color: #b45a5a;
   line-height: 1.5;
   text-align: center;
-  margin-bottom: -20px;
+  margin-bottom: -15px;
 `;
 
 export const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 370px;
-  text-align: center;
-  gap: 10px;
+  flex: 1;
+  gap: 20px;
+  padding: 16px 20px 50px;
 `;
 
 export const Text = styled.div`
   font-size: 16px;
-  font-family: 'Pretendard', sans-serif;
   font-weight: 300;
-  color: #333333;
+  color: ${COLOR.BLACK_03};
   line-height: 1;
   text-align: left;
-  width: 80%;
-  margin-left: -20px;
+  margin-bottom: -12px;
 `;
 
 export const Input = styled.input`
-  width: 80%;
-  height: 34px;
-  background: #f3f3f3;
-  border-radius: 12px;
   padding: 14px 16px;
-  color: #333333;
-  font-size: 16px;
-  font-family: 'Pretendard', sans-serif;
-  font-weight: 400;
-  line-height: 24px;
-  border: none;
-  overflow: hidden;
-
+  border: 1px solid ${COLOR.WHITE_07};
+  border-radius: 12px;
+  font-size: 14px;
+  color: ${COLOR.BLACK_03};
+  background-color: ${COLOR.WHITE_07};
+  font-family: 'Pretendard';
   &::placeholder {
-    color: #999999;
+    color: ${COLOR.GRAY_04};
   }
 
   &:focus {
     outline: none;
-    border: 1px solid #e07a5f;
+    border: 1px solid ${COLOR.ORANGE_01};
   }
 `;
 
@@ -78,8 +73,8 @@ interface ButtonProps {
 }
 
 export const LoginButton = styled.button<ButtonProps>`
-  width: 328px;
-  height: 56px;
+  width: 100%;
+  padding: 16px;
   bottom: 0;
   background: ${({isActive}) => (isActive ? '#fc986c' : '#dfe2e5')};
   color: ${COLOR.WHITE_01};
@@ -113,12 +108,9 @@ export const LoginButton = styled.button<ButtonProps>`
 `;
 
 export const Footer = styled.div`
-  position: absolute;
-  bottom: 0;
   display: flex;
-  width: 370px;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  margin-bottom: 50px;
+  gap: 20px;
+  background-color: ${COLOR.WHITE_01};
+  padding: 16px 20px 50px;
 `;

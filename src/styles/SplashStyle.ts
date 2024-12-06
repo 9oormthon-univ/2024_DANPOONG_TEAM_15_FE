@@ -16,21 +16,16 @@ export const IconWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 370px;
-  flex-grow: 1;
+  flex: 1;
 `;
 
 export const Footer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  background-color: #ffeadc;
-  margin-bottom: 50px;
+  padding: 16px 20px 50px;
 `;
 
 export const Button = styled.button`
-  width: 90%;
   padding: 16px;
   background-color: ${COLOR.ORANGE_01};
   border: none;
@@ -39,8 +34,6 @@ export const Button = styled.button`
   font-weight: 600;
   cursor: pointer;
   margin-bottom: 16px;
-  margin-left: 20px;
-  margin-right: 20px;
 
   &:disabled {
     background-color: ${COLOR.GRAY_04};
@@ -57,7 +50,6 @@ export const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  width: 370px;
 `;
 
 export const Logintext = styled.span`
