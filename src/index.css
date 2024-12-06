@@ -1,49 +1,38 @@
 /*Regular*/
 @font-face {
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(/fonts/Pretendard-Regular.otf) format("truetype"), url(/fonts/Pretendard-Regular.ttf) format("ttf"),
-    url(/fonts/Pretendard-Regular.woff) format("woff"), url(/fonts/Pretendard-Regular.woff2) format("woff2");
+  src:
+    url(/fonts/Pretendard-Regular.otf) format('truetype'),
+    url(/fonts/Pretendard-Regular.ttf) format('ttf'),
+    url(/fonts/Pretendard-Regular.woff) format('woff'),
+    url(/fonts/Pretendard-Regular.woff2) format('woff2');
 }
 
 /*Medium*/
 @font-face {
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(/fonts/Pretendard-Medium.ttf) format("ttf"), url(/fonts/Pretendard-Medium.otf) format("truetype"),
-    url(/fonts/Pretendard-Medium.ttf) format("woff"), url(/fonts/Pretendard-Medium.woff2) format("woff2");
+  src:
+    url(/fonts/Pretendard-Medium.ttf) format('ttf'),
+    url(/fonts/Pretendard-Medium.otf) format('truetype'),
+    url(/fonts/Pretendard-Medium.ttf) format('woff'),
+    url(/fonts/Pretendard-Medium.woff2) format('woff2');
 }
 
 /*Semibold*/
 @font-face {
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(/fonts/Pretendard-SemiBold.ttf) format("ttf"), url(/fonts/Pretendard-SemiBold.otf) format("truetype"),
-    url(/fonts/Pretendard-SemiBold.woff) format("woff"), url(/fonts/Pretendard-SemiBold.woff2) format("woff2");
-}
-
-/*Bold*/
-@font-face {
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(/fonts/Pretendard-Bold.ttf) format("ttf"), url(/fonts/Pretendard-Bold.otf) format("truetype"),
-    url(/fonts/Pretendard-Bold.woff) format("woff"), url(/fonts/Pretendard-Bold.woff2) format("woff2");
-}
-
-/*Extrabold*/
-@font-face {
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url(/fonts/Pretendard-ExtraBold.ttf) format("ttf"), url(/fonts/Pretendard-ExtraBold.otf) format("truetype"),
-    url(/fonts/Pretendard-ExtraBold.woff) format("woff"), url(/fonts/Pretendard-ExtraBold.woff2) format("woff2");
+  src:
+    url(/fonts/Pretendard-SemiBold.ttf) format('ttf'),
+    url(/fonts/Pretendard-SemiBold.otf) format('truetype'),
+    url(/fonts/Pretendard-SemiBold.woff) format('woff'),
+    url(/fonts/Pretendard-SemiBold.woff2) format('woff2');
 }
