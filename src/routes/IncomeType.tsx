@@ -116,7 +116,7 @@ const BottomDirectionButton = styled.button`
 `;
 
 function IncomeType() {
-  const initialSelectedType = '나형 (중위 소득 기준 120% 이하)';
+  const initialSelectedType = '가형 (중위 소득 기준 75% 이하)';
   const navigate = useNavigate();
   const [selectedType, setSelectedType] = useState(initialSelectedType);
   const [isOpen, setIsOpen] = useState(false);

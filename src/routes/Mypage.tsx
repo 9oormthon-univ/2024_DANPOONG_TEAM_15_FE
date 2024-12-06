@@ -97,12 +97,14 @@ const OrangeSmallText = styled.div`
 function Mypage() {
   const navigate = useNavigate();
   const [userName, setUserName] = useState('');
+  const [userType, setUserType] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const userResponse = await getUserInfo();
         setUserName(userResponse.name);
+        setUserType(userResponse.incomeType);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -136,7 +138,7 @@ function Mypage() {
                   <UserCard>
                     <UserInfo>
                       <UserName>{userName || '\u00A0\u00A0\u00A0'}님</UserName>
-                      <UserType>소득유형 | 나형</UserType>
+                      <UserType>소득유형 | {userType}</UserType>
                     </UserInfo>
                     <IvoryRemoveBgIcon width={110} height={110} />
                   </UserCard>
