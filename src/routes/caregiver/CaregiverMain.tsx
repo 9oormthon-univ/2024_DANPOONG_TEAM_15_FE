@@ -10,7 +10,7 @@ import RightIcon from '@/assets/icons/request/arrow-right.svg';
 import NoneCareCard from '@/components/main/NonCareCard';
 import CareCard from '@/components/main/CareCard';
 import DefaultImage from '@/assets/default-child.svg';
-import {getCare} from '@/utils/caregiverApi';
+import {getCare, deleteCaregiver} from '@/utils/caregiverApi';
 
 interface CareData {
   id: number;
@@ -41,7 +41,6 @@ function CaregiverMain() {
           age: careResponse.age,
           image: careResponse.image || DefaultImage, // 이미지 없으면 기본 이미지
         });
-        // setCare(null);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -52,6 +51,16 @@ function CaregiverMain() {
 
   const handleNavLinkClick = (id: number, carePlace: string): void => {
     navigate(`/caregiver-inform/${id}`, {state: {carePlace}});
+  };
+
+  const handleDeleteCaregiver = async (): Promise<void> => {
+    try {
+      await deleteCaregiver();
+      console.log('초기화 성공');
+      setCare(null); // 상태 초기화
+    } catch (error) {
+      console.error('초기화 실패:', error);
+    }
   };
 
   return (
@@ -113,7 +122,9 @@ function CaregiverMain() {
                   </S.CareContainer>
                   {care && (
                     <S.InitialContainer>
-                      <S.InitialButton>초기화하기</S.InitialButton>
+                      <S.InitialButton onClick={handleDeleteCaregiver}>
+                        초기화하기
+                      </S.InitialButton>
                       <S.InitialInform>데모 시연용 기능입니다</S.InitialInform>
                     </S.InitialContainer>
                   )}

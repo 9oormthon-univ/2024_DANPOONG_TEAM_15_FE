@@ -11,7 +11,7 @@ import {getChildren} from '@/utils/childApi';
 import {getUserInfo} from '@/utils/userApi';
 import {ChildDataSchema} from '@/types';
 import useWebSocket from '@/utils/useWebSocket';
-// import MainAlarmToast from '@/components/alarm/MainAlarmToast';
+import MainAlarmToast from '@/components/alarm/MainAlarmToast';
 
 interface ChildData {
   id: number;
@@ -25,8 +25,15 @@ function Main() {
   const [userName, setUserName] = useState<string>(''); // 사용자 이름
   const [children, setChildren] = useState<ChildData[]>([]); // 아이 목록
   console.log('🚀 ~ file: Main.tsx:24 ~ Main ~ children:', children);
+  const [latestMessage, setLatestMessage] = useState<string | null>(null); // 최신 메시지 상태
   const messages = useWebSocket();
   console.log('🚀 ~ file: Main.tsx:29 ~ Main ~ messages:', messages);
+
+  useEffect(() => {
+    if (messages.length > 0) {
+      setLatestMessage(messages[messages.length - 1]); // 가장 최근 메시지 저장
+    }
+  }, [messages]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -106,7 +113,7 @@ function Main() {
           </S.Background>
         </C.Center>
       </C.Page>
-      {/* <MainAlarmToast text="돌보미가 정해졌어요!" /> */}
+      {latestMessage && <MainAlarmToast text={latestMessage} />}
     </>
   );
 }

@@ -149,3 +149,35 @@ export const postCaregiver = async (applyId: number): Promise<void> => {
     }
   }
 };
+
+export const deleteCaregiver = async (): Promise<void> => {
+  try {
+    const token = localStorage.getItem('accessToken'); // 토큰 가져오기
+
+    if (!token) {
+      throw new Error('로그인이 필요합니다.');
+    }
+
+    await axios.put(
+      `${BASE_URL}/caregivers`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+  } catch (error: any) {
+    if (axios.isAxiosError(error) && error.response) {
+      console.error(
+        '초기화 신청 실패:',
+        `상태코드: ${error.response.status}, 메시지:`,
+        error.response.data.message,
+      );
+      throw new Error(error.response.data.message);
+    } else {
+      console.error('초기화 중 알 수 없는 오류 발생:', error);
+      throw new Error('초기화 중 알 수 없는 오류가 발생했습니다.');
+    }
+  }
+};
