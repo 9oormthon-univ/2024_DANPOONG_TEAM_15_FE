@@ -13,6 +13,7 @@ function ChildCard({name, age, image, status, childId}: ChildCardProps) {
   const navigate = useNavigate();
 
   const handleNavLinkClick = (path: string) => {
+    localStorage.setItem('childId', String(childId));
     navigate(`${path}?childId=${childId}`);
   };
 
