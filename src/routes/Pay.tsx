@@ -23,24 +23,76 @@ const Container = styled.div`
   gap: 20px;
 `;
 
-const GrayBoldText = styled.div`
-  font-weight: 600;
+const NumTitle = styled.div`
   color: ${COLOR.GRAY_04};
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.3px;
+`;
+
+const GrayBoldText = styled.div`
+  color: ${COLOR.GRAY_04};
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: -0.3px;
 `;
 
 const BlackText = styled.div`
   color: ${COLOR.BLACK_01};
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  white-space: pre-line;
+`;
+
+const GrayText = styled.div`
+  color: ${COLOR.GRAY_04};
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+  white-space: pre-line;
+`;
+
+const GrayBigBoldText = styled.div`
+  color: ${COLOR.GRAY_04};
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.35px;
 `;
 
 const BlackBigText = styled.div`
-  font-size: 20px;
-  color: ${COLOR.BLACK_01};
   padding-bottom: 8px;
+  color: ${COLOR.BLACK_01};
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: -0.45px;
 `;
 
 const OrangeText = styled.span`
   padding-left: 8px;
   color: ${COLOR.ORANGE_02};
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.35px;
+`;
+
+const DateContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const SmallLine = styled.div`
+  width: 1px;
+  height: 10px;
+  background-color: ${COLOR.GRAY_09};
 `;
 
 const InfoContainer = styled.div`
@@ -95,6 +147,11 @@ const PayButton = styled.button`
   border: none;
   background-color: ${COLOR.ORANGE_01};
   color: ${COLOR.WHITE_01};
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+  font-family: 'Pretendard';
   font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
@@ -169,7 +226,7 @@ function Pay() {
                 <Container>
                   <ProgressBar isStatus={3} />
                   <InfoContainer>
-                    <GrayBoldText>3. 결제</GrayBoldText>
+                    <NumTitle>3. 결제</NumTitle>
                     <BlackBigText>
                       선택한 일정에 따라 계산된 금액이에요
                     </BlackBigText>
@@ -194,12 +251,23 @@ function Pay() {
                   <InfoContainer>
                     <GrayBoldText>돌봄 일정</GrayBoldText>
                     <BlackText>
-                      {applicationDetailData.careDate} |{' '}
-                      {applicationDetailData.careTime}
+                      <DateContainer>
+                        {applicationDetailData.careDate}
+                        <SmallLine />
+                        {applicationDetailData.careTime}
+                      </DateContainer>
                     </BlackText>
                   </InfoContainer>
+                  <InfoContainer>
+                    <GrayBoldText>돌봄 메모</GrayBoldText>
+                    {applicationDetailData.memo ? (
+                      <BlackText>{applicationDetailData.memo}</BlackText>
+                    ) : (
+                      <GrayText>작성된 메모 없음</GrayText>
+                    )}
+                  </InfoContainer>
                   <Divider />
-                  <GrayBoldText>총 합계</GrayBoldText>
+                  <GrayBigBoldText>총 합계</GrayBigBoldText>
                   <FlexRowContainer>
                     <GrayBoldText>기본요금</GrayBoldText>
                     <BlackText>{applicationDetailData.totalAmount}원</BlackText>
