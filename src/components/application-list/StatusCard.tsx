@@ -48,8 +48,9 @@ interface StatusCardProps {
 export default function StatusCard({status}: StatusCardProps) {
   const steps = [
     {id: 1, status: '서비스 신청 완료', text: '신청 완료'},
-    {id: 2, status: '돌봄 중', text: '돌봄 중'},
-    {id: 3, status: '이용 완료', text: '이용 완료'},
+    {id: 2, status: '돌보미 매칭', text: '돌보미 매칭'},
+    {id: 3, status: '돌봄 중', text: '돌봄 중'},
+    {id: 4, status: '이용 완료', text: '이용 완료'},
   ];
 
   return (

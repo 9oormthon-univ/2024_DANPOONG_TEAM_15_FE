@@ -26,7 +26,8 @@ function Main() {
   const [children, setChildren] = useState<ChildData[]>([]); // 아이 목록
   console.log('🚀 ~ file: Main.tsx:24 ~ Main ~ children:', children);
   const [latestMessage, setLatestMessage] = useState<string | null>(null); // 최신 메시지 상태
-  const messages = useWebSocket();
+
+  const messages = useWebSocket(String(2));
   console.log('🚀 ~ file: Main.tsx:29 ~ Main ~ messages:', messages);
 
   useEffect(() => {

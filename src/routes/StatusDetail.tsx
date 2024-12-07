@@ -108,6 +108,7 @@ const Divider = styled.div`
 function StatusDetail() {
   const params = new URLSearchParams(window.location.search);
   const applyId = params.get('applyId');
+  console.log(applyId);
   const [applicationDetailData, setApplicationDetailData] = useState<any>(null);
   console.log(
     '🚀 ~ file: StatusDetail.tsx:77 ~ StatusDetail ~ applicationDetailData:',

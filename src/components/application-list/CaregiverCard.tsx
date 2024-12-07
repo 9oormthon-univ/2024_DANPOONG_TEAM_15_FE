@@ -65,7 +65,7 @@ interface CaregiverCardProps {
 }
 
 export default function CaregiverCard({status}: CaregiverCardProps) {
-  const hasCaregiver = status === '서비스 신청 완료';
+  const hasCaregiver = status !== '서비스 신청 완료';
 
   // 돌보미 정보 더미 데이터
   const caregiverInfo = {

@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 
-const useWebSocket = () => {
+const useWebSocket = (userId: string) => {
   const [messages, setMessages] = useState<string[]>([]);
 
   useEffect(() => {
@@ -9,7 +9,9 @@ const useWebSocket = () => {
 
     ws.onopen = () => {
       console.log('WebSocket 연결 성공');
-      ws.send(JSON.stringify({message: 'hello server!'}));
+      // 소켓 연결 후 구독 메시지 전송
+      const subscriptionPath = `/topic/notifications/users/${userId}`;
+      ws.send(JSON.stringify({action: 'subscribe', path: subscriptionPath}));
     };
 
     ws.onmessage = event => {
@@ -28,7 +30,8 @@ const useWebSocket = () => {
     return () => {
       ws.close();
     };
-  }, []);
+  }, [userId]);
+
   return messages;
 };
 
