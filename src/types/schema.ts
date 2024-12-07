@@ -28,3 +28,9 @@ export interface CareInfoSchema {
   careDate: string;
   careTime: string;
 }
+
+export interface Alarm {
+  name: string;
+  status: string;
+  date: string;
+}

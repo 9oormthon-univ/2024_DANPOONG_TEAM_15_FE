@@ -1,15 +1,14 @@
+import {useLocation} from 'react-router-dom';
 import * as C from '../styles/CommonStyle';
 import * as S from '../styles/NotificationsStyle';
 import TopBackLeftArrowBar from '@/components/common/TopBackLeftArrowBar';
 import AlarmIcon from '@/assets/icons/common/alarm-orange.svg';
 import AlarmCard from '@/components/alarm/AlarmCard';
+import {Alarm} from '@/types';
 
 function Notifications() {
-  const alarms = [
-    {name: '이지훈', status: '돌봄 서비스 이용 완료', date: '2024-12-04'},
-    {name: '이지훈', status: '돌봄 중', date: '2024-12-05'},
-    {name: '김구름', status: '돌보미 매칭 완료', date: '2024-12-06'},
-  ]; // 더미 데이터
+  const location = useLocation();
+  const alarms: Alarm[] = location.state?.alarms || []; // 전달된 알람 데이터
 
   return (
     <C.Page>
@@ -23,7 +22,7 @@ function Notifications() {
                 알림
               </S.TitleContainer>
               <S.AlarmContainer>
-                {alarms.map((alarm, index) => (
+                {alarms.map((alarm: Alarm, index: number) => (
                   <S.AlarmCardWrapper key={index}>
                     <AlarmCard
                       name={alarm.name}

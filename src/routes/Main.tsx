@@ -9,7 +9,7 @@ import ChildCardAdd from '@/components/main/ChildCardAdd';
 import DefaultImage from '@/assets/default-child.svg';
 import {getChildren} from '@/utils/childApi';
 import {getUserInfo} from '@/utils/userApi';
-import {ChildDataSchema} from '@/types';
+import {ChildDataSchema, Alarm} from '@/types';
 import useWebSocket from '@/utils/useWebSocket';
 import MainAlarmToast from '@/components/alarm/MainAlarmToast';
 
@@ -29,23 +29,45 @@ function Main() {
   const [showToast, setShowToast] = useState<boolean>(false);
   const [hasNewNotifications, setHasNewNotifications] =
     useState<boolean>(false); // 알림 상태
+  const [processedMessages, setProcessedMessages] = useState<Set<string>>(
+    new Set(),
+  ); // 처리된 메시지 집합
+  const [alarms, setAlarms] = useState<Alarm[]>([]); // 알림 데이터 저장
 
   const user_id = localStorage.getItem('user_id');
   const messages = useWebSocket(String(user_id));
   console.log('🚀 ~ file: Main.tsx:29 ~ Main ~ messages:', messages);
 
   useEffect(() => {
-    if (messages.length > 0) {
-      setLatestMessage(messages[messages.length - 1]); // 가장 최근 메시지 저장
-      setShowToast(true);
-      setHasNewNotifications(true); // 알림 상태를 true로 설정
+    if (messages?.messages && messages.messages.trim() !== '') {
+      const message =
+        messages.messages === '돌보미가 정해졌어요!'
+          ? '돌보미 매칭 완료'
+          : messages.messages;
 
-      // 5초 후 토스트 숨기기
-      setTimeout(() => {
-        setShowToast(false);
-      }, 5000);
+      if (!processedMessages.has(message)) {
+        setProcessedMessages(prev => new Set(prev).add(message));
+        setLatestMessage(message);
+        setShowToast(true);
+        setHasNewNotifications(true);
+
+        setAlarms(prev => [
+          ...prev,
+          {
+            name: messages.childNames || '이름 없음',
+            status: message,
+            date: messages.startDates || '',
+          },
+        ]);
+
+        console.log(alarms);
+
+        setTimeout(() => {
+          setShowToast(false);
+        }, 5000);
+      }
     }
-  }, [messages]);
+  }, [messages, processedMessages, alarms]);
 
   const clearNotifications = () => {
     setHasNewNotifications(false); // 알림 상태 초기화
@@ -92,6 +114,7 @@ function Main() {
                 <Header
                   hasNewNotifications={hasNewNotifications}
                   clearNotifications={clearNotifications}
+                  alarms={alarms}
                 />
                 <S.Container>
                   <S.Title>
