@@ -69,7 +69,7 @@ export default function CaregiverCard({status}: CaregiverCardProps) {
 
   // 돌보미 정보 더미 데이터
   const caregiverInfo = {
-    name: '돌보미 아이보리',
+    name: '구르미',
     age: '49세',
     gender: '여성',
   };
