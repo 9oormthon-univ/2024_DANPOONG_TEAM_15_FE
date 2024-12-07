@@ -25,16 +25,31 @@ function Main() {
   const [userName, setUserName] = useState<string>(''); // 사용자 이름
   const [children, setChildren] = useState<ChildData[]>([]); // 아이 목록
   console.log('🚀 ~ file: Main.tsx:24 ~ Main ~ children:', children);
-  const [latestMessage, setLatestMessage] = useState<string | null>(null); // 최신 메시지 상태
+  const [latestMessage, setLatestMessage] = useState<string>(''); // 최신 메시지 상태
+  const [showToast, setShowToast] = useState<boolean>(false);
+  const [hasNewNotifications, setHasNewNotifications] =
+    useState<boolean>(false); // 알림 상태
 
-  const messages = useWebSocket(String(2));
+  const user_id = localStorage.getItem('user_id');
+  const messages = useWebSocket(String(user_id));
   console.log('🚀 ~ file: Main.tsx:29 ~ Main ~ messages:', messages);
 
   useEffect(() => {
     if (messages.length > 0) {
       setLatestMessage(messages[messages.length - 1]); // 가장 최근 메시지 저장
+      setShowToast(true);
+      setHasNewNotifications(true); // 알림 상태를 true로 설정
+
+      // 5초 후 토스트 숨기기
+      setTimeout(() => {
+        setShowToast(false);
+      }, 5000);
     }
   }, [messages]);
+
+  const clearNotifications = () => {
+    setHasNewNotifications(false); // 알림 상태 초기화
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,7 +89,10 @@ function Main() {
           <S.Background>
             <C.PageSpace>
               <S.Main>
-                <Header />
+                <Header
+                  hasNewNotifications={hasNewNotifications}
+                  clearNotifications={clearNotifications}
+                />
                 <S.Container>
                   <S.Title>
                     <S.Name>
@@ -114,7 +132,7 @@ function Main() {
           </S.Background>
         </C.Center>
       </C.Page>
-      {latestMessage && <MainAlarmToast text={latestMessage} />}
+      {showToast && <MainAlarmToast text={latestMessage} />}
     </>
   );
 }

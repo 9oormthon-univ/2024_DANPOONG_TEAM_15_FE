@@ -1,34 +1,33 @@
 import {useEffect, useState} from 'react';
+import {Stomp} from '@stomp/stompjs';
+
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 
 const useWebSocket = (userId: string) => {
   const [messages, setMessages] = useState<string[]>([]);
 
   useEffect(() => {
-    const ws = new WebSocket(SOCKET_URL);
+    const client = Stomp.client(SOCKET_URL);
 
-    ws.onopen = () => {
+    client.connect({}, () => {
       console.log('WebSocket 연결 성공');
-      // 소켓 연결 후 구독 메시지 전송
+
+      // 특정 경로 구독
       const subscriptionPath = `/topic/notifications/users/${userId}`;
-      ws.send(JSON.stringify({action: 'subscribe', path: subscriptionPath}));
-    };
+      client.subscribe(subscriptionPath, message => {
+        console.log('받은 메시지:', message.body);
+        setMessages(prev => [...prev, message.body]); // 메시지 저장
+      });
+    });
 
-    ws.onmessage = event => {
-      console.log('받은 메시지:', event.data);
-      setMessages(prev => [...prev, event.data]);
-    };
-
-    ws.onerror = error => {
-      console.error('WebSocket 오류:', error);
-    };
-
-    ws.onclose = () => {
-      console.log('WebSocket 연결 종료');
+    client.onStompError = frame => {
+      console.error('WebSocket 오류:', frame);
     };
 
     return () => {
-      ws.close();
+      if (client.connected) {
+        client.disconnect(() => console.log('WebSocket 연결 종료'));
+      }
     };
   }, [userId]);
 

@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import * as H from '../styles/components/HeaderStyle';
 import Logo from '@/assets/icons/common/ivory-logo.svg';
@@ -6,15 +5,17 @@ import Mypage from '@/assets/icons/common/mypage.svg';
 import Alarm from '@/assets/icons/common/alarm-bell.svg';
 import AlarmRed from '@/assets/icons/common/alarm-red.svg';
 
-function Header() {
-  const navigate = useNavigate();
-  const [hasNewNotifications, setHasNewNotifications] = useState(false);
+interface HeaderProps {
+  hasNewNotifications: boolean;
+  clearNotifications: () => void;
+}
 
-  // 알림 상태 변경 (예: API 호출 후 상태 업데이트)
+function Header({hasNewNotifications, clearNotifications}: HeaderProps) {
+  const navigate = useNavigate();
+
   const handleCheckNotifications = () => {
-    // 추후 API를 통해 상태를 변경
-    setHasNewNotifications(false); // 예시로 알림 상태를 false로 변경
-    handleNavLinkClick('/notifications');
+    clearNotifications(); // 알림 상태 초기화
+    navigate('/notifications');
   };
 
   const handleNavLinkClick = (path: string): void => {

@@ -52,8 +52,10 @@ export const loginApi = async (
       // accessToken 저장
       const {accessToken} = response.data.data;
       const {authority} = response.data.data;
+      const {id} = response.data.data;
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('authority', authority);
+      localStorage.setItem('user_id', id);
 
       return; // 성공 종료
     }
