@@ -53,7 +53,7 @@ const PreviewFrame = styled.iframe`
 `;
 
 function CertificateDownload() {
-  const pdfFilePath = '/src/const/dummy_data/absent-paper.pdf'; // 파일 경로
+  const pdfFilePath = '/file/absent-paper.pdf'; // 파일 경로
 
   const handleDownload = () => {
     const link = document.createElement('a');

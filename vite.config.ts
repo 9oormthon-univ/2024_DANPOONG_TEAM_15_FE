@@ -14,6 +14,27 @@ export default defineConfig({
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       workbox: {
         maximumFileSizeToCacheInBytes: 5000000, // 파일 크기 제한을 5MB로 증가
+        navigateFallback: '/index.html', // 기본 fallback 경로 설정
+        navigateFallbackAllowlist: [
+          // 네비게이션 허용 경로 추가
+          /^\/absent-paper\.pdf$/, // /absent-paper.pdf 경로를 허용
+        ],
+        runtimeCaching: [
+          {
+            urlPattern: /.*\.pdf$/, // PDF 파일 캐싱 처리
+            handler: 'CacheFirst', // 캐시 우선 사용
+            options: {
+              cacheName: 'pdf-cache',
+              expiration: {
+                maxEntries: 10, // 최대 캐시 항목 수
+                maxAgeSeconds: 7 * 24 * 60 * 60, // 캐시 유효 기간 (7일)
+              },
+              cacheableResponse: {
+                statuses: [0, 200], // 캐싱 가능한 응답 상태 코드
+              },
+            },
+          },
+        ],
       },
       manifest: {
         name: '아이보리', // 설치 배너에 표시되는 이름
