@@ -1,107 +1,38 @@
-## 1. 브랜치 네이밍 규칙
+# 🍼 AI OCR 기반 질병 감염 아동 돌봄 서비스 신청 플랫폼 : 아이보리 (Ivory)
 
-### 종류
+> 아이보리는 인공지능을 통해 질병감염 아동돌봄 서비스 신청을 간편화하는 플랫폼입니다.
+>
+> 아이보리와 함께 아이들에게 필요한 돌봄을 가장 빠르고 간편하게 신청하세요! 
+> <br/>기술과 사람을 잇는 아이보리로 더 나은 돌봄 환경을 만들어갑니다.
 
-- `main`: 제품 출시 브랜치
-  - `hotfix`: 출시 버전에서 발생한 버그 수정 브랜치
-- `develop`: 출시를 위해 개발하는 브랜치
-  - `feature`: 새로운 기능을 개발하는 브랜치
-  - `release`: 이번 출시 버전을 준비하는 브랜치
+<img width="100%" src="https://github.com/user-attachments/assets/c9823cc8-30c7-448c-8df2-68ea2fbb0e63">
 
-***→ 상위 브랜치로부터 분기 ex)* `hotfix`*는* `main`으로부터 분기**
+<br/><br/>
 
-→ cf> **브랜치 네임은 케밥케이스로 작성 *ex)*** `feature/loginApi`**_(X)_**  `feature/login-api` **_(O)_**
+## 🍁 Developers
 
-### 예시
+| PM | PD | FE | FE | BE | BE |
+| --- | --- | --- | --- | --- | --- |
+| <img style="width: 200px;" src="https://avatars.githubusercontent.com/u/97465078?v=4" /> | <img style="width: 200px;" src="https://avatars.githubusercontent.com/u/165301687?v=4"/> | <img style="width: 200px;" src="https://avatars.githubusercontent.com/u/90364700?v=4" /> | <img style="width: 200px;" src="https://avatars.githubusercontent.com/u/61930500?v=4" /> | <img style="width: 200px;" src="https://avatars.githubusercontent.com/u/100124081?v=4" /> | <img style="width: 200px;" src="https://avatars.githubusercontent.com/u/104489022?v=4" /> |
+| 성균관대학교 | 한성대학교 | 덕성여자대학교 | 성균관대학교 | 한국공학대학교 | 한성대학교 |
+| 김민서 | 권기남 | 김서윤 | 김태건 | 강기환 | 이주연 |
+| [@daram62](https://github.com/daram62) | [@rlska0711](https://github.com/rlska0711) | [@pookey1104](https://github.com/pookey1104) | [@Taegon21](https://github.com/Taegon21) | [@GiHwan2](https://github.com/GiHwan2) | [@Juye0nLee](https://github.com/Juye0nLee) |
 
-- Feature 브랜치 네이밍 예
-  - 어떤 이름도 가능하나, `master`, `develop`, `release-...`, `hotfix-...` 같은 이름은 사용 X
-  - **기능 추가**: `feature/login`
-  - 이슈 기능 추가할 때 방법: `feature/#14-login-update`
-  - **버그 수정**: `fix/user-login-bug`
-  - **리팩토링**: `refactor/payment-module`
-- Release 브랜치 네이밍 예
-  - `release-1.1` ← 현재 버전 + 0.1 추가
-- hotfix 브랜치 네이밍 예
-  - `hotfix-1.2.1` ← 현재 버전 + 0.0.1 추가
-  - [**버전 참고**](https://devdesigner.tistory.com/21)
+## 📌 서비스 소개
 
-## 2. Git 전략 + 주의사항
+![아이보리 포스터](https://github.com/user-attachments/assets/a3a0d4e1-3dfa-40c2-a577-fa576042b59a)
 
-### Git flow 전략
+## 🚀 주요 기능
 
-[A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
+<img width="100%" src="https://github.com/user-attachments/assets/6dab008b-a3f9-4c2c-8e0e-1d91787002cc">
+<img width="100%" src="https://github.com/user-attachments/assets/61b9a438-5dde-4d7f-9ca2-77af8024aefd">
 
-### Merge 전략
+## 🧑‍💻 시스템 아키텍쳐
 
-- `feature` → `develop` 머지 시 `Squash and Merge`
-- `develop` → `main` 머지 시 `Rebase and Merge`
+<img width="100%" src="https://github.com/user-attachments/assets/8992898a-422c-42f8-944b-b1e18b0bac96">
 
-### 주의사항
+## 📹 시연
 
-- `feature` → `develop`으로 merge / `main`에 merge 안 하도록 유의
+🔗 https://youtu.be/Oy47KT_CMrM?feature=shared
 
-## 3. 커밋 컨벤션
-
-### Gitmoji Commit Type
-
-- ✨ :sparkles: → 새기능
-- 💄 :lipstick: → UI스타일 수정
-- ♻️ :recycle: → 코드 리팩토링
-- 🐛 :bug: → 버그
-- 📝 :memo: → 문서 관련 (리드미, 깃이그노어)
-- ➕ :heavy_plus_sign: → 의존성 추가
-- ➖ :heavy_minus_sign: → 의존성 제거
-- 🎨 :art: → 폴더 구조 변경( 파일 이름 변경, 리소스 변경 등)
-- 🔀 :twisted_rightwards_arrows: → 머지
-- ⏪ :rewind: → 리버트
-- 그 외 [**깃모지 공홈**](https://gitmoji.dev/) 참고
-
-### 예시
-
-- `🎨 Design architecture`
-- `✨ Create login form`
-
-### Commit Message Convention
-
-- Subject(Title)
-  - 마침표 및 특수기호 사용 X
-  - 영문으로 작성하는 경우 동사(원형)을 가장 앞에 명령어로 작성
-- Body
-  - 부연설명이 필요하거나 커밋의 이유를 설명할 경우 작성 (선택)
-  - Title과 Body는 **빈 행으로 구분**
-- 커밋메시지 영어로
-  - 첫 글자 대문자, 이후 소문자
-
-## 4. 파일명 / 변수명 컨벤션
-
-### Folder & File
-
-- 폴더명, 파일명 -> 전부 케밥케이스
-  - ex> `setting/editprofile`(x) -> `setting/edit-profile`(o)
-  - cf> 하나의 단위, 통용되는 영단어와 같은 특이 케이스는 열외 가능 (ex> mypage)
-
-### Variables, Functions
-
-- 변수명, 함수명 -> 카멜케이스
-  - ex> `ProfileImageView` (x) → `profileImageView` (o)
-  - ex> `GetAge()` (x) → `getAge()` (o)
-- 하드 코딩된 값의 별칭으로 사용되는 상수 → 대문자 + 밑줄
-  - ex> 컬러값, 폰트값, 실행 이전 정해진 상수 등..
-  - ex> `COLOR_WHITE = "#ffffff";`
-
-### 이외 규칙
-
-- component → 파스칼 케이스로 작성
-  - ex> `DeleteButton.tsx`
-- custom hook → use로 시작 + 카멜 케이스로 작성
-  - ex> `useOnlineStatus.ts`
-- 개발시 되도록 줄임말 사용x → btn(x) button(o)
-
-### cf> 카멜 케이스 / 케밥 케이스 / 파스칼 케이스란
-
-- `camelCase`: 소문자로 시작하고 대문자로 시작하는 모든 후속 단어
-- `PascalCase`: 모든 단어는 대문자로 시작
-- `kebab-case`: 하이픈으로 구분된 단어
-- 참고 문헌
-  https://k1005.github.io/2021/07/31/naming-rules/
+🔗 https://danpoong-ivory.vercel.app/
