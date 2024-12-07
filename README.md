@@ -26,6 +26,7 @@
 
 <img width="100%" src="https://github.com/user-attachments/assets/6dab008b-a3f9-4c2c-8e0e-1d91787002cc">
 <img width="100%" src="https://github.com/user-attachments/assets/61b9a438-5dde-4d7f-9ca2-77af8024aefd">
+<img width="100%" src="https://github.com/user-attachments/assets/12083977-a358-4def-99bf-1b20d218820b">
 
 ## 🧑‍💻 시스템 아키텍쳐
 
